@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="detailsGroup" class="card-content">
+            <mat-form-field>
+                <h2>
+                    <input matInput formControlName="name" type="text" placeholder="Name of Pokemon">
+                </h2>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput formControlName="height" type="text" placeholder="Height of Pokemon">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput formControlName="weight" type="text" placeholder="Weight of Pokemon">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput formControlName="base_experience" type="text" placeholder="Pokemon's Base XP">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button color="accent" mat-raised-button (click)="resetForm()">reset</button>
+    </mat-card-actions>
+</mat-card>

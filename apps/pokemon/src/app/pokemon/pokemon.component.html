@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <div class="list-grid">
+        <level-pokemon-list
+            [pokemons]="pokemon$ | async"
+            (selected)="selectPokemon($event)">
+        </level-pokemon-list>
+    </div>
+
+    <div class="details-grid">
+        <level-pokemon-details
+            [detailsGroup]="form"
+            [selectedPokemon]="selectedPokemon$ | async"
+            (reset)="resetForm($event)">            
+        </level-pokemon-details>
+    </div>
+</div>

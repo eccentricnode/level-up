@@ -7,5 +7,18 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "pokemon": {
+      "tags": []
+    },
+    "pokemon-e2e": {
+      "tags": []
+    },
+    "core-data": {
+      "tags": []
+    },
+    "material": {
+      "tags": []
+    }
+  }
 }
