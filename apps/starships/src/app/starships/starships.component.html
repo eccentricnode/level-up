@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="list-grid">
+    <level-starships-list
+      [starships]="starships$ | async"
+      (selected)="selectStarship($event)">
+    </level-starships-list>
+  </div>
+
+  <div class="details-grid">
+    <level-starships-details
+      [detailsGroup]="form"
+      [selectedStarship]="currentStarship$ | async"
+      (reset)="resetCurrentStarship($event)">
+    </level-starships-details>
+  </div>
+</div>

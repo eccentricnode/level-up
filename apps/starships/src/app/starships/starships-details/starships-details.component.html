@@ -1,0 +1,30 @@
+<mat-card>
+  <form [formGroup]="detailsGroup">
+    <mat-card-content class="card-content">
+      <mat-form-field>
+        <input matInput formControlName="name" type="text" placeholder="Starship Name"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="model" type="text" placeholder="Starship Model"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="manufacturer"type="text"placeholder="Starship Manufacturer"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="crew"type="text" placeholder="Starship Crew"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="passengers" type="text" placeholder="Passenger space"/>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="cargo_capacity" type="text" placeholder="Starship Cargo Capacity"/>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button color="accent" mat-raised-button
+        (click)="resetFormSubmit(detailsGroup)">
+        reset
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>
