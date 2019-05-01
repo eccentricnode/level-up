@@ -25,6 +25,12 @@
     },
     "starships-e2e": {
       "tags": []
+    },
+    "rockets": {
+      "tags": []
+    },
+    "rockets-e2e": {
+      "tags": []
     }
   }
 }
