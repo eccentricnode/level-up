@@ -6,6 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "deploy:pokemon-app": "ng build --project pokemon && cp ./dist/apps/pokemon/index.html ./dist/apps/pokemon/200.html && surge ./dist/apps/pokemon/ https://pokemon-list.surge.sh/",
+    "deploy:rockets-app": "ng build --project rockets && cp ./dist/apps/rockets/index.html ./dist/apps/rockets/200.html && surge ./dist/apps/rockets/ https://rockets-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
