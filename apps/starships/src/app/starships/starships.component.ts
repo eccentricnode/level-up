@@ -21,7 +21,7 @@ export class StarshipsComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.starshipsFacade.loadStarships();
-    this.form.reset();
+    this.resetCurrentStarship();
   }
 
   resetCurrentStarship() {

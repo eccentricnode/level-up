@@ -25,7 +25,7 @@ export class StarshipsDetailsComponent {
     });
   }
 
-  resetFormSubmit(starship) {
-    this.reset.emit(starship);
+  resetFormSubmit() {
+    this.reset.emit();
   }
 }

@@ -16,7 +16,7 @@ export const initialState: StarshipsState = adapter.getInitialState({
 export function starshipsReducer(state = initialState, action: StarshipsAction): StarshipsState {
   switch (action.type) {
     case StarshipsActionTypes.StarshipSelected: {
-      return Object.assign({}, state, { selectedStarshipId: action.payload });
+      return Object.assign({}, state, { selectedStarshipId: action.payload.id });
     };
 
     case StarshipsActionTypes.StarshipsLoaded: {
