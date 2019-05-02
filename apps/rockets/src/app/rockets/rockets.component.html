@@ -1,13 +1,16 @@
 <div class="wrapper">
   <div class="list-grid">
     <level-rocket-list
-      >
+      [rockets]="rockets$ | async"
+      (selected)="selectRocket($event)">
     </level-rocket-list>
   </div>
 
   <div class="details-grid">
     <level-rocket-details
-      >
+      [detailsGroup]="form"
+      [selectedRocket]="selectedRocket"
+      (reset)="resetRocket($event)">
     </level-rocket-details>
   </div>
 </div>

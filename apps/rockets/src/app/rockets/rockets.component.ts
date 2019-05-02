@@ -32,14 +32,7 @@ export class RocketsComponent implements OnInit {
   }
 
   resetRocket() { //refactor this when NgRx is built out
-    const emptyRocket = {
-      id: null,
-      rocket_name: '',
-      company: '',
-      first_flight: '',
-      success_rate_pct: null,
-      description: ''
-    }
+    this.form.reset();
   }
 
   initForm() {

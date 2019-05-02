@@ -12,6 +12,8 @@ export class RocketDetailsComponent {
   @Output() reset = new EventEmitter();
 
   @Input() set selectedRocket(value: Rocket) {
+    console.log(value);
+    if(!value) return;
     this.detailsGroup.patchValue({
       id: null,
       rocket_name: value.rocket_name,
