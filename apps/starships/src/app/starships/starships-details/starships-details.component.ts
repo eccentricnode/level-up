@@ -15,6 +15,7 @@ export class StarshipsDetailsComponent {
   set selectedStarship(value: Starship) {
     if (!value) return;
     this.detailsGroup.patchValue({
+      id: '',
       name: value.name,
       model: value.model,
       manufacturer: value.manufacturer,

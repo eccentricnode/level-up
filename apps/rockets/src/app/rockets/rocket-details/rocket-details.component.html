@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="detailsGroup" class="card-content">
+      <mat-form-field>
+        <h2>
+          <input matInput formControlName="rocket_name" type="text" placeholder="Rocket Name">
+        </h2>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="company" type="text" placeholder="Name of Company">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="first_flight" type="text" placeholder="Date of First Flight">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="succuss_rate_pct" type="text" placeholder="Success Rate Percentage">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput formControlName="description" type="text" placeholder="Date of First Flight"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -10,5 +10,5 @@ export class AppComponent {
   links = [
     { path: '/login', icon: 'home', title: 'Login' },
     { path: '/pokemon', icon: 'format_list_bulleted', title: 'Pokemon' }
-  ]
+  ];
 }

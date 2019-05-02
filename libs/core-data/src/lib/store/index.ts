@@ -35,12 +35,14 @@ export const selectCurrentStarshipId = createSelector(
 );
 
 const emptyStarship: Starship = {
+    id: '',
     name: '',
     model: '',
     manufacturer: '',
     crew: '',
     passengers: '',
-    cargo_capacity: ''
+    cargo_capacity: '',
+    url: ''
 };
 
 export const selectCurrentStarship = createSelector(

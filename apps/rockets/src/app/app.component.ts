@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rockets';
+  links = [
+    { path: '/login', icon: 'home', title: 'Login' },
+    { path: '/rockets', icon: 'format_list_bulleted', title: 'Rockets List' },
+  ]
 }

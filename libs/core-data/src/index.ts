@@ -6,3 +6,6 @@ export { PokemonMeta } from './lib/pokemon/pokemon-meta.model';
 
 export { StarshipsFacade } from './lib/store/starships/starships.facade';
 export { Starship } from './lib/starships/starship.model';
+
+export { RocketsService } from './lib/rockets/rockets.service';
+export { Rocket } from './lib/rockets/rocket.model';
