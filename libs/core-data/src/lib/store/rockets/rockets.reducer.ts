@@ -1,47 +1,46 @@
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Rocket } from '../../rockets/rocket.model';
+
 import { RocketsAction, RocketsActionTypes } from './rockets.actions';
 
-export const ROCKETS_FEATURE_KEY = 'rockets';
 
-/**
- * Interface for the 'Rockets' data used in
- *  - RocketsState, and
- *  - rocketsReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
-export interface RocketsState {
-  list: Entity[]; // list of Rockets; analogous to a sql normalized table
-  selectedId?: string | number; // which Rockets record has been selected
-  loaded: boolean; // has the Rockets list been loaded
-  error?: any; // last none error (if any)
+export interface RocketsState extends EntityState<Rocket> {
+  selectedRocketId: string | null;
 }
 
-export interface RocketsPartialState {
-  readonly [ROCKETS_FEATURE_KEY]: RocketsState;
-}
+export const adapter: EntityAdapter<Rocket> = createEntityAdapter<Rocket>();
+export const initialState: RocketsState = adapter.getInitialState ({
+  selectedRocketId: null,
+});
 
-export const initialState: RocketsState = {
-  list: [],
-  loaded: false
-};
-
-export function rocketsReducer(
-  state: RocketsState = initialState,
-  action: RocketsAction
-): RocketsState {
+export function rocketsReducer(state = initialState, action: RocketsAction): RocketsState {
   switch (action.type) {
+    case RocketsActionTypes.RocketSelected: {
+      return Object.assign({}, state, { selectedRocketId: action.payload.id});
+    };
+
     case RocketsActionTypes.RocketsLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
-    }
+      return adapter.addAll(action.payload, state);
+    };
+
+    default: 
+      return state;
   }
-  return state;
 }
+
+export const getSelectedRocketId = (state: RocketsState) => state.selectedRocketId;
+    
+// get the selectors
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// select the array of rocket ids
+export const selectRocketIds = selectIds;
+
+// select the dictionary of rocket entities
+export const selectRocketEntities = selectEntities;
+
+// select the array of rockets
+export const selectAllRockets = selectAll;
+
+// select the total rocket count
+export const selectRocketTotal = selectTotal;

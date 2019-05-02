@@ -8,4 +8,5 @@ export { StarshipsFacade } from './lib/store/starships/starships.facade';
 export { Starship } from './lib/starships/starship.model';
 
 export { RocketsService } from './lib/rockets/rockets.service';
+export { RocketsFacade } from './lib/store/rockets/rockets.facade';
 export { Rocket } from './lib/rockets/rocket.model';

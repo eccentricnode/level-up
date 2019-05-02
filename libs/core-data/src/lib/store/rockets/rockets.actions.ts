@@ -1,10 +1,20 @@
 import { Action } from '@ngrx/store';
-import { Entity } from './rockets.reducer';
+import { Rocket } from '../../rockets/rocket.model';
 
 export enum RocketsActionTypes {
+  RocketsAction = '[Rockets] Action',
+  RocketSelected = '[Rockets] Selected',
   LoadRockets = '[Rockets] Load Rockets',
   RocketsLoaded = '[Rockets] Rockets Loaded',
-  RocketsLoadError = '[Rockets] Rockets Load Error'
+}
+
+export class Rockets implements Action {
+  readonly type = RocketsActionTypes.RocketsAction;
+}
+
+export class RocketSelected implements Action {
+  readonly type = RocketsActionTypes.RocketSelected;
+  constructor(public payload) { }
 }
 
 export class LoadRockets implements Action {
@@ -13,10 +23,11 @@ export class LoadRockets implements Action {
 
 export class RocketsLoaded implements Action {
   readonly type = RocketsActionTypes.RocketsLoaded;
-  constructor(public payload: Entity[]) {}
+  constructor(public payload: Rocket[]) {}
 }
 
-export type RocketsAction = 
+export type RocketsAction = Rockets
+  | RocketSelected
   | LoadRockets
   | RocketsLoaded 
 ;

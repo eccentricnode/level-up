@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-rocket-details
       [detailsGroup]="form"
-      [selectedRocket]="selectedRocket"
+      [selectedRocket]="currentRocket$ | async"
       (reset)="resetRocket($event)">
     </level-rocket-details>
   </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Rocket, RocketsService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { Rocket, RocketsService, RocketsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-rockets',
@@ -9,29 +10,27 @@ import { Rocket, RocketsService } from '@level/core-data';
 })
 export class RocketsComponent implements OnInit {
   form: FormGroup;
-  rockets$;
-  selectedRocket: Rocket;
+  rockets$: Observable<Rocket[]> = this.rocketsFacade.allRockets$;
+  currentRocket$: Observable<Rocket> = this.rocketsFacade.currentRocket$;
 
   constructor(
     private rocketsService: RocketsService,
+    private rocketsFacade: RocketsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.initForm();
-    this.getRockets();
+    this.rocketsFacade.loadRockets();
     this.resetRocket();
   }
 
-  getRockets() {
-    this.rockets$ = this.rocketsService.all();
-  }
-
   selectRocket(rocket) {
-    this.selectedRocket = rocket;
+    this.rocketsFacade.selectRocket(rocket);
   }
 
-  resetRocket() { //refactor this when NgRx is built out
+  resetRocket() {
+    this.selectRocket({id: null});
     this.form.reset();
   }
 

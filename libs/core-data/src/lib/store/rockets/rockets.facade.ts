@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { RocketsPartialState } from './rockets.reducer';
-import { rocketsQuery } from './rockets.selectors';
-import { LoadRockets } from './rockets.actions';
+import { selectAllRockets, selectCurrentRocket } from '..';
+import { RocketsActionTypes } from './rockets.actions';
+import * as RocketsActions from './rockets.actions';
+import { RocketsState } from './rockets.reducer';
 
 @Injectable()
 export class RocketsFacade {
-  loaded$ = this.store.pipe(select(rocketsQuery.getLoaded));
-  allRockets$ = this.store.pipe(select(rocketsQuery.getAllRockets));
-  selectedRockets$ = this.store.pipe(select(rocketsQuery.getSelectedRockets));
+  allRockets$ = this.store.pipe(select(selectAllRockets));
+  currentRocket$ = this.store.pipe(select(selectCurrentRocket));
 
-  constructor(private store: Store<RocketsPartialState>) {}
+  constructor(private store: Store<RocketsState>) {}
 
-  loadAll() {
-    this.store.dispatch(new LoadRockets());
+  selectRocket(rocket) {
+    this.store.dispatch(new RocketsActions.RocketSelected(rocket));
+  }
+
+  loadRockets() {
+    this.store.dispatch(new RocketsActions.LoadRockets());
   }
 }

@@ -1,34 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
+import { map } from 'rxjs/operators';
 
-import { RocketsPartialState } from './rockets.reducer';
+import { Rocket } from '../../rockets/rocket.model';
+import { RocketsService } from '../../rockets/rockets.service';
+
 import {
   LoadRockets,
   RocketsLoaded,
-  RocketsLoadError,
   RocketsActionTypes
 } from './rockets.actions';
+import { RocketsState } from './rockets.reducer';
 
 @Injectable()
 export class RocketsEffects {
-  @Effect() loadRockets$ = this.dataPersistence.fetch(
-    RocketsActionTypes.LoadRockets,
-    {
-      run: (action: LoadRockets, state: RocketsPartialState) => {
-        // Your custom REST 'load' logic goes here. For now just return an empty list...
-        return new RocketsLoaded([]);
+  @Effect() effect$ = this.actions$.pipe(ofType(RocketsActionTypes.RocketsAction))
+
+  @Effect() 
+  loadRockets$ = this.dataPersistence.fetch(RocketsActionTypes.LoadRockets, {
+      run: (action: LoadRockets, state: RocketsState) => {
+        return this.rocketsService.all().pipe(map((res: Rocket[]) => new RocketsLoaded(res)));
       },
 
       onError: (action: LoadRockets, error) => {
         console.error('Error', error);
-        return new RocketsLoadError(error);
       }
     }
   );
 
   constructor(
     private actions$: Actions,
-    private dataPersistence: DataPersistence<RocketsPartialState>
+    private dataPersistence: DataPersistence<RocketsState>,
+    private rocketsService: RocketsService
   ) {}
 }
