@@ -37,6 +37,12 @@
     },
     "dota2-e2e": {
       "tags": []
+    },
+    "guild": {
+      "tags": []
+    },
+    "guild-e2e": {
+      "tags": []
     }
   }
 }

@@ -14,3 +14,6 @@ export { Rocket } from './lib/rockets/rocket.model';
 export { Dota2Service } from './lib/dota2/dota2.service';
 export { Dota2Facade } from './lib/store/dota2/dota2.facade';
 export { Dota2 } from './lib/dota2/dota2.model';
+
+export { GuildService } from './lib/guild/guild.service';
+export { Guild } from './lib/guild/guild.model';

@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Achievement's List</mat-card-title>
+     <br>
+    <mat-card-subtitle>Select an Achievement!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="mat-list-option" *ngFor="let achievement of achievements"
+          (click)="selectAchievementSubmit(achievement)">
+        <span matLine><strong>Name of Achievement: </strong> {{achievement.name}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
