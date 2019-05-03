@@ -9,6 +9,7 @@
     "deploy:starships-app": "ng build --project starships && cp ./dist/apps/starships/index.html ./dist/apps/starships/200.html && surge ./dist/apps/starships/ https://starships-list.surge.sh/",
     "deploy:rockets-app": "ng build --project rockets && cp ./dist/apps/rockets/index.html ./dist/apps/rockets/200.html && surge ./dist/apps/rockets/ https://rockets-list.surge.sh/",
     "deploy:dota2-app": "ng build --project dota2 && cp ./dist/apps/dota2/index.html ./dist/apps/dota2/200.html && surge ./dist/apps/dota2/ https://dota2-list.surge.sh/",
+    "deploy:guild-app": "ng build --project guild && cp ./dist/apps/guild/index.html ./dist/apps/guild/200.html && surge ./dist/apps/guild/ https://guild-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",

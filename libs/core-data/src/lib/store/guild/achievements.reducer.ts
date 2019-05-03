@@ -33,7 +33,7 @@ export function achievementsReducer(state: AchievementsState = initialState, act
 export const getSelectedAchievementId = (state: AchievementsState) => state.selectedAchievementId;
 
 // get the selectors
-const{ selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
 
 // select the array of achievement ids
 export const selectAchievementIds = selectIds;

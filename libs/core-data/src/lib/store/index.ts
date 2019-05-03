@@ -149,7 +149,7 @@ export const selectCurrentTeam = createSelector(
 // ACHIEVEMENTS SELECTORS
 //-------------------------------------------------------------------
 
-export const selectAchievementsState = createFeatureSelector<fromAchievements.AchievementsState>('teams');
+export const selectAchievementsState = createFeatureSelector<fromAchievements.AchievementsState>('achievements');
 
 export const selectAchievementIds = createSelector(
     selectAchievementsState,

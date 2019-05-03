@@ -16,4 +16,5 @@ export { Dota2Facade } from './lib/store/dota2/dota2.facade';
 export { Dota2 } from './lib/dota2/dota2.model';
 
 export { GuildService } from './lib/guild/guild.service';
+export { AchievementsFacade } from './lib/store/guild/achievements.facade';
 export { Guild } from './lib/guild/guild.model';

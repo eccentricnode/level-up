@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Guild, GuildService } from '@level/core-data';
+import { Guild, GuildService, AchievementsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-guild',
@@ -10,26 +10,28 @@ import { Guild, GuildService } from '@level/core-data';
 })
 export class GuildComponent implements OnInit {
   form: FormGroup;
-  achievements$;
-  selectedAchievement: Guild;
+  achievements$: Observable<Guild[]> = this.achievementsFacade.allAchievements$;
+  selectedAchievement$: Observable<Guild> = this.achievementsFacade.currentAchievements$;
 
   constructor(
     private guildService: GuildService,
+    private achievementsFacade: AchievementsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.achievementsFacade.loadAchievements();
     this.initForm();
     this.resetForm();
-    this.getAchievements();
   }
 
   selectAchievement(achievement) {
-    this.selectedAchievement = achievement;
+    this.achievementsFacade.selectAchievement(achievement);
   }
 
-  getAchievements() {
-    this.achievements$ = this.guildService.getAchievements();
+  resetForm() {
+    this.selectAchievement({id: null});
+    this.form.reset();
   }
 
   initForm() {
@@ -39,9 +41,5 @@ export class GuildComponent implements OnInit {
       description: { value: '', disabled: true },
       requirement: { value: '', disabled: true },
     });
-  }
-
-  resetForm() {
-    this.form.reset();
   }
 }

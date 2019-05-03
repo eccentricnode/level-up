@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-guild-details
       [detailsGroup]="form"
-      [selectedAchievement]="selectedAchievement"
+      [selectedAchievement]="selectedAchievement$ | async"
       (reset)="resetForm($event)">
     </level-guild-details>
   </div>

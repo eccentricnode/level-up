@@ -25,7 +25,7 @@ export class RocketsComponent implements OnInit {
     this.resetRocket();
   }
 
-  selectRocket(rocket) {
+  selectRocket(rocket) { console.log(this.rockets$);
     this.rocketsFacade.selectRocket(rocket);
   }
 
