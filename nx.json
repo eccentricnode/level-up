@@ -43,6 +43,12 @@
     },
     "guild-e2e": {
       "tags": []
+    },
+    "crypto": {
+      "tags": []
+    },
+    "crypto-e2e": {
+      "tags": []
     }
   }
 }
