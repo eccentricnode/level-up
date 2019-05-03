@@ -2,18 +2,22 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 
 import * as fromStarships from './starships/starships.reducer';
 import * as fromRockets from './rockets/rockets.reducer';
+import * as fromDota2 from './dota2/dota2.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
+import { Dota2 } from '../dota2/dota2.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
     rockets: fromRockets.RocketsState
+    teams: fromDota2.Dota2State
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     starships: fromStarships.starshipsReducer,
-    rockets: fromRockets.rocketsReducer
+    rockets: fromRockets.rocketsReducer,
+    teams: fromDota2.dota2Reducer
 }
 
 //-------------------------------------------------------------------
@@ -94,5 +98,45 @@ export const selectCurrentRocket = createSelector(
     selectCurrentRocketId,
     (rocketEntities, rocketId) => {
         return rocketId ? rocketEntities[rocketId] : emptyRocket;
+    }
+);
+
+//-------------------------------------------------------------------
+// TEAMS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectTeamsState = createFeatureSelector<fromDota2.Dota2State>('teams');
+
+export const selectTeamIds = createSelector(
+    selectTeamsState,
+    fromDota2.selectTeamIds
+);
+export const selectTeamEntites = createSelector(
+    selectTeamsState,
+    fromDota2.selectTeamEntities
+);
+export const selectAllTeams = createSelector(
+    selectTeamsState,
+    fromDota2.selectAllTeams
+);
+export const selectCurrentTeamId = createSelector(
+    selectTeamsState,
+    fromDota2.getSelectedTeamId
+);
+
+const emptyTeam: Dota2 = {
+    team_id: null,
+    id: null,
+    name: '',
+    wins: null,
+    losses: null,
+    rating: null
+};
+
+export const selectCurrentTeam = createSelector(
+    selectTeamEntites,
+    selectCurrentTeamId,
+    (teamEntities, teamId) => {
+        return teamId ? teamEntities[teamId] : emptyTeam;
     }
 );

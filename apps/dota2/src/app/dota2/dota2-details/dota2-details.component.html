@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="detailsGroup" class="card-content">
+      <mat-form-field>
+        <h2>
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="Dota2 Team Name"
+          />
+        </h2>
+      </mat-form-field>
+      <mat-form-field>
+        <h3>
+          <input
+            matInput
+            formControlName="rating"
+            type="text"
+            placeholder="Team Rating"
+          />
+        </h3>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="wins"
+          type="text"
+          placeholder="Number of Wins"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="losses"
+          type="text"
+          placeholder="Number of Losses"
+        />
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button color="accent" mat-raised-button (click)="resetForm()">
+      reset
+    </button>
+  </mat-card-actions>
+</mat-card>

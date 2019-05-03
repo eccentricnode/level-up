@@ -13,6 +13,10 @@ import { StarshipsFacade } from './starships/starships.facade';
 import { RocketsEffects } from './rockets/rockets.effects';
 import { RocketsFacade } from './rockets/rockets.facade';
 
+import { Dota2Effects } from './dota2/dota2.effects';
+import { Dota2Facade } from './dota2/dota2.facade';
+
+
 @NgModule({
   declarations: [],
   imports: [
@@ -20,8 +24,8 @@ import { RocketsFacade } from './rockets/rockets.facade';
     NxModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
-    EffectsModule.forRoot([StarshipsEffects, RocketsEffects]),
+    EffectsModule.forRoot([StarshipsEffects, RocketsEffects, Dota2Effects]),
   ],
-  providers: [StarshipsFacade, RocketsFacade]
+  providers: [StarshipsFacade, RocketsFacade, Dota2Facade]
 })
 export class StateModule {}

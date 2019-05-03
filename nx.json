@@ -31,6 +31,12 @@
     },
     "rockets-e2e": {
       "tags": []
+    },
+    "dota2": {
+      "tags": []
+    },
+    "dota2-e2e": {
+      "tags": []
     }
   }
 }
