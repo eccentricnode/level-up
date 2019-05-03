@@ -1,4 +1,4 @@
-export interface Crypto {
+export interface Coin {
     id: number;
     name: string,
     rank: number,

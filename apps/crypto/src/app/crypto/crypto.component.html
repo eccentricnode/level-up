@@ -1,3 +1,16 @@
-<p>
-  crypto works!
-</p>
+<div class="wrapper">
+  <div class="list-grid">
+    <level-crypto-list
+      [coins]="coins$ | async"
+      (selected)="selectCoin($event)">
+    </level-crypto-list>
+  </div>
+
+  <div class="details-grid">
+    <level-crypto-details
+      [detailsGroup]="form"
+      [selectedCoin]="selectedCoin"
+      (reset)="resetForm($event)">
+    </level-crypto-details>
+  </div>
+</div>

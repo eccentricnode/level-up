@@ -18,3 +18,6 @@ export { Dota2 } from './lib/dota2/dota2.model';
 export { GuildService } from './lib/guild/guild.service';
 export { AchievementsFacade } from './lib/store/guild/achievements.facade';
 export { Guild } from './lib/guild/guild.model';
+
+export { CoinService } from './lib/crypto/crypto.service';
+export { Coin } from './lib/crypto/crypto.model';

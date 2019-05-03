@@ -7,7 +7,7 @@ const BASE_URL = `https://api.coinlore.com/api/tickers/`;
 @Injectable({
   providedIn: 'root'
 })
-export class CryptoService {
+export class CoinService {
 
   constructor(private http: HttpClient) { }
 

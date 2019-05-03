@@ -1,20 +1,24 @@
-<div style="text-align:center">
-  <h1>Welcome to {{ title }}!</h1>
-  <img
-    width="300"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
-  />
-</div>
+<mat-toolbar color="primary">
+  <span>
+    <button mat-mini-fab (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </span>
+  <span>{{title}}</span>
+</mat-toolbar>
 
-<h2>This is an Angular CLI app built with Nrwl Nx!</h2>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" class="mat-elevation-z5 toolbar">
+    <nav>
+      <a mat-button class="nav-link" *ngFor="let link of links"
+        [routerLink]="link.path" routerLinkActive="active">
+        <mat-icon>
+          {{link.icon}}
+        </mat-icon>
+          {{link.title}}
+      </a>
+    </nav>
+  </mat-sidenav>
 
-An open source toolkit for enterprise Angular applications. Nx is designed to
-help you create and build enterprise grade Angular applications. It provides an
-opinionated approach to application project structure and patterns.
-
-<h2>Quick Start & Documentation</h2>
-
-<a href="https://nrwl.io/nx"
-  >Watch a 5-minute video on how to get started with Nx.</a
->
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

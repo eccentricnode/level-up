@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crypto';
+  links = [
+    { path: '/login', icon: 'home', title: 'Login' },
+    { path: '/crypto', icon: 'format_list_bulleted', title: 'Crypto Coins' }
+  ]
 }
