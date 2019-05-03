@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-crypto-details
       [detailsGroup]="form"
-      [selectedCoin]="selectedCoin"
+      [selectedCoin]="selectedCoin$ | async"
       (reset)="resetForm($event)">
     </level-crypto-details>
   </div>

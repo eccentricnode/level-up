@@ -3,25 +3,29 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 import * as fromStarships from './starships/starships.reducer';
 import * as fromRockets from './rockets/rockets.reducer';
 import * as fromDota2 from './dota2/dota2.reducer';
-import * as fromAchievements from './guild/achievements.reducer'
+import * as fromAchievements from './guild/achievements.reducer';
+import * as fromCoins from './coins/coins.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
 import { Dota2 } from '../dota2/dota2.model';
 import { Guild } from '../guild/guild.model';
+import { Coin } from '../crypto/crypto.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
     rockets: fromRockets.RocketsState
     teams: fromDota2.Dota2State
     achievements: fromAchievements.AchievementsState
+    coins: fromCoins.CoinsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     starships: fromStarships.starshipsReducer,
     rockets: fromRockets.rocketsReducer,
     teams: fromDota2.dota2Reducer,
-    achievements: fromAchievements.achievementsReducer
+    achievements: fromAchievements.achievementsReducer,
+    coins: fromCoins.coinsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -180,5 +184,45 @@ export const selectCurrentAchievement = createSelector(
     selectCurrentAchievementId,
     (achievementEntities, achievementId) => {
         return achievementId ? achievementEntities[achievementId] : emptyAchievement;
+    }
+);
+
+//-------------------------------------------------------------------
+// COINS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectCoinsState = createFeatureSelector<fromCoins.CoinsState>('coins');
+
+export const selectCoinIds = createSelector(
+    selectCoinsState,
+    fromCoins.selectCoinIds
+);
+export const selectCoinEntities = createSelector(
+    selectCoinsState,
+    fromCoins.selectCoinEntities
+);
+export const selectAllCoins = createSelector(
+    selectCoinsState,
+    fromCoins.selectAllCoins
+);
+export const selectCurrentCoinId = createSelector(
+    selectCoinsState,
+    fromCoins.getSelectedCoinId
+);
+
+const emptyCoin: Coin = {
+    id: null,
+    name: '', 
+    rank: null,
+    price_usd: '',
+    percent_change_24h: '', 
+    percent_change_7d: '',
+};
+
+export const selectCurrentCoin = createSelector(
+    selectCoinEntities,
+    selectCurrentCoinId,
+    (coinEntities, coinId) => {
+        return coinId ? coinEntities[coinId] : emptyCoin;
     }
 );

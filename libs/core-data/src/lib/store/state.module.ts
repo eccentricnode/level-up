@@ -19,6 +19,9 @@ import { Dota2Facade } from './dota2/dota2.facade';
 import { AchievementsEffects } from './guild/achievements.effects';
 import { AchievementsFacade } from './guild/achievements.facade';
 
+import { CoinsEffects } from './coins/coins.effects';
+import { CoinsFacade } from './coins/coins.facade';
+
 
 @NgModule({
   declarations: [],
@@ -27,8 +30,8 @@ import { AchievementsFacade } from './guild/achievements.facade';
     NxModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
-    EffectsModule.forRoot([StarshipsEffects, RocketsEffects, Dota2Effects, AchievementsEffects]),
+    EffectsModule.forRoot([StarshipsEffects, RocketsEffects, Dota2Effects, AchievementsEffects, CoinsEffects]),
   ],
-  providers: [StarshipsFacade, RocketsFacade, Dota2Facade, AchievementsFacade]
+  providers: [StarshipsFacade, RocketsFacade, Dota2Facade, AchievementsFacade, CoinsFacade]
 })
 export class StateModule {}
