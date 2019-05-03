@@ -3,21 +3,25 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 import * as fromStarships from './starships/starships.reducer';
 import * as fromRockets from './rockets/rockets.reducer';
 import * as fromDota2 from './dota2/dota2.reducer';
+import * as fromAchievements from './guild/achievements.reducer'
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
 import { Dota2 } from '../dota2/dota2.model';
+import { Guild } from '../guild/guild.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
     rockets: fromRockets.RocketsState
     teams: fromDota2.Dota2State
+    achievements: fromAchievements.AchievementsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     starships: fromStarships.starshipsReducer,
     rockets: fromRockets.rocketsReducer,
-    teams: fromDota2.dota2Reducer
+    teams: fromDota2.dota2Reducer,
+    achievements: fromAchievements.achievementsReducer
 }
 
 //-------------------------------------------------------------------
@@ -138,5 +142,43 @@ export const selectCurrentTeam = createSelector(
     selectCurrentTeamId,
     (teamEntities, teamId) => {
         return teamId ? teamEntities[teamId] : emptyTeam;
+    }
+);
+
+//-------------------------------------------------------------------
+// ACHIEVEMENTS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectAchievementsState = createFeatureSelector<fromAchievements.AchievementsState>('teams');
+
+export const selectAchievementIds = createSelector(
+    selectAchievementsState,
+    fromAchievements.selectAchievementIds
+);
+export const selectAchievementEntities = createSelector(
+    selectAchievementsState,
+    fromAchievements.selectAchievementEntities
+);
+export const selectAllAchievements = createSelector(
+    selectAchievementsState,
+    fromAchievements.selectAllAchievements
+);
+export const selectCurrentAchievementId = createSelector(
+    selectAchievementsState,
+    fromAchievements.getSelectedAchievementId
+);
+
+const emptyAchievement: Guild = {
+    id: null,
+    name: '',
+    description: '',
+    requirement: ''
+};
+
+export const selectCurrentAchievement = createSelector(
+    selectAchievementEntities,
+    selectCurrentAchievementId,
+    (achievementEntities, achievementId) => {
+        return achievementId ? achievementEntities[achievementId] : emptyAchievement;
     }
 );
