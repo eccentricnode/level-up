@@ -49,6 +49,12 @@
     },
     "crypto-e2e": {
       "tags": []
+    },
+    "air": {
+      "tags": []
+    },
+    "air-e2e": {
+      "tags": []
     }
   }
 }
