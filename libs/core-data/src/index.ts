@@ -22,3 +22,6 @@ export { Guild } from './lib/guild/guild.model';
 export { CoinService } from './lib/crypto/crypto.service';
 export { CoinsFacade } from './lib/store/coins/coins.facade';
 export { Coin } from './lib/crypto/crypto.model';
+
+export { AirService } from './lib/air/air.service';
+export { Air } from './lib/air/air.model';

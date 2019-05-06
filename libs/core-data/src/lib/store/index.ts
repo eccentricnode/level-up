@@ -226,3 +226,7 @@ export const selectCurrentCoin = createSelector(
         return coinId ? coinEntities[coinId] : emptyCoin;
     }
 );
+
+//-------------------------------------------------------------------
+// CITIES SELECTORS
+//-------------------------------------------------------------------

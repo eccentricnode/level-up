@@ -1,2 +1,7 @@
-export interface Air.Model {
+export interface Air {
+    id: number;
+    city: string;
+    country: string;
+    locations: number;
+    count: number;
 }

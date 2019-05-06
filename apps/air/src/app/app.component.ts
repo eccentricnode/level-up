@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'air';
+  links = [
+    { path: '/login', icon: 'home', title: 'Login' },
+    { path: '/air', icon: 'format_list_bulleted', title: 'Air Quality' },
+  ];
 }
