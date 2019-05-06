@@ -5,12 +5,14 @@ import * as fromRockets from './rockets/rockets.reducer';
 import * as fromDota2 from './dota2/dota2.reducer';
 import * as fromAchievements from './guild/achievements.reducer';
 import * as fromCoins from './coins/coins.reducer';
+import * as fromCities from './cities/cities.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
 import { Dota2 } from '../dota2/dota2.model';
 import { Guild } from '../guild/guild.model';
 import { Coin } from '../crypto/crypto.model';
+import { Air } from '../air/air.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -18,6 +20,7 @@ export interface AppState {
     teams: fromDota2.Dota2State
     achievements: fromAchievements.AchievementsState
     coins: fromCoins.CoinsState
+    cities: fromCities.CitiesState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -26,6 +29,7 @@ export const reducers: ActionReducerMap<AppState> = {
     teams: fromDota2.dota2Reducer,
     achievements: fromAchievements.achievementsReducer,
     coins: fromCoins.coinsReducer,
+    cities: fromCities.citiesReducer
 }
 
 //-------------------------------------------------------------------
@@ -230,3 +234,38 @@ export const selectCurrentCoin = createSelector(
 //-------------------------------------------------------------------
 // CITIES SELECTORS
 //-------------------------------------------------------------------
+
+export const selectCitiesState = createFeatureSelector<fromCities.CitiesState>('cities');
+
+export const selectCityIds = createSelector(
+    selectCitiesState,
+    fromCities.selectCityIds
+);
+export const selectCityEntities = createSelector(
+    selectCitiesState,
+    fromCities.selectCityEntities
+);
+export const selectAllCities = createSelector(
+    selectCitiesState,
+    fromCities.selectAllCities
+);
+export const selectCurrentCityId = createSelector(
+    selectCitiesState,
+    fromCities.getSelectedCityId
+);
+
+const emptyCity: Air = {
+    id: null,
+    city: '',
+    country: '',
+    locations: null,
+    count: null,
+};
+
+export const selectCurrentCity = createSelector(
+    selectCityEntities,
+    selectCurrentCityId,
+    (cityEntities, cityId) => {
+        return cityId ? cityEntities[cityId] : emptyCity;
+    }
+);

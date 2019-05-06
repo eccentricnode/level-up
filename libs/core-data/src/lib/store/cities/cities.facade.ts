@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { CitiesPartialState } from './cities.reducer';
-import { citiesQuery } from './cities.selectors';
-import { LoadCities } from './cities.actions';
+import { selectAllCities, selectCurrentCity} from '..';
+import { CitiesActionTypes } from './cities.actions';
+import * as CitiesActions from './cities.actions';
+import { CitiesState } from './cities.reducer';
 
 @Injectable()
 export class CitiesFacade {
-  loaded$ = this.store.pipe(select(citiesQuery.getLoaded));
-  allCities$ = this.store.pipe(select(citiesQuery.getAllCities));
-  selectedCities$ = this.store.pipe(select(citiesQuery.getSelectedCities));
+  allCities$ = this.store.pipe(select(selectAllCities));
+  selectedCities$ = this.store.pipe(select(selectCurrentCity));
 
-  constructor(private store: Store<CitiesPartialState>) {}
+  constructor(private store: Store<CitiesState>) {}
 
-  loadAll() {
-    this.store.dispatch(new LoadCities());
+  selectCity(city) { 
+    this.store.dispatch(new CitiesActions.CitySelected(city))
+  }
+  
+  loadCities() {
+    this.store.dispatch(new CitiesActions.LoadCities());
   }
 }

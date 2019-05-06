@@ -1,47 +1,45 @@
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Air } from '../../air/air.model';
+
 import { CitiesAction, CitiesActionTypes } from './cities.actions';
 
-export const CITIES_FEATURE_KEY = 'cities';
-
-/**
- * Interface for the 'Cities' data used in
- *  - CitiesState, and
- *  - citiesReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
-export interface CitiesState {
-  list: Entity[]; // list of Cities; analogous to a sql normalized table
-  selectedId?: string | number; // which Cities record has been selected
-  loaded: boolean; // has the Cities list been loaded
-  error?: any; // last none error (if any)
+export interface CitiesState extends EntityState<Air> {
+  selectedCityId: string | null;
 }
 
-export interface CitiesPartialState {
-  readonly [CITIES_FEATURE_KEY]: CitiesState;
-}
+export const adapter: EntityAdapter<Air> = createEntityAdapter<Air>();
+export const initialState: CitiesState = adapter.getInitialState ({
+  selectedCityId: null,
+});
 
-export const initialState: CitiesState = {
-  list: [],
-  loaded: false
-};
-
-export function citiesReducer(
-  state: CitiesState = initialState,
-  action: CitiesAction
-): CitiesState {
+export function citiesReducer(state: CitiesState = initialState, action: CitiesAction): CitiesState {
   switch (action.type) {
     case CitiesActionTypes.CitiesLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
+      return Object.assign({}, state, { selectedCityId: action.payload });
     }
+
+    case CitiesActionTypes.CitiesLoaded: {
+      return adapter.addAll(action.payload, state);
+    }
+
+    default: 
+      return state;
   }
-  return state;
 }
+
+export const getSelectedCityId = (state: CitiesState) => state.selectedCityId;
+
+// get the selectors
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// select th array of city ids
+export const selectCityIds = selectIds;
+
+// select the dictionary of city entities
+export const selectCityEntities = selectEntities;
+
+// select the array of cities
+export const selectAllCities = selectAll;
+
+// select the total city count
+export const selectCityTotal = selectTotal;
