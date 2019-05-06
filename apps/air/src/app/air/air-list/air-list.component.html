@@ -5,17 +5,15 @@
     <mat-card-subtitle>Select a City</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-list >
+    <mat-list *ngIf="cities.length; else elseBlock">
       <mat-list-item class="mat-list-option" *ngFor="let city of cities"
           (click)="selectedCitySubmit(city)">
-        <span *ngIf="city.id; else elseBlock">
           <span matLine><strong>City </strong> {{city.city}}</span>
           <span matLine><strong>Country: </strong> {{city.country}}</span>
-        </span>
-        <ng-template #elseBlock>
-          <mat-spinner mode="indeterminate"></mat-spinner>
-        </ng-template>
       </mat-list-item>
     </mat-list>
+    <ng-template #elseBlock>
+      <mat-spinner mode="indeterminate"></mat-spinner>
+    </ng-template>
   </mat-card-content>
 </mat-card>

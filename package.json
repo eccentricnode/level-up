@@ -11,6 +11,7 @@
     "deploy:dota2-app": "ng build --project dota2 && cp ./dist/apps/dota2/index.html ./dist/apps/dota2/200.html && surge ./dist/apps/dota2/ https://dota2-list.surge.sh/",
     "deploy:guild-app": "ng build --project guild && cp ./dist/apps/guild/index.html ./dist/apps/guild/200.html && surge ./dist/apps/guild/ https://guild-list.surge.sh/",
     "deploy:crypto-app": "ng build --project crypto && cp ./dist/apps/crypto/index.html ./dist/apps/crypto/200.html && surge ./dist/apps/crypto/ https://crypto-coins-list.surge.sh/",
+    "deploy:air-app": "ng build --project air && cp ./dist/apps/air/index.html ./dist/apps/air/200.html && surge ./dist/apps/air/ https://air-quality-list-app.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
