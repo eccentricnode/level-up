@@ -26,7 +26,6 @@ export class AirComponent implements OnInit {
   }
 
   selectCity(city) {
-    console.log(this.selectedCity$);
     this.citiesFacade.selectCity(city);
   }
 

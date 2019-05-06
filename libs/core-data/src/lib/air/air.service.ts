@@ -22,6 +22,7 @@ export class AirService {
   }
 
   private CreateNewIds(data: Air, i) {
+    i++;
     return { id: i, ...data };
   }
 }
