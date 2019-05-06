@@ -21,12 +21,9 @@ import { AchievementsFacade } from './guild/achievements.facade';
 
 import { CoinsEffects } from './coins/coins.effects';
 import { CoinsFacade } from './coins/coins.facade';
-import { CITIES_FEATURE_KEY, initialState as citiesInitialState, citiesReducer } from './+state/cities.reducer';
-import { CitiesEffects } from './+state/cities.effects';
-import { CitiesFacade } from './+state/cities.facade';
-import { environment } from '../environments/environment';
-import { storeFreeze } from 'ngrx-store-freeze';
 
+import { CitiesEffects } from './cities/cities.effects';
+import { CitiesFacade } from './cities/cities.facade';
 
 @NgModule({
   declarations: [],
@@ -35,16 +32,14 @@ import { storeFreeze } from 'ngrx-store-freeze';
     NxModule.forRoot(),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 10 }),
-    EffectsModule.forRoot([StarshipsEffects, RocketsEffects, Dota2Effects, AchievementsEffects, CoinsEffects]),
-    StoreModule.forRoot(
-  { cities: citiesReducer },
-  {
-    initialState : { cities : citiesInitialState },
-    metaReducers : !environment.production ? [storeFreeze] : []
-  }
-),
-    EffectsModule.forRoot([CitiesEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([
+        StarshipsEffects, 
+        RocketsEffects,
+        Dota2Effects, 
+        AchievementsEffects, 
+        CoinsEffects, 
+        CitiesEffects,
+      ]),
   ],
   providers: [StarshipsFacade, RocketsFacade, Dota2Facade, AchievementsFacade, CoinsFacade, CitiesFacade]
 })

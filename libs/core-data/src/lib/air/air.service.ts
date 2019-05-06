@@ -18,10 +18,10 @@ export class AirService {
 
   getAirData() {
     return this.http.get<any>(this.getUrl())
-      .pipe(map((res => res.results)));
+      .pipe(map((res => res.results.map((city: Air, i) => this.CreateNewIds(city, i)))));
   }
 
-  private CreateNewIds(data: Air) {
-    
+  private CreateNewIds(data: Air, i) {
+    return { id: i, ...data };
   }
 }

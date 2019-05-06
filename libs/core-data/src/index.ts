@@ -24,4 +24,5 @@ export { CoinsFacade } from './lib/store/coins/coins.facade';
 export { Coin } from './lib/crypto/crypto.model';
 
 export { AirService } from './lib/air/air.service';
+export { CitiesFacade } from './lib/store/cities/cities.facade';
 export { Air } from './lib/air/air.model';

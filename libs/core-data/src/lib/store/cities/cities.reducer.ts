@@ -14,8 +14,8 @@ export const initialState: CitiesState = adapter.getInitialState ({
 
 export function citiesReducer(state: CitiesState = initialState, action: CitiesAction): CitiesState {
   switch (action.type) {
-    case CitiesActionTypes.CitiesLoaded: {
-      return Object.assign({}, state, { selectedCityId: action.payload });
+    case CitiesActionTypes.CitySelected: {
+      return Object.assign({}, state, { selectedCityId: action.payload.id });
     }
 
     case CitiesActionTypes.CitiesLoaded: {

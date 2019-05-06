@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-air-details
       [detailsGroup]="form"
-      [selectedCity]="selectedCity"
+      [selectedCity]="selectedCity$ | async"
       (reset)="resetCity($event)">
     </level-air-details>
   </div>
