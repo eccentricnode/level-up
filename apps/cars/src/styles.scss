@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, 
+body {
+    height: 100%;
+    margin: 0;
+}
+
+mat-sidenav-container {
+    height: 100vh;
+}
+
+.wrapper {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+
+    @media only screen and (max-width: 600px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

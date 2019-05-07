@@ -26,3 +26,6 @@ export { Coin } from './lib/crypto/crypto.model';
 export { AirService } from './lib/air/air.service';
 export { CitiesFacade } from './lib/store/cities/cities.facade';
 export { Air } from './lib/air/air.model';
+
+export { CarsService } from './lib/cars/cars.service';
+export { Manufacturer } from './lib/cars/manufacturer.model';

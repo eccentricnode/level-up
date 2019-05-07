@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>List of Car Manufacturers</mat-card-title>
+      <br>
+    <mat-card-subtitle>Select a Manufacturer!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list *ngIf="manufacturers.length; else elseBlock">
+      <mat-list-item class="mat-list-option" *ngFor="let manufacturer of manufacturers"
+          (click)="submitSelectedManufacturer(manufacturer)">
+        <span matLine><strong>Manufacturer: </strong> {{manufacturer.Mfr_CommonName}}</span>
+      </mat-list-item>
+    </mat-list>
+    <ng-template #elseBlock>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

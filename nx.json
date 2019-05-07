@@ -55,6 +55,12 @@
     },
     "air-e2e": {
       "tags": []
+    },
+    "cars": {
+      "tags": []
+    },
+    "cars-e2e": {
+      "tags": []
     }
   }
 }
