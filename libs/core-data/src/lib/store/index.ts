@@ -7,6 +7,7 @@ import * as fromAchievements from './guild/achievements.reducer';
 import * as fromCoins from './coins/coins.reducer';
 import * as fromCities from './cities/cities.reducer';
 import * as fromManufacturers from './manufacturers/manufacturers.reducer';
+import * as fromTeams from './teams/teams.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -15,6 +16,7 @@ import { Guild } from '../guild/guild.model';
 import { Coin } from '../crypto/crypto.model';
 import { Air } from '../air/air.model';
 import { Manufacturer } from '../cars/manufacturer.model';
+import { Team } from '../teams/team.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -24,6 +26,7 @@ export interface AppState {
     coins: fromCoins.CoinsState
     cities: fromCities.CitiesState
     manufacturers: fromManufacturers.ManufacturersState
+    nflTeams: fromTeams.TeamsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -33,10 +36,11 @@ export const reducers: ActionReducerMap<AppState> = {
     achievements: fromAchievements.achievementsReducer,
     coins: fromCoins.coinsReducer,
     cities: fromCities.citiesReducer,
-    manufacturers: fromManufacturers.manufacturersReducer
+    manufacturers: fromManufacturers.manufacturersReducer,
+    nflTeams: fromTeams.teamsReducer,
 }
 
-//-------------------------------------------------------------------
+
 // Starships Selectors
 //-------------------------------------------------------------------
 export const selectStarshipsState = createFeatureSelector<fromStarships.StarshipsState>('starships');
@@ -308,5 +312,43 @@ export const selectCurrentManufacturer = createSelector(
     selectCurrentManufacturerId,
     (manufacturerEntities, manufacturerId) => {
         return manufacturerId ? manufacturerEntities[manufacturerId] : emptyManufacturer;
+    }
+);
+
+//-------------------------------------------------------------------
+// NFL TEAMS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectNflTeamsState = createFeatureSelector<fromTeams.TeamsState>('nflTeams');
+
+export const selectNflTeamIds = createSelector(
+    selectNflTeamsState,
+    fromTeams.selectNflTeamIds
+);
+export const selectNflTeamEntities = createSelector(
+    selectNflTeamsState,
+     fromTeams.selectNflTeamEntities
+);
+export const selectAllNflTeams = createSelector(
+    selectNflTeamsState,
+    fromTeams.selectAllNflTeams
+);
+export const selectCurrentNflTeamId = createSelector(
+    selectNflTeamsState,
+    fromTeams.getSelectedTeamId
+);
+
+const emptyNflTeam: Team = {
+    id: null, 
+    Team_preffered_name: '',
+    Team_Conference_Division: '',
+    arrest_count: ''
+};
+
+export const selectCurrentNflTeam = createSelector(
+    selectNflTeamEntities,
+    selectCurrentNflTeamId,
+    (teamEntities, teamId) => {
+        return teamId ? teamEntities[teamId] : emptyNflTeam;
     }
 );

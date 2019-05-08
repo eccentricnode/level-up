@@ -32,4 +32,5 @@ export { ManufacturersFacade } from './lib/store/manufacturers/manufacturers.fac
 export { Manufacturer } from './lib/cars/manufacturer.model';
 
 export { TeamsService } from './lib/teams/teams.service';
+export { NflTeamsFacade } from './lib/store/teams/teams.facade';
 export { Team } from './lib/teams/team.model';

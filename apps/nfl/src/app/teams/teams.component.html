@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-teams-details
       [detailsGroup]="form"
-      [selectedTeam]="selectedTeam"
+      [selectedTeam]="selectedTeam$ | async"
       (reset)="resetTeam($event)">
     </level-teams-details>
   </div>

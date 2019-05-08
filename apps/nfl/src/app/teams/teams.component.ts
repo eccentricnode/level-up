@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Team, TeamsService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { Team, TeamsService, NflTeamsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-teams',
@@ -9,26 +10,23 @@ import { Team, TeamsService } from '@level/core-data';
 })
 export class TeamsComponent implements OnInit {
   form: FormGroup
-  teams$;
-  selectedTeam: Team;
+  teams$: Observable<Team[]> = this.nflTeamsFacade.allTeams$;
+  selectedTeam$: Observable<Team> = this.nflTeamsFacade.selectedTeams$;
   
   constructor(
     private teamsService: TeamsService,
+    private nflTeamsFacade: NflTeamsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getTeams();
+    this.nflTeamsFacade.loadTeams();
     this.initForm();
     this.resetTeam();
   }
 
-  getTeams() {
-    this.teams$ = this.teamsService.all();
-  }
-
   selectTeam(team) {
-    this.selectedTeam = team;
+    this.nflTeamsFacade.selectTeam(team);
   }
 
   resetTeam() {
