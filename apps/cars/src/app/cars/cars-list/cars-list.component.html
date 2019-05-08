@@ -8,7 +8,7 @@
     <mat-list *ngIf="manufacturers.length; else elseBlock">
       <mat-list-item class="mat-list-option" *ngFor="let manufacturer of manufacturers"
           (click)="submitSelectedManufacturer(manufacturer)">
-        <span matLine><strong>Manufacturer: </strong> {{manufacturer.Mfr_CommonName}}</span>
+        <span matLine><strong>Manufacturer: </strong> {{manufacturer.Mfr_Name}}</span>
       </mat-list-item>
     </mat-list>
     <ng-template #elseBlock>

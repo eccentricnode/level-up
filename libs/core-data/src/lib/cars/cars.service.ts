@@ -17,7 +17,7 @@ export class CarsService {
   }
 
   all() {
-    this.http.get<any>(this.getUrl())
+    return this.http.get<any>(this.getUrl())
       .pipe(map((res => res.Results.map((manufacturer: Manufacturer, i) => this.CreateNewIds(manufacturer, i)))));
   }
 

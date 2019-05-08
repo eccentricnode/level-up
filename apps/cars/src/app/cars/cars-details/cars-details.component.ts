@@ -12,11 +12,11 @@ export class CarsDetailsComponent {
   @Output() reset = new EventEmitter();
 
   @Input() set selectedManufacturer(value: Manufacturer) {
+    if(!value) return;
     this.detailsGroup.patchValue({
       id: null,
-      Mfr_CommonName: value.Mfr_CommonName,
+      Mfr_Name: value.Mfr_Name,
       Country: value.Country,
-      VehicleTypes: value.VehicleTypes
     });
   }
 

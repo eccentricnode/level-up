@@ -18,6 +18,9 @@ export class CarsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getManufacturers();
+    this.initForm();
+    this.resetManufacturer();
   }
 
   selectManufacturer(manufacturer) {
@@ -37,8 +40,7 @@ export class CarsComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: null,
       Country: { value: '', disabled: true },
-      Mfr_CommonName: { value: '', disabled: true },
-      Vehicle_Types: { value: '', disabled: true },
-    })
+      Mfr_Name: { value: '', disabled: true },
+    });
   }
 }

@@ -1,3 +1,17 @@
-<p>
-  cars-details works!
-</p>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="detailsGroup" class="card-content">
+      <mat-form-field>
+        <input matInput formControlName="Mfr_Name" type="text" placeholder="Manufacturer's Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="Country" type="text" placeholder="Origin of Manufacturer">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="resetForm()" color="accent">
+      reset
+    </button>
+  </mat-card-actions>
+</mat-card>
