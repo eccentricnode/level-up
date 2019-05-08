@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Manufacturer, CarsService } from '@level/core-data';
+import { Manufacturer, CarsService, ManufacturersFacade } from '@level/core-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'level-cars',
@@ -9,26 +10,23 @@ import { Manufacturer, CarsService } from '@level/core-data';
 })
 export class CarsComponent implements OnInit {
   form: FormGroup;
-  manufacturers$;
-  selectedManufacturer: Manufacturer;
+  manufacturers$: Observable<Manufacturer[]> = this.manufacturersFacade.allManufacturers$;
+  selectedManufacturer$: Observable<Manufacturer> = this.manufacturersFacade.selectedManufacturers$;
 
   constructor(
     private carsService: CarsService,
+    private manufacturersFacade: ManufacturersFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getManufacturers();
+    this.manufacturersFacade.loadAManufacturers();
     this.initForm();
     this.resetManufacturer();
   }
 
   selectManufacturer(manufacturer) {
-    this.selectedManufacturer = manufacturer;
-  }
-
-  getManufacturers() {
-    this.manufacturers$ = this.carsService.all();
+    this.manufacturersFacade.selectManufacturer(manufacturer);
   }
 
   resetManufacturer() {

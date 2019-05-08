@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-cars-details
       [detailsGroup]="form"
-      [selectedManufacturer]="selectedManufacturer"
+      [selectedManufacturer]="selectedManufacturer$ | async"
       (reset)="resetManufacturer($event)">
     </level-cars-details>
   </div>

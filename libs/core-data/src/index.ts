@@ -28,4 +28,5 @@ export { CitiesFacade } from './lib/store/cities/cities.facade';
 export { Air } from './lib/air/air.model';
 
 export { CarsService } from './lib/cars/cars.service';
+export { ManufacturersFacade } from './lib/store/manufacturers/manufacturers.facade';
 export { Manufacturer } from './lib/cars/manufacturer.model';

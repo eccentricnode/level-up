@@ -25,6 +25,9 @@ import { CoinsFacade } from './coins/coins.facade';
 import { CitiesEffects } from './cities/cities.effects';
 import { CitiesFacade } from './cities/cities.facade';
 
+import { ManufacturersEffects } from './manufacturers/manufacturers.effects';
+import { ManufacturersFacade } from './manufacturers/manufacturers.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -39,8 +42,17 @@ import { CitiesFacade } from './cities/cities.facade';
         AchievementsEffects, 
         CoinsEffects, 
         CitiesEffects,
+        ManufacturersEffects,
       ]),
   ],
-  providers: [StarshipsFacade, RocketsFacade, Dota2Facade, AchievementsFacade, CoinsFacade, CitiesFacade]
+  providers: [
+    StarshipsFacade, 
+    RocketsFacade, 
+    Dota2Facade, 
+    AchievementsFacade, 
+    CoinsFacade, 
+    CitiesFacade, 
+    ManufacturersFacade,
+  ]
 })
 export class StateModule {}

@@ -6,6 +6,7 @@ import * as fromDota2 from './dota2/dota2.reducer';
 import * as fromAchievements from './guild/achievements.reducer';
 import * as fromCoins from './coins/coins.reducer';
 import * as fromCities from './cities/cities.reducer';
+import * as fromManufacturers from './manufacturers/manufacturers.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -13,6 +14,7 @@ import { Dota2 } from '../dota2/dota2.model';
 import { Guild } from '../guild/guild.model';
 import { Coin } from '../crypto/crypto.model';
 import { Air } from '../air/air.model';
+import { Manufacturer } from '../cars/manufacturer.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -21,6 +23,7 @@ export interface AppState {
     achievements: fromAchievements.AchievementsState
     coins: fromCoins.CoinsState
     cities: fromCities.CitiesState
+    manufacturers: fromManufacturers.ManufacturersState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -29,7 +32,8 @@ export const reducers: ActionReducerMap<AppState> = {
     teams: fromDota2.dota2Reducer,
     achievements: fromAchievements.achievementsReducer,
     coins: fromCoins.coinsReducer,
-    cities: fromCities.citiesReducer
+    cities: fromCities.citiesReducer,
+    manufacturers: fromManufacturers.manufacturersReducer
 }
 
 //-------------------------------------------------------------------
@@ -267,5 +271,42 @@ export const selectCurrentCity = createSelector(
     selectCurrentCityId,
     (cityEntities, cityId) => {
         return cityId ? cityEntities[cityId] : emptyCity;
+    }
+);
+
+//-------------------------------------------------------------------
+// MANUFACTURERS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectManufacturersState = createFeatureSelector<fromManufacturers.ManufacturersState>('manufacturers');
+
+export const selectManufacturerIds = createSelector(
+    selectManufacturersState,
+    fromManufacturers.selectManufacturerIds
+);
+export const selectManufacturerEntities = createSelector(
+    selectManufacturersState,
+    fromManufacturers.selectManufacturerEntities 
+);
+export const selectAllManufacturers = createSelector(
+    selectManufacturersState,
+    fromManufacturers.selectAllManufacturers
+);
+export const selectCurrentManufacturerId = createSelector(
+    selectManufacturersState,
+    fromManufacturers.getSelectedManufacturerId
+);
+
+const emptyManufacturer: Manufacturer = {
+    id: null,
+    Mfr_Name: '',
+    Country: ''
+};
+
+export const selectCurrentManufacturer = createSelector(
+    selectManufacturerEntities,
+    selectCurrentManufacturerId,
+    (manufacturerEntities, manufacturerId) => {
+        return manufacturerId ? manufacturerEntities[manufacturerId] : emptyManufacturer;
     }
 );
