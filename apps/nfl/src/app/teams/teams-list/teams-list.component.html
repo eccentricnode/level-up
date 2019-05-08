@@ -5,11 +5,14 @@
     <mat-card-subtitle>Select a Team!</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-list>
+    <mat-list *ngIf="teams.length; else elseBlock">
       <mat-list-item class="mat-list-option" *ngFor="let team of teams"
           (click)="submitSelectedTeam(team)">
         <span matLine><strong>Team: </strong> {{team.Team_preffered_name}}</span>  
       </mat-list-item>
     </mat-list>
+    <ng-template #elseBlock>
+      <mat-spinner mode="indeterminate"></mat-spinner>
+    </ng-template>
   </mat-card-content>
 </mat-card>
