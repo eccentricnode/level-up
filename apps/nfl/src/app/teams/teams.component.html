@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="list-grid">
+    <level-teams-list
+      [teams]="teams$ | async"
+      (selected)="selectTeam($event)">
+    </level-teams-list>
+  </div>
+
+  <div class="details-grid">
+    <level-teams-details
+      [detailsGroup]="form"
+      [selectedTeam]="selectedTeam"
+      (reset)="resetTeam($event)">
+    </level-teams-details>
+  </div>
+</div>

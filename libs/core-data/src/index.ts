@@ -30,3 +30,6 @@ export { Air } from './lib/air/air.model';
 export { CarsService } from './lib/cars/cars.service';
 export { ManufacturersFacade } from './lib/store/manufacturers/manufacturers.facade';
 export { Manufacturer } from './lib/cars/manufacturer.model';
+
+export { TeamsService } from './lib/teams/teams.service';
+export { Team } from './lib/teams/team.model';
