@@ -1256,6 +1256,138 @@
           }
         }
       }
+    },
+    "youtube": {
+      "root": "apps/youtube/",
+      "sourceRoot": "apps/youtube/src",
+      "projectType": "application",
+      "prefix": "level",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/youtube",
+            "index": "apps/youtube/src/index.html",
+            "main": "apps/youtube/src/main.ts",
+            "polyfills": "apps/youtube/src/polyfills.ts",
+            "tsConfig": "apps/youtube/tsconfig.app.json",
+            "assets": [
+              "apps/youtube/src/favicon.ico",
+              "apps/youtube/src/assets"
+            ],
+            "styles": [
+              "apps/youtube/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/youtube/src/environments/environment.ts",
+                  "with": "apps/youtube/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "youtube:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "youtube:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "youtube:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/youtube/src/test.ts",
+            "polyfills": "apps/youtube/src/polyfills.ts",
+            "tsConfig": "apps/youtube/tsconfig.spec.json",
+            "karmaConfig": "apps/youtube/karma.conf.js",
+            "styles": [
+              "apps/youtube/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/youtube/src/favicon.ico",
+              "apps/youtube/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/youtube/tsconfig.app.json",
+              "apps/youtube/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "youtube-e2e": {
+      "root": "apps/youtube-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/youtube-e2e/cypress.json",
+            "tsConfig": "apps/youtube-e2e/tsconfig.e2e.json",
+            "devServerTarget": "youtube:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "youtube:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/youtube-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

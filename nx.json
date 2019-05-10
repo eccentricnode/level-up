@@ -67,6 +67,12 @@
     },
     "nfl-e2e": {
       "tags": []
+    },
+    "youtube": {
+      "tags": []
+    },
+    "youtube-e2e": {
+      "tags": []
     }
   }
 }

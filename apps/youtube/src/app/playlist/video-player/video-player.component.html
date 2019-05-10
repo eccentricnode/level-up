@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Video Player</mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="embedded.snippet?.resourceId.videoId">
+    <p matLine>{{embedded.snippet.title}}</p>
+    <div *ngIf="setEmbed()">
+      <iframe [src]="setEmbed()" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+      <br>
+    <p matLine>{{embedded.snippet.description}}</p>
+  </mat-card-content>
+</mat-card>

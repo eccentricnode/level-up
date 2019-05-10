@@ -34,3 +34,6 @@ export { Manufacturer } from './lib/cars/manufacturer.model';
 export { TeamsService } from './lib/teams/teams.service';
 export { NflTeamsFacade } from './lib/store/teams/teams.facade';
 export { Team } from './lib/teams/team.model';
+
+export { YoutubeService } from './lib/youtube/youtube.service';
+export { Video } from './lib/youtube/video.model';
