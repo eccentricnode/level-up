@@ -73,6 +73,12 @@
     },
     "youtube-e2e": {
       "tags": []
+    },
+    "books": {
+      "tags": []
+    },
+    "books-e2e": {
+      "tags": []
     }
   }
 }
