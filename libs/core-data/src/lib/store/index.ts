@@ -9,6 +9,7 @@ import * as fromCities from './cities/cities.reducer';
 import * as fromManufacturers from './manufacturers/manufacturers.reducer';
 import * as fromTeams from './teams/teams.reducer';
 import * as fromVideos from './videos/videos.reducer';
+import * as fromBooks from './books/books.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -19,6 +20,7 @@ import { Air } from '../air/air.model';
 import { Manufacturer } from '../cars/manufacturer.model';
 import { Team } from '../teams/team.model';
 import { Video } from '../youtube/video.model';
+import { Book } from '../books/book.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -30,6 +32,7 @@ export interface AppState {
     manufacturers: fromManufacturers.ManufacturersState
     nflTeams: fromTeams.TeamsState
     videos: fromVideos.VideosState
+    books: fromBooks.BooksState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -42,6 +45,7 @@ export const reducers: ActionReducerMap<AppState> = {
     manufacturers: fromManufacturers.manufacturersReducer,
     nflTeams: fromTeams.teamsReducer,
     videos: fromVideos.videosReducer,
+    books: fromBooks.booksReducer,
 }
 
 //-------------------------------------------------------------------
@@ -387,3 +391,34 @@ export const selectCurrentVideo = createSelector(
         return videoId ? videoEntities[videoId] : {} as Video;
     }
 );
+
+//-------------------------------------------------------------------
+// BOOKS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectBooksState = createFeatureSelector<fromBooks.BooksState>('books');
+
+export const selectBookIds = createSelector(
+    selectBooksState, 
+    fromBooks.selectBookIds
+);
+export const selectBookEntities = createSelector(
+    selectBooksState,
+    fromBooks.selectBookEntities
+);
+export const selectAllBooks = createSelector(
+    selectBooksState,
+    fromBooks.selectAllBooks
+);
+export const selectCurrentBookId = createSelector(
+    selectBooksState, 
+    fromBooks.getSelectedBookId
+);
+
+export const selectCurrentBook = createSelector(
+    selectBookEntities, 
+    selectCurrentBookId,
+    (bookEntities, bookId) => {
+        return bookId ? bookEntities[bookId] : {} as Book;
+    }
+)

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Book, BooksService } from '@level/core-data';
+import { Book, BooksService, BooksFacade } from '@level/core-data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'level-books',
@@ -9,11 +10,12 @@ import { Book, BooksService } from '@level/core-data';
 })
 export class BooksComponent implements OnInit {
   form: FormGroup;
-  searchResults$;
-  selectedBook: Book;
+  searchResults$: Observable<Book[]> = this.booksFacade.allBooks$;
+  selectedBook$: Observable<Book> = this.booksFacade.selectedBooks$;
 
   constructor(
     private booksService: BooksService,
+    private booksFacade: BooksFacade,
     private formBuilder: FormBuilder
   ) { }
 
@@ -23,12 +25,12 @@ export class BooksComponent implements OnInit {
   }
 
   searchBooks(search) {
-    this.searchResults$ = this.booksService.searchBooksApi(search);
+    console.log(this.searchResults$);
+    this.booksFacade.searckBooks(search);
   }
 
   selectBook(book) {
-    console.log(book);
-    this.selectedBook = book.volumeInfo;
+    this.booksFacade.selectBook(book);
   }
 
   resetBook() {

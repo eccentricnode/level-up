@@ -17,11 +17,11 @@ export class BooksService {
     let params = new HttpParams();
     params = params.append('q', str);
     return this.http.get<any>(`${BASE_URL}`, { params })
-      .pipe(map(res => res.items.map((book: Book, i) => this.CreateNewIds(book, i))));
+      .pipe(map(res => res.items));
   }
 
-  private CreateNewIds(data: Book, i) {
-    i++;
-    return { id: i, ...data };
-  }
+  // private CreateNewIds(data: Book, i) {
+  //   i++;
+  //   return { id: i, ...data };
+  // }
 }

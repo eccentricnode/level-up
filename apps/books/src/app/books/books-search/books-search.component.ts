@@ -14,6 +14,7 @@ export class BooksSearchComponent {
   @Output() selected = new EventEmitter();
 
   searchBooksSubmit(search) {
+    console.log(this.books);
     this.searchQuery.emit(search.searchField);
   }
 
