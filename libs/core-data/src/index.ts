@@ -36,4 +36,5 @@ export { NflTeamsFacade } from './lib/store/teams/teams.facade';
 export { Team } from './lib/teams/team.model';
 
 export { YoutubeService } from './lib/youtube/youtube.service';
+export { VideosFacade } from './lib/store/videos/videos.facade';
 export { Video } from './lib/youtube/video.model';

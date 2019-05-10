@@ -31,6 +31,9 @@ import { ManufacturersFacade } from './manufacturers/manufacturers.facade';
 import { TeamsEffects } from './teams/teams.effects';
 import { NflTeamsFacade } from './teams/teams.facade';
 
+import { VideosEffects } from './videos/videos.effects';
+import { VideosFacade } from './videos/videos.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -46,7 +49,8 @@ import { NflTeamsFacade } from './teams/teams.facade';
         CoinsEffects, 
         CitiesEffects,
         ManufacturersEffects,
-        TeamsEffects
+        TeamsEffects,
+        VideosEffects,
       ]),
   ],
   providers: [
@@ -58,6 +62,7 @@ import { NflTeamsFacade } from './teams/teams.facade';
     CitiesFacade, 
     ManufacturersFacade,
     NflTeamsFacade,
+    VideosFacade,
   ]
 })
 export class StateModule {}

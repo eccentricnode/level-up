@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Video, YoutubeService } from '@level/core-data';
+import { Video, YoutubeService, VideosFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-playlist',
@@ -8,13 +8,13 @@ import { Video, YoutubeService } from '@level/core-data';
   styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
-  playlist$: Observable<Video[]>;
-  selectedVideo: Video;
+  playlist$: Observable<Video[]> = this.videosFacade.playlist$;
+  selectedVideo$: Observable<Video> = this.videosFacade.selectedVideos$;
 
-  constructor(private youtubeService: YoutubeService) { }
+  constructor(private youtubeService: YoutubeService, private videosFacade: VideosFacade) { }
 
   ngOnInit() {
-    this.getPlaylist();
+    this.videosFacade.loadVideos();
   }
 
   getPlaylist() {
@@ -22,6 +22,6 @@ export class PlaylistComponent implements OnInit {
   }
 
   selectVideo(video) {
-    this.selectedVideo = video;
+    this.videosFacade.selectVideo(video);
   }
 }

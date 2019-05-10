@@ -14,6 +14,7 @@
     "deploy:air-app": "ng build --project air && cp ./dist/apps/air/index.html ./dist/apps/air/200.html && surge ./dist/apps/air/ https://air-quality-list-app.surge.sh/",
     "deploy:cars-app": "ng build --project cars && cp ./dist/apps/cars/index.html ./dist/apps/cars/200.html && surge ./dist/apps/cars/ https://car-manufacturer-list.surge.sh/",
     "deploy:nfl-app": "ng build --project nfl && cp ./dist/apps/nfl/index.html ./dist/apps/nfl/200.html && surge ./dist/apps/nfl/ https://nfl-team-list.surge.sh/",
+    "deploy:youtube-app": "ng build --project youtube && cp ./dist/apps/youtube/index.html ./dist/apps/youtube/200.html && surge ./dist/apps/youtube/ https://youtube-api-playlist.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",

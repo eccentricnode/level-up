@@ -8,6 +8,7 @@ import * as fromCoins from './coins/coins.reducer';
 import * as fromCities from './cities/cities.reducer';
 import * as fromManufacturers from './manufacturers/manufacturers.reducer';
 import * as fromTeams from './teams/teams.reducer';
+import * as fromVideos from './videos/videos.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -17,6 +18,7 @@ import { Coin } from '../crypto/crypto.model';
 import { Air } from '../air/air.model';
 import { Manufacturer } from '../cars/manufacturer.model';
 import { Team } from '../teams/team.model';
+import { Video } from '../youtube/video.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -27,6 +29,7 @@ export interface AppState {
     cities: fromCities.CitiesState
     manufacturers: fromManufacturers.ManufacturersState
     nflTeams: fromTeams.TeamsState
+    videos: fromVideos.VideosState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -38,9 +41,10 @@ export const reducers: ActionReducerMap<AppState> = {
     cities: fromCities.citiesReducer,
     manufacturers: fromManufacturers.manufacturersReducer,
     nflTeams: fromTeams.teamsReducer,
+    videos: fromVideos.videosReducer,
 }
 
-
+//-------------------------------------------------------------------
 // Starships Selectors
 //-------------------------------------------------------------------
 export const selectStarshipsState = createFeatureSelector<fromStarships.StarshipsState>('starships');
@@ -350,5 +354,36 @@ export const selectCurrentNflTeam = createSelector(
     selectCurrentNflTeamId,
     (teamEntities, teamId) => {
         return teamId ? teamEntities[teamId] : emptyNflTeam;
+    }
+);
+
+//-------------------------------------------------------------------
+// VIDEOS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectVideosState = createFeatureSelector<fromVideos.VideosState>('videos');
+
+export const selectVideoIds = createSelector(
+    selectVideosState, 
+    fromVideos.selectVideoIds
+);
+export const selectVideoEntities = createSelector(
+    selectVideosState,
+    fromVideos.selectVideoEntities
+);
+export const selectAllVideos = createSelector(
+    selectVideosState,
+    fromVideos.selectAllVideos
+);
+export const selectCurrentVideoId = createSelector(
+    selectVideosState,
+    fromVideos.getSelectedVideoId
+);
+
+export const selectCurrentVideo = createSelector(
+    selectVideoEntities,
+    selectCurrentVideoId,
+    (videoEntities, videoId) => {
+        return videoId ? videoEntities[videoId] : {} as Video;
     }
 );
