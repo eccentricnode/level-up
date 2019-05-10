@@ -1,3 +1,18 @@
-<p>
-  books works!
-</p>
+<div class="wrapper">
+  <div class="search-grid">
+    <level-books-search
+      [searchGroup]="form.controls['search']"
+      (searchQuery)="searchBooks($event)"
+      [books]="searchResults$ | async"
+      (selected)="selectBook($event)">
+    </level-books-search>
+  </div>
+
+  <div class="details-grid">
+    <level-books-details
+      [detailsGroup]="form.controls['bookDetails']"
+      [selectedBook]="selectedBook"
+      (reset)="resetBook($event)">
+    </level-books-details>
+  </div>
+</div>

@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'books';
+  links = [
+    { path: '/login', icon: 'home', title: 'Login' },
+    { path: '/books', icon: 'library_books', title: 'Google Books Search'}
+  ]
 }
