@@ -8,7 +8,7 @@
     <mat-list>
       <mat-list-item class="mat-list-option" *ngFor="let person of people"
           (click)="submitSelectedPerson(person)">
-        <span matLine><strong>Character: </strong> {{people.name}}</span>
+        <span matLine><strong>Character: </strong> {{person.name}}</span>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

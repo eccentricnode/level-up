@@ -40,6 +40,9 @@ import { BooksFacade } from './books/books.facade';
 import { PlanetsEffects } from './planets/planets.effects';
 import { PlanetsFacade } from './planets/planets.facade';
 
+import { PeopleEffects } from './people/people.effects';
+import { PeopleFacade } from './people/people.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -59,6 +62,7 @@ import { PlanetsFacade } from './planets/planets.facade';
         VideosEffects,
         BooksEffects,
         PlanetsEffects,
+        PeopleEffects,
       ]),
   ],
   providers: [
@@ -73,6 +77,7 @@ import { PlanetsFacade } from './planets/planets.facade';
     VideosFacade,
     BooksFacade,
     PlanetsFacade,
+    PeopleFacade,
   ]
 })
 export class StateModule {}

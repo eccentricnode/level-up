@@ -11,6 +11,7 @@ import * as fromTeams from './teams/teams.reducer';
 import * as fromVideos from './videos/videos.reducer';
 import * as fromBooks from './books/books.reducer';
 import * as fromPlanets from './planets/planets.reducer';
+import * as fromPeople from './people/people.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -23,6 +24,7 @@ import { Team } from '../teams/team.model';
 import { Video } from '../youtube/video.model';
 import { Book } from '../books/book.model';
 import { Planet } from '../planets/planet.model';
+import { Person } from '../people/person.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -36,6 +38,7 @@ export interface AppState {
     videos: fromVideos.VideosState
     books: fromBooks.BooksState
     planets: fromPlanets.PlanetsState
+    people: fromPeople.PeopleState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -49,7 +52,8 @@ export const reducers: ActionReducerMap<AppState> = {
     nflTeams: fromTeams.teamsReducer,
     videos: fromVideos.videosReducer,
     books: fromBooks.booksReducer,
-    planets: fromPlanets.planetsReducer
+    planets: fromPlanets.planetsReducer,
+    people: fromPeople.peopleReducer,
 }
 
 //-------------------------------------------------------------------
@@ -462,5 +466,44 @@ export const selectCurrentPlanet = createSelector(
     selectCurrentPlanetId,
     (planetEntities, planetId) => {
         return planetId ? planetEntities[planetId] : emptyPlanet;
+    }
+);
+
+//-------------------------------------------------------------------
+// PEOPLE SELECTORS
+//-------------------------------------------------------------------
+
+export const selectPeopleState = createFeatureSelector<fromPeople.PeopleState>('people');
+
+export const selectPersonIds = createSelector(
+    selectPeopleState, 
+    fromPeople.selectPersonIds
+);
+export const selectPersonEntities = createSelector(
+    selectPeopleState, 
+    fromPeople.selectPersonEntities
+);
+export const selectAllPeople = createSelector(
+    selectPeopleState,
+    fromPeople.selectAllPeople
+);
+export const selectCurrentPersonId = createSelector(
+    selectPeopleState,
+    fromPeople.getSelectedPersonId
+);
+
+const emptyPerson: Person = {
+    id: null, 
+    name: '',
+    mass: '',
+    height: '',
+    gender: ''
+}
+
+export const selectCurrentPerson = createSelector(
+    selectPersonEntities,
+    selectCurrentPersonId,
+    (personEntities, personId) => {
+        return personId ? personEntities[personId] : emptyPerson;
     }
 );

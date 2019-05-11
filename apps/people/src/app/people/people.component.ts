@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { PeopleService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { PeopleService, PeopleFacade, Person } from '@level/core-data';
 
 @Component({
   selector: 'level-people',
@@ -9,26 +10,23 @@ import { PeopleService } from '@level/core-data';
 })
 export class PeopleComponent implements OnInit {
   form: FormGroup
-  people$;
-  selectedPerson;
+  people$: Observable<Person[]> = this.peopleFacade.allPeople$;
+  selectedPerson$: Observable<Person> = this.peopleFacade.selectedPeople$;
 
   constructor(
     private peopleService: PeopleService,
+    private peopleFacade: PeopleFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getPeople();
+    this.peopleFacade.loadPeople();
     this.initForm();
     this.resetPerson();
   }
 
-  getPeople() {
-    this.people$ = this.peopleService.all();
-  }
-
   selectPerson(person) {
-    this.selectedPerson = person;
+    this.peopleFacade.selectPerson(person);
   }
 
   resetPerson() {

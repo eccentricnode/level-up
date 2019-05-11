@@ -48,4 +48,5 @@ export { PlanetsFacade } from './lib/store/planets/planets.facade';
 export { Planet} from './lib/planets/planet.model';
 
 export { PeopleService } from './lib/people/people.service';
+export { PeopleFacade } from './lib/store/people/people.facade';
 export { Person } from './lib/people/person.model';
