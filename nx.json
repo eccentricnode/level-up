@@ -79,6 +79,12 @@
     },
     "books-e2e": {
       "tags": []
+    },
+    "planets": {
+      "tags": []
+    },
+    "planets-e2e": {
+      "tags": []
     }
   }
 }

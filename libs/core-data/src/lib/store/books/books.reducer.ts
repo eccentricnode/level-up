@@ -19,6 +19,7 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
     }
 
     case BooksActionTypes.BooksLoaded: {
+      console.log(action.payload);
       return Object.assign({}, state);
     }
     default: 

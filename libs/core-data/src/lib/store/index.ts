@@ -421,4 +421,4 @@ export const selectCurrentBook = createSelector(
     (bookEntities, bookId) => {
         return bookId ? bookEntities[bookId] : {} as Book;
     }
-)
+);
