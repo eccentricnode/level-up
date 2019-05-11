@@ -9,7 +9,7 @@
   <div class="details-grid">
     <level-planets-details
       [group]="form"
-      [selectedPlanet]="selectedPlanet"
+      [selectedPlanet]="selectedPlanet$ | async"
       (reset)="resetForm($event)">
     </level-planets-details>
   </div>

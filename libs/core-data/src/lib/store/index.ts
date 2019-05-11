@@ -10,6 +10,7 @@ import * as fromManufacturers from './manufacturers/manufacturers.reducer';
 import * as fromTeams from './teams/teams.reducer';
 import * as fromVideos from './videos/videos.reducer';
 import * as fromBooks from './books/books.reducer';
+import * as fromPlanets from './planets/planets.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -21,6 +22,7 @@ import { Manufacturer } from '../cars/manufacturer.model';
 import { Team } from '../teams/team.model';
 import { Video } from '../youtube/video.model';
 import { Book } from '../books/book.model';
+import { Planet } from '../planets/planet.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -33,6 +35,7 @@ export interface AppState {
     nflTeams: fromTeams.TeamsState
     videos: fromVideos.VideosState
     books: fromBooks.BooksState
+    planets: fromPlanets.PlanetsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -46,6 +49,7 @@ export const reducers: ActionReducerMap<AppState> = {
     nflTeams: fromTeams.teamsReducer,
     videos: fromVideos.videosReducer,
     books: fromBooks.booksReducer,
+    planets: fromPlanets.planetsReducer
 }
 
 //-------------------------------------------------------------------
@@ -420,5 +424,43 @@ export const selectCurrentBook = createSelector(
     selectCurrentBookId,
     (bookEntities, bookId) => {
         return bookId ? bookEntities[bookId] : {} as Book;
+    }
+);
+
+//-------------------------------------------------------------------
+// PLANETS SELECTORS
+//-------------------------------------------------------------------
+export const selectPlanetsState = createFeatureSelector<fromPlanets.PlanetsState>('planets');
+
+export const selectPlanetIds = createSelector(
+    selectPlanetsState,
+    fromPlanets.selectPlanetIds
+);
+export const selectPlanetEntities = createSelector(
+    selectPlanetsState,
+    fromPlanets.selectPlanetEntities
+);
+export const selectAllPlanets = createSelector(
+    selectPlanetsState,
+    fromPlanets.selectAllPlanets
+);
+export const selectCurrentPlanetId = createSelector(
+    selectPlanetsState, 
+    fromPlanets.getSelectedPlanetId
+);
+
+const emptyPlanet: Planet = {
+    id: null,
+    name: '',
+    climate: '',
+    gravity: '',
+    terrain: ''
+}
+
+export const selectCurrentPlanet = createSelector(
+    selectPlanetEntities, 
+    selectCurrentPlanetId,
+    (planetEntities, planetId) => {
+        return planetId ? planetEntities[planetId] : emptyPlanet;
     }
 );

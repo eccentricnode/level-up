@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Planet, PlanetsService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { Planet, PlanetsService, PlanetsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-planets',
@@ -9,16 +10,17 @@ import { Planet, PlanetsService } from '@level/core-data';
 })
 export class PlanetsComponent implements OnInit {
   form: FormGroup;
-  planets$;
-  selectedPlanet: Planet;
+  planets$: Observable<Planet[]> = this.planetsFacade.allPlanets$;
+  selectedPlanet$: Observable<Planet> = this.planetsFacade.selectedPlanet$;
 
   constructor(
-    private planetsService: PlanetsService, 
+    private planetsService: PlanetsService,
+    private planetsFacade: PlanetsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getPlanets();
+    this.planetsFacade.loadPlanets();
     this.initForm();
     this.resetForm();
   }
@@ -28,7 +30,7 @@ export class PlanetsComponent implements OnInit {
   }
 
   selectPlanet(planet) {
-    this.selectedPlanet = planet;
+    this.planetsFacade.selectPlanet(planet);
   }
 
   resetForm() {

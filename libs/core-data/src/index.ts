@@ -44,4 +44,5 @@ export { BooksFacade } from './lib/store/books/books.facade';
 export { Book } from './lib/books/book.model';
 
 export { PlanetsService } from './lib/planets/planets.service';
+export { PlanetsFacade } from './lib/store/planets/planets.facade';
 export { Planet} from './lib/planets/planet.model';
