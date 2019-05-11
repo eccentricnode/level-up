@@ -1,3 +1,16 @@
-<p>
-  planets works!
-</p>
+<div class="wrapper">
+  <div class="list-grid">
+    <level-planets-list
+      [planets]="planets$ | async"
+      (selected)="selectPlanet($event)">
+    </level-planets-list>
+  </div>
+
+  <div class="details-grid">
+    <level-planets-details
+      [group]="form"
+      [selectedPlanet]="selectedPlanet"
+      (reset)="resetForm($event)">
+    </level-planets-details>
+  </div>
+</div>

@@ -1,3 +1,23 @@
-<p>
-  planets-details works!
-</p>
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="group" class="card-content">
+      <mat-form-field>
+        <input matInput formControlName="name" type="text" placeholder="Planet Name...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="climate" type="text" placeholder="Climate Type...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="gravity" type="text" placeholder="Level of Gravity...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="terrain" type="text" placeholder="Terrain Type...">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="resetForm()" color="accent">
+      reset
+    </button>
+  </mat-card-actions>
+</mat-card>

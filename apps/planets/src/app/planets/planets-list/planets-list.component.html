@@ -1,3 +1,15 @@
-<p>
-  planets-list works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Planets List</mat-card-title>
+      <br>
+    <mat-card-subtitle>Select a Planet!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="mat-list-option" *ngFor="let planet of planets"
+          (click)="submitSelectedPlanet(planet)">
+        <span matLine><strong>Name: </strong> {{planet.name}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

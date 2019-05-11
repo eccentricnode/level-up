@@ -42,3 +42,6 @@ export { Video } from './lib/youtube/video.model';
 export { BooksService } from './lib/books/books.service';
 export { BooksFacade } from './lib/store/books/books.facade';
 export { Book } from './lib/books/book.model';
+
+export { PlanetsService } from './lib/planets/planets.service';
+export { Planet} from './lib/planets/planet.model';
