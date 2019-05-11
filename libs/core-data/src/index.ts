@@ -50,3 +50,6 @@ export { Planet} from './lib/planets/planet.model';
 export { PeopleService } from './lib/people/people.service';
 export { PeopleFacade } from './lib/store/people/people.facade';
 export { Person } from './lib/people/person.model';
+
+export { VehiclesService } from './lib/vehicles/vehicles.service';
+export { Vehicle } from './lib/vehicles/vehicle.model';

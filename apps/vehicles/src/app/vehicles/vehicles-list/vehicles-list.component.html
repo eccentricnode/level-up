@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>SW Vehicles List</mat-card-title>
+      <br>
+    <mat-card-subtitle>Select a Vehicle</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="mat-list-option" *ngFor="let vehicle of vehicles"
+          (click)="submitSelectedVehicle(vehicle)">
+        <span matLine><strong>Vehicle: </strong> {{vehicle.name}}</span>
+        <span matLine><strong>Manufacturer: </strong> {{vehicle.manufacturer}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

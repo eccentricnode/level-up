@@ -91,6 +91,12 @@
     },
     "people-e2e": {
       "tags": []
+    },
+    "vehicles": {
+      "tags": []
+    },
+    "vehicles-e2e": {
+      "tags": []
     }
   }
 }

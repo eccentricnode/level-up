@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class=list-grid>
+    <level-vehicles-list
+      [vehicles]="vehicles$ | async"
+      (selected)="selectVehicle($event)">
+    </level-vehicles-list>
+  </div>
+
+  <div class="details-grid">
+    <level-vehicles-details
+      [group]="form"
+      [selectedVehicle]="selectedVehicle"
+      (reset)="resetVehicle($event)">
+    </level-vehicles-details>
+  </div>
+</div>
