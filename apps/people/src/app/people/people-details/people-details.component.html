@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="group" class="card-content">
+      <mat-form-field>
+        <input matInput formControlName="name" type="text" placeholder="Character's Name...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="mass" type="text" placeholder="Character's Mass...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="height" type="text" placeholder="Character's Height...">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="gender" type="text" placeholder="Character's Gender...">
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="resetForm()" color="accent">
+      reset
+    </button>
+  </mat-card-actions>
+</mat-card>

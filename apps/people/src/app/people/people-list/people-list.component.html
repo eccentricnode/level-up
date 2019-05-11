@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>SW Characters List</mat-card-title>
+      <br>
+    <mat-card-subtitle>Select a Character</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item class="mat-list-option" *ngFor="let person of people"
+          (click)="submitSelectedPerson(person)">
+        <span matLine><strong>Character: </strong> {{people.name}}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

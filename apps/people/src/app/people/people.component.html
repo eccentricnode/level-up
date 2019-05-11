@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="list-grid">
+    <level-people-list
+      [people]="people$ | async"
+      (selected)="selectPerson($event)">
+    </level-people-list>
+  </div>
+
+  <div class="details-grid">
+    <level-people-details
+      [group]="form"
+      [selectedPerson]="selectedPerson"
+      (reset)="resetPerson($event)">
+    </level-people-details>
+  </div>
+</div>

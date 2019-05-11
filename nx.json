@@ -85,6 +85,12 @@
     },
     "planets-e2e": {
       "tags": []
+    },
+    "people": {
+      "tags": []
+    },
+    "people-e2e": {
+      "tags": []
     }
   }
 }
