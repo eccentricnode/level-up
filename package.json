@@ -17,6 +17,7 @@
     "deploy:youtube-app": "ng build --project youtube && cp ./dist/apps/youtube/index.html ./dist/apps/youtube/200.html && surge ./dist/apps/youtube/ https://youtube-api-playlist.surge.sh/",
     "deploy:planets-app": "ng build --project planets && cp ./dist/apps/planets/index.html ./dist/apps/planets/200.html && surge ./dist/apps/planets/ https://planets-list.surge.sh/",
     "deploy:people-app": "ng build --project people && cp ./dist/apps/people/index.html ./dist/apps/people/200.html && surge ./dist/apps/people/ https://people-list.surge.sh/",
+    "deploy:vehicles-app": "ng build --project vehicles && cp ./dist/apps/vehicles/index.html ./dist/apps/vehicles/200.html && surge ./dist/apps/vehicles/ https://vehicles-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
