@@ -12,14 +12,15 @@ export class VehiclesDetailsComponent {
   @Output() reset = new EventEmitter();
 
   @Input() set selectedVehicle(value: Vehicle) {
+    console.log(value);
     if(!value) return;
     this.group.patchValue({
       id: null,
-      name: '',
-      manufacturer: '',
-      vehicle_class: '',
-      crew: '',
-      passengers: '',
+      name: value.name,
+      manufacturer: value.manufacturer,
+      vehicle_class: value.vehicle_class,
+      crew: value.crew,
+      passengers: value.passengers,
     });
   }
 

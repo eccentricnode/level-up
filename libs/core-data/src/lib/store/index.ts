@@ -12,6 +12,7 @@ import * as fromVideos from './videos/videos.reducer';
 import * as fromBooks from './books/books.reducer';
 import * as fromPlanets from './planets/planets.reducer';
 import * as fromPeople from './people/people.reducer';
+import * as fromVehicles from './vehicles/vehicles.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -25,6 +26,7 @@ import { Video } from '../youtube/video.model';
 import { Book } from '../books/book.model';
 import { Planet } from '../planets/planet.model';
 import { Person } from '../people/person.model';
+import { Vehicle } from '../vehicles/vehicle.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -39,6 +41,7 @@ export interface AppState {
     books: fromBooks.BooksState
     planets: fromPlanets.PlanetsState
     people: fromPeople.PeopleState
+    vehicles: fromVehicles.VehiclesState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -54,6 +57,7 @@ export const reducers: ActionReducerMap<AppState> = {
     books: fromBooks.booksReducer,
     planets: fromPlanets.planetsReducer,
     people: fromPeople.peopleReducer,
+    vehicles: fromVehicles.vehiclesReducer
 }
 
 //-------------------------------------------------------------------
@@ -505,5 +509,45 @@ export const selectCurrentPerson = createSelector(
     selectCurrentPersonId,
     (personEntities, personId) => {
         return personId ? personEntities[personId] : emptyPerson;
+    }
+);
+
+//-------------------------------------------------------------------
+// VEHICLES SELECTORS
+//-------------------------------------------------------------------
+
+export const selectVehiclesState = createFeatureSelector<fromVehicles.VehiclesState>('vehicles');
+
+export const selectVehicleIds = createSelector(
+    selectVehiclesState,
+    fromVehicles.selectVehicleIds
+);
+export const selectVehicleEntities = createSelector(
+    selectVehiclesState,
+    fromVehicles.selectAllVehicles
+);
+export const selectAllVehicles = createSelector(
+    selectVehiclesState,
+    fromVehicles.selectAllVehicles
+);
+export const selectCurrentVehicleId = createSelector(
+    selectVehiclesState,
+    fromVehicles.getSelectedVehicleId
+);
+
+const emptyVehicle: Vehicle = {
+    id: null,
+    name: '',
+    manufacturer: '',
+    vehicle_class: '', 
+    crew: '',
+    passengers: '',
+}
+
+export const selectCurrentVehicle = createSelector(
+    selectVehicleEntities, 
+    selectCurrentVehicleId, 
+    (vehicleEntities, vehicleId) => {
+        return vehicleId ? vehicleEntities[vehicleId] : emptyVehicle;
     }
 );

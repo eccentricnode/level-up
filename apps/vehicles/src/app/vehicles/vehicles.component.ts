@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-
-import { Vehicle, VehiclesService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { Vehicle, VehiclesService, VehiclesFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-vehicles',
@@ -10,26 +10,23 @@ import { Vehicle, VehiclesService } from '@level/core-data';
 })
 export class VehiclesComponent implements OnInit {
   form: FormGroup;
-  vehicles$;
-  selectedVehicle: Vehicle;
+  vehicles$: Observable<Vehicle[]> = this.vehiclesFacade.allVehicles$;
+  selectedVehicle$: Observable<Vehicle> = this.vehiclesFacade.selectedVehicles$;
 
   constructor(
     private vehiclesService: VehiclesService,
+    private vehiclesFacade: VehiclesFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getVehicles();
+    this.vehiclesFacade.loadVehicles();
     this.initForm();
     this.resetVehicle();
   }
 
-  getVehicles() {
-    this.vehicles$ = this.vehiclesService.all();
-  }
-
   selectVehicle(vehicle) {
-    this.selectedVehicle = vehicle;
+    this.vehiclesFacade.selectVehicle(vehicle);
   }
 
   resetVehicle() {

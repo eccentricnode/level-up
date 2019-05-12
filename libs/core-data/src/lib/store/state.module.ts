@@ -42,6 +42,11 @@ import { PlanetsFacade } from './planets/planets.facade';
 
 import { PeopleEffects } from './people/people.effects';
 import { PeopleFacade } from './people/people.facade';
+import { VEHICLES_FEATURE_KEY, initialState as vehiclesInitialState, vehiclesReducer } from './+state/vehicles.reducer';
+import { VehiclesEffects } from './+state/vehicles.effects';
+import { VehiclesFacade } from './+state/vehicles.facade';
+import { environment } from '../environments/environment';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 @NgModule({
   declarations: [],
@@ -64,6 +69,15 @@ import { PeopleFacade } from './people/people.facade';
         PlanetsEffects,
         PeopleEffects,
       ]),
+    StoreModule.forRoot(
+  { vehicles: vehiclesReducer },
+  {
+    initialState : { vehicles : vehiclesInitialState },
+    metaReducers : !environment.production ? [storeFreeze] : []
+  }
+),
+    EffectsModule.forRoot([VehiclesEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
@@ -78,6 +92,7 @@ import { PeopleFacade } from './people/people.facade';
     BooksFacade,
     PlanetsFacade,
     PeopleFacade,
+    VehiclesFacade,
   ]
 })
 export class StateModule {}

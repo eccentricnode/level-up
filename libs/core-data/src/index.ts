@@ -52,4 +52,5 @@ export { PeopleFacade } from './lib/store/people/people.facade';
 export { Person } from './lib/people/person.model';
 
 export { VehiclesService } from './lib/vehicles/vehicles.service';
+export { VehiclesFacade } from './lib/store/vehicles/vehicles.facade';
 export { Vehicle } from './lib/vehicles/vehicle.model';
