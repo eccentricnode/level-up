@@ -45,7 +45,9 @@ import { PeopleFacade } from './people/people.facade';
 
 import { VehiclesEffects } from './vehicles/vehicles.effects';
 import { VehiclesFacade } from './vehicles/vehicles.facade';
-
+./leagues/leagues.reducer
+import { LeaguesEffects } from './leagues/leagues.effects';
+import { LeaguesFacade } from './leagues/leagues.facade';
 
 @NgModule({
   declarations: [],
@@ -68,6 +70,7 @@ import { VehiclesFacade } from './vehicles/vehicles.facade';
         PlanetsEffects,
         PeopleEffects,
         VehiclesEffects,
+        LeageusEffects,
       ]),
   ],
   providers: [
@@ -84,6 +87,7 @@ import { VehiclesFacade } from './vehicles/vehicles.facade';
     PlanetsFacade,
     PeopleFacade,
     VehiclesFacade,
+    LeaguesFacade,
   ]
 })
 export class StateModule {}

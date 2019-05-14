@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Leagues List</mat-card-title>
+    <br />
+    <mat-card-subtitle>Select a League</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item
+        class="mat-list-option"
+        *ngFor="let league of leagues"
+        (click)="selectedLeagueSubmit(league)"
+      >
+        <span matLine><strong>League: </strong> {{ league.name }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

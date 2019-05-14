@@ -97,6 +97,12 @@
     },
     "vehicles-e2e": {
       "tags": []
+    },
+    "leagues": {
+      "tags": []
+    },
+    "leagues-e2e": {
+      "tags": []
     }
   }
 }
