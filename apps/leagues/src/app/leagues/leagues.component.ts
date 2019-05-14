@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Vehicle, LeaguesService } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { League, LeaguesService, LeaguesFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-leagues',
@@ -9,26 +10,23 @@ import { Vehicle, LeaguesService } from '@level/core-data';
 })
 export class LeaguesComponent implements OnInit {
   form: FormGroup;
-  leagues$;
-  selectedLeague: Vehicle;
+  leagues$: Observable<League[]> = this.leaguesFacade.allLeagues$;
+  selectedLeague$: Observable<League> = this.leaguesFacade.selectedLeague$;
 
   constructor(
     private leaguesService: LeaguesService,
+    private leaguesFacade: LeaguesFacade,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
-    this.getLeagues();
+    this.leaguesFacade.loadLeagues();
     this.initForm();
     this.resetLeague();
   }
 
-  getLeagues() {
-    this.leagues$ = this.leaguesService.all();
-  }
-
   selectLeague(league) {
-    this.selectedLeague = league;
+    this.leaguesFacade.selectLeague(league);
   }
 
   resetLeague() {

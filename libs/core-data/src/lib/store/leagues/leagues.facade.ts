@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { LeaguesPartialState } from './leagues.reducer';
-import { leaguesQuery } from './leagues.selectors';
-import { LoadLeagues } from './leagues.actions';
+import { selectAllLeagues, selectCurrentLeague } from '..';
+import * as LeaguesActions from './leagues.actions';
+import { LeaguesState } from './leagues.reducer';
 
 @Injectable()
 export class LeaguesFacade {
-  loaded$ = this.store.pipe(select(leaguesQuery.getLoaded));
-  allLeagues$ = this.store.pipe(select(leaguesQuery.getAllLeagues));
-  selectedLeagues$ = this.store.pipe(select(leaguesQuery.getSelectedLeagues));
+  allLeagues$ = this.store.pipe(select(selectAllLeagues));
+  selectedLeague$ = this.store.pipe(select(selectCurrentLeague));
 
-  constructor(private store: Store<LeaguesPartialState>) {}
+  constructor(private store: Store<LeaguesState>) {}
 
-  loadAll() {
-    this.store.dispatch(new LoadLeagues());
+  selectLeague(league) {
+    this.store.dispatch(new LeaguesActions.LeagueSelected(league));
+  }
+
+  loadLeagues() {
+    this.store.dispatch(new LeaguesActions.LoadLeagues());
   }
 }

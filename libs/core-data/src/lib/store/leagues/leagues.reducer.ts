@@ -1,47 +1,45 @@
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { LeaguesAction, LeaguesActionTypes } from './leagues.actions';
 
-export const LEAGUES_FEATURE_KEY = 'leagues';
+import { League } from '../../leagues/league.model';
 
-/**
- * Interface for the 'Leagues' data used in
- *  - LeaguesState, and
- *  - leaguesReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
-export interface LeaguesState {
-  list: Entity[]; // list of Leagues; analogous to a sql normalized table
-  selectedId?: string | number; // which Leagues record has been selected
-  loaded: boolean; // has the Leagues list been loaded
-  error?: any; // last none error (if any)
+export interface LeaguesState extends EntityState<League> {
+  selectedLeagueId: string | null;
 }
 
-export interface LeaguesPartialState {
-  readonly [LEAGUES_FEATURE_KEY]: LeaguesState;
-}
+export const adapter: EntityAdapter<League> = createEntityAdapter<League>();
+export const initialState: LeaguesState = adapter.getInitialState({
+  selectedLeagueId: null
+});
 
-export const initialState: LeaguesState = {
-  list: [],
-  loaded: false
-};
-
-export function leaguesReducer(
-  state: LeaguesState = initialState,
-  action: LeaguesAction
-): LeaguesState {
+export function leaguesReducer(state: LeaguesState = initialState, action: LeaguesAction): LeaguesState {
   switch (action.type) {
-    case LeaguesActionTypes.LeaguesLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
+    case LeaguesActionTypes.LeagueSelected: {
+      return Object.assign({}, state, { selectedLeagueId: action.payload.id });
     }
+
+    case LeaguesActionTypes.LeaguesLoaded: {
+     return adapter.addAll(action.payload, state);
+    }
+
+    default: 
+      return state;
   }
-  return state;
 }
+
+export const getSelectedLeagueId = (state: LeaguesState) => state.selectedLeagueId;
+
+// get the selectors
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// select the array of league ids
+export const selectLeagueIds = selectIds;
+
+// select the array of leagues
+export const selectLeagueEntities = selectEntities;
+
+// select the array of leagues
+export const selectAllLeagues = selectAll;
+
+// select the total league count
+export const selectLeagueTotal = selectTotal;

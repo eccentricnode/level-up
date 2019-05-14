@@ -10,7 +10,7 @@
   <div class="details-grid">
     <level-league-details
       [group]="form"
-      [selectedLeague]="selectedLeague"
+      [selectedLeague]="selectedLeague$ | async"
       (reset)="resetLeague($event)"
     >
     </level-league-details>

@@ -56,4 +56,5 @@ export { VehiclesFacade } from './lib/store/vehicles/vehicles.facade';
 export { Vehicle } from './lib/vehicles/vehicle.model';
 
 export { LeaguesService } from './lib/leagues/leagues.service';
+export { LeaguesFacade } from './lib/store/leagues/leagues.facade';
 export { League } from './lib/leagues/league.model';
