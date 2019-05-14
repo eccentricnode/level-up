@@ -2,8 +2,7 @@
   <div class="list-grid">
     <level-leagues-list
       [leagues]="leagues$ | async"
-      (selected)="selectLeague($event)"
-    >
+      (selected)="selectLeague($event)">
     </level-leagues-list>
   </div>
 
@@ -11,8 +10,7 @@
     <level-league-details
       [group]="form"
       [selectedLeague]="selectedLeague$ | async"
-      (reset)="resetLeague($event)"
-    >
+      (reset)="resetLeague($event)">
     </level-league-details>
   </div>
 </div>
