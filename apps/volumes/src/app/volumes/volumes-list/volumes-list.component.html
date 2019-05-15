@@ -12,7 +12,7 @@
     <mat-list>
       <mat-list-item class="mat-list-option" *ngFor="let book of books"
           (click)="selectedBookSubmit(book)">
-        <span matLine>{{book.volume.Info.title}}</span>
+        <span matLine>{{book.volumeInfo.title}}</span>
         <span matLine>{{book.volumeInfo.authors}}</span>
       </mat-list-item>
     </mat-list>

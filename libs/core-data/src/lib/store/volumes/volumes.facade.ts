@@ -17,7 +17,7 @@ export class VolumesFacade {
     this.store.dispatch(new VolumesActions.SearchVolumes(search));
   }
 
-  loadVolumes(volume) {
-    this.store.dispatch(new VolumesActions.SearchVolumes(volume));
+  selectVolume(volume) {
+    this.store.dispatch(new VolumesActions.VolumeSelected(volume));
   }
 }

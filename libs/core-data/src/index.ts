@@ -60,4 +60,5 @@ export { LeaguesFacade } from './lib/store/leagues/leagues.facade';
 export { League } from './lib/leagues/league.model';
 
 export { VolumesService } from './lib/volumes/volumes.service';
+export { VolumesFacade } from './lib/store/volumes/volumes.facade';
 export { Volume } from './lib/volumes/volume.model';

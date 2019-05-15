@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { VolumesService, Volume } from '@level/core-data';
+import { Observable } from 'rxjs';
+import { VolumesService, Volume, VolumesFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-volumes',
@@ -8,46 +9,50 @@ import { VolumesService, Volume } from '@level/core-data';
   styleUrls: ['./volumes.component.scss']
 })
 export class VolumesComponent implements OnInit {
-  form: FormGroup;
-  searchResults$;
-  selectedBook: Volume;
+  search: FormGroup;
+  book: FormGroup;
+  searchResults$: Observable<Volume[]> = this.volumesFacade.allVolumes$;
+  selectedBook$: Observable<Volume> = this.volumesFacade.selectedVolumes$;
 
   constructor(
     private volumesService: VolumesService,
+    private volumesFacade: VolumesFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.searchForm();
     this.bookForm();
     this.resetBook();
   }
 
   searchBooks(search) {
-    this.searchResults$ = this.volumesService.searchBooksApi(search);
+    this.volumesFacade.searchVolumes(search);
   }
 
   selectBook(book) {
-    this.selectedBook = book;
+    this.volumesFacade.selectVolume(book);
   }
 
   resetBook() {
-    this.form.reset();
+    this.book.reset();
     this.selectBook({id: null});
   }
 
-  bookForm() {
-    this.form = this.formBuilder.group({
-      search: this.formBuilder.group({
+  searchForm() {
+    this.search = this.formBuilder.group({
         searchField: ['', Validators.required]
-      }),
-      booksDetails: this.formBuilder.group({
-        id: null,
-        volumeInfo: this.formBuilder.group({
-          title: {value: '', disabled: true},
-          authors: {value: '', disabled: true},
-          description: {value: '', disabled: true},
-        })
-      })
     });
+  }
+
+  bookForm() {
+    this.book = this.formBuilder.group({
+      id: null,
+      volumeInfo: this.formBuilder.group({
+        title: {value: '', disabled: true},
+        authors: {value: '', disabled: true},
+        description: {value: '', disabled: true},
+      })
+    })
   }
 }

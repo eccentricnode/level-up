@@ -48,11 +48,9 @@ import { VehiclesFacade } from './vehicles/vehicles.facade';
 
 import { LeaguesEffects } from './leagues/leagues.effects';
 import { LeaguesFacade } from './leagues/leagues.facade';
-import { VOLUMES_FEATURE_KEY, initialState as volumesInitialState, volumesReducer } from './+state/volumes.reducer';
-import { VolumesEffects } from './+state/volumes.effects';
-import { VolumesFacade } from './+state/volumes.facade';
-import { environment } from '../environments/environment';
-import { storeFreeze } from 'ngrx-store-freeze';
+
+import { VolumesEffects } from './volumes/volumes.effects';
+import { VolumesFacade } from './volumes/volumes.facade';
 
 @NgModule({
   declarations: [],
@@ -76,16 +74,8 @@ import { storeFreeze } from 'ngrx-store-freeze';
         PeopleEffects,
         VehiclesEffects,
         LeaguesEffects,
+        VolumesEffects,
       ]),
-    StoreModule.forRoot(
-  { volumes: volumesReducer },
-  {
-    initialState : { volumes : volumesInitialState },
-    metaReducers : !environment.production ? [storeFreeze] : []
-  }
-),
-    EffectsModule.forRoot([VolumesEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
