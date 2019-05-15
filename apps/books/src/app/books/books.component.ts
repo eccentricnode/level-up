@@ -54,8 +54,4 @@ export class BooksComponent implements OnInit {
       })
     });
   }
-
-  get volumeInfoFormGroup() {
-    return this.form.controls['bookDetails'].get('volumeInfo');
-  }
 }
