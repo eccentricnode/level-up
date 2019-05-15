@@ -12,7 +12,7 @@ export class VolumesDetailsComponent {
   @Output() reset = new EventEmitter();
 
   @Input() set selectedBook(value: Volume) {
-    if(!value) return;
+    if(Object.keys(value).length === 0) return;
     this.detailsGroup.patchValue({
       title: value.volumeInfo.title,
       authors: value.volumeInfo.authors,

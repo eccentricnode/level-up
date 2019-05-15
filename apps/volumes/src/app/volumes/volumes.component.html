@@ -10,7 +10,7 @@
 
   <div class="details-grid">
     <level-volumes-details
-      [detailsGroup]="form.controls['bookDetails']"
+      [detailsGroup]="form.controls['bookDetails'].get('volumeInfo')"
       [selectedBook]="selectedBook"
       (reset)="resetBook($event)">
     </level-volumes-details>

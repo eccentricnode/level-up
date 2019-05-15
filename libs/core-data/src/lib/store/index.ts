@@ -14,6 +14,7 @@ import * as fromPlanets from './planets/planets.reducer';
 import * as fromPeople from './people/people.reducer';
 import * as fromVehicles from './vehicles/vehicles.reducer';
 import * as fromLeagues from './leagues/leagues.reducer';
+import * as fromVolumes from './volumes/volumes.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -29,6 +30,7 @@ import { Planet } from '../planets/planet.model';
 import { Person } from '../people/person.model';
 import { Vehicle } from '../vehicles/vehicle.model';
 import { League } from '../leagues/league.model';
+import { Volume } from '../volumes/volume.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -45,6 +47,7 @@ export interface AppState {
     people: fromPeople.PeopleState
     vehicles: fromVehicles.VehiclesState
     leagues: fromLeagues.LeaguesState
+    volumes: fromVolumes.VolumesState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -62,6 +65,7 @@ export const reducers: ActionReducerMap<AppState> = {
     people: fromPeople.peopleReducer,
     vehicles: fromVehicles.vehiclesReducer,
     leagues: fromLeagues.leaguesReducer,
+    volumes: fromVolumes.volumesReducer,
 }
 
 //-------------------------------------------------------------------
@@ -590,5 +594,36 @@ export const selectCurrentLeague = createSelector(
     selectCurrentLeagueId, 
     (leagueEntities, leagueId) => {
         return leagueId ? leagueEntities[leagueId] : emptyLeague;
+    }
+);
+
+//-------------------------------------------------------------------
+// VOLUMES SELECTORS
+//-------------------------------------------------------------------
+
+export const selectVolumesState = createFeatureSelector<fromVolumes.VolumesState>('volumes');
+
+export const selectVolumeIds = createSelector(
+    selectVolumesState,
+    fromVolumes.selectVolumeIds
+);
+export const selectVolumeEntities = createSelector(
+    selectVolumesState,
+    fromVolumes.selectVolumeEntities
+);
+export const selectAllVolumes = createSelector(
+    selectVolumesState,
+    fromVolumes.selectAllVolumes
+);
+export const selectCurrentVolumeId = createSelector(
+    selectVolumesState,
+    fromVolumes.getSelectedVolumeId
+);
+
+export const selectCurrentVolume = createSelector(
+    selectVolumeEntities,
+    selectCurrentVolumeId,
+    (volumeEntities, volumeId) => {
+        return volumeId ? volumeEntities[volumeId] : {} as Volume;
     }
 );

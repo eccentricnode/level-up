@@ -27,7 +27,7 @@ export class VolumesComponent implements OnInit {
   }
 
   selectBook(book) {
-    this.selectBook = book;
+    this.selectedBook = book;
   }
 
   resetBook() {
