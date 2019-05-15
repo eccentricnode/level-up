@@ -25,10 +25,6 @@ export class PlanetsComponent implements OnInit {
     this.resetForm();
   }
 
-  getPlanets() {
-    this.planets$ = this.planetsService.all();
-  }
-
   selectPlanet(planet) {
     this.planetsFacade.selectPlanet(planet);
   }

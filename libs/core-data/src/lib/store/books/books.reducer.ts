@@ -20,7 +20,7 @@ export function booksReducer(state: BooksState = initialState, action: BooksActi
 
     case BooksActionTypes.BooksLoaded: {
       console.log(action.payload);
-      return Object.assign({}, state);
+      return adapter.upsertMany(action.payload, state);
     }
     default: 
       return state;

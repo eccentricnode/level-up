@@ -12,12 +12,12 @@ export class BooksDetailsComponent {
   @Output() reset = new EventEmitter();
 
   @Input() set selectedBook(value: Book) {
-    if(!value) return;
+    console.log(value);
+    if(Object.keys(value).length === 0) return;
     this.detailsGroup.patchValue({
-      id: null,
-      title: value.title,
-      authors: value.authors,
-      description: value.description,
+        title: value.volumeInfo.title,
+        authors: value.volumeInfo.authors,
+        description: value.volumeInfo.description,
     });
   }
 

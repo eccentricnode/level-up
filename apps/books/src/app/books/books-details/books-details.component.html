@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="detailsGroup" class="card-content">
+    <form [formGroup]="detailsGroup" *ngIf="detailsGroup" class="card-content">
       <mat-form-field>
         <input matInput formControlName="title" type="text" placeholder="Title...">
       </mat-form-field>

@@ -10,7 +10,7 @@
 
   <div class="details-grid">
     <level-books-details
-      [detailsGroup]="form.controls['bookDetails']"
+      [detailsGroup]="form.controls['bookDetails'].get('volumeInfo')"
       [selectedBook]="selectedBook$ | async"
       (reset)="resetBook($event)">
     </level-books-details>

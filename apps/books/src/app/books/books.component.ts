@@ -22,10 +22,11 @@ export class BooksComponent implements OnInit {
   ngOnInit() {
     this.bookForm();
     this.resetBook();
+    
   }
 
   searchBooks(search) {
-    console.log(this.searchResults$);
+    console.log(this.selectedBook$);
     this.booksFacade.searckBooks(search);
   }
 
@@ -45,10 +46,16 @@ export class BooksComponent implements OnInit {
       }),
       bookDetails: this.formBuilder.group({
         id: null,
-        title: {value: '', disabled: true},
-        authors: {value: '', disabled: true},
-        description: {value: '', disabled: true}        
+        volumeInfo: this.formBuilder.group({
+          title: {value: '', disabled: true},
+          authors: {value: '', disabled: true},
+          description: {value: '', disabled: true}    
+        })
       })
     });
+  }
+
+  get volumeInfoFormGroup() {
+    return this.form.controls['bookDetails'].get('volumeInfo');
   }
 }
