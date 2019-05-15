@@ -103,6 +103,12 @@
     },
     "leagues-e2e": {
       "tags": []
+    },
+    "volumes": {
+      "tags": []
+    },
+    "volumes-e2e": {
+      "tags": []
     }
   }
 }

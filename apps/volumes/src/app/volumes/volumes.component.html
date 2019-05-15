@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="list-grid">
+    <level-volumes-list
+      [searchGroup]="form.controls['search']"
+      (searchQuery)="searchBooks($event)"
+      [books]="searchResults$ | async"
+      (selected)="selectBook($event)"> 
+    </level-volumes-list>
+  </div>
+
+  <div class="details-grid">
+    <level-volumes-details
+      [detailsGroup]="form.controls['bookDetails']"
+      [selectedBook]="selectedBook"
+      (reset)="resetBook($event)">
+    </level-volumes-details>
+  </div>
+</div>
