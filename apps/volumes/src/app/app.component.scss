@@ -1,14 +1,16 @@
 mat-sidenav { 
     width: 200px;
+    background: #1F1F1F;
 }
 
 .mat-sidenav-container {
-    background: whitesmoke;
+    background: #1F1F1F;
     flex: 1;
 }
 
 .nav-link {
-    color: rgba(0, 0, 0, .54);
+    color: white;
+    background: #1F1F1F;
     display: flex;
     align-items: center;
     padding-top: 5px;
