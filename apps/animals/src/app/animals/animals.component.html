@@ -10,7 +10,7 @@
   <div class="details-grid">
     <level-animal-details
       [group]="form"
-      [animal]="selectedAnimal"
+      [animal]="selectedAnimal$ | async"
       (submitted)="saveAnimal($event)"
       (cancelled)="reset($event)">
     </level-animal-details>

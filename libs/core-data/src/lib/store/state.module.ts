@@ -52,6 +52,9 @@ import { LeaguesFacade } from './leagues/leagues.facade';
 import { VolumesEffects } from './volumes/volumes.effects';
 import { VolumesFacade } from './volumes/volumes.facade';
 
+import { AnimalsEffects } from './animals/animals.effects';
+import { AnimalsFacade } from './animals/animals.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -75,6 +78,7 @@ import { VolumesFacade } from './volumes/volumes.facade';
         VehiclesEffects,
         LeaguesEffects,
         VolumesEffects,
+        AnimalsEffects,
       ]),
   ],
   providers: [
@@ -93,6 +97,7 @@ import { VolumesFacade } from './volumes/volumes.facade';
     VehiclesFacade,
     LeaguesFacade,
     VolumesFacade,
+    AnimalsFacade,
   ]
 })
 export class StateModule {}

@@ -15,6 +15,7 @@ import * as fromPeople from './people/people.reducer';
 import * as fromVehicles from './vehicles/vehicles.reducer';
 import * as fromLeagues from './leagues/leagues.reducer';
 import * as fromVolumes from './volumes/volumes.reducer';
+import * as fromAnimals from './animals/animals.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -31,6 +32,7 @@ import { Person } from '../people/person.model';
 import { Vehicle } from '../vehicles/vehicle.model';
 import { League } from '../leagues/league.model';
 import { Volume } from '../volumes/volume.model';
+import { Animal } from '../animals/animal.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -48,6 +50,7 @@ export interface AppState {
     vehicles: fromVehicles.VehiclesState
     leagues: fromLeagues.LeaguesState
     volumes: fromVolumes.VolumesState
+    animals: fromAnimals.AnimalsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -66,6 +69,7 @@ export const reducers: ActionReducerMap<AppState> = {
     vehicles: fromVehicles.vehiclesReducer,
     leagues: fromLeagues.leaguesReducer,
     volumes: fromVolumes.volumesReducer,
+    animals: fromAnimals.animalsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -625,5 +629,44 @@ export const selectCurrentVolume = createSelector(
     selectCurrentVolumeId,
     (volumeEntities, volumeId) => {
         return volumeId ? volumeEntities[volumeId] : {} as Volume;
+    }
+);
+
+//-------------------------------------------------------------------
+// ANIMALS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectAnimalsState = createFeatureSelector<fromAnimals.AnimalsState>('animals');
+
+export const selectAnimalIds = createSelector(
+    selectAnimalsState,
+    fromAnimals.selectAnimalIds
+);
+export const selectAnimalEntities = createSelector(
+    selectAnimalsState,
+    fromAnimals.selectAnimalEntities
+);
+export const selectAllAnimals = createSelector(
+    selectAnimalsState,
+    fromAnimals.selectAllAnimals
+);
+export const selectCurrentAnimalId = createSelector(
+    selectAnimalsState,
+    fromAnimals.getSelectedAnimalId
+);
+
+const emptyAnimal: Animal = {
+    id: null,
+    name: '',
+    height: '',
+    mass: null,
+    continent: ''
+}
+
+export const selectCurrentAnimal = createSelector(
+    selectAnimalEntities,
+    selectCurrentAnimalId,
+    (animalEntities, animalId) => {
+        return animalId ? animalEntities[animalId] : emptyAnimal;
     }
 );

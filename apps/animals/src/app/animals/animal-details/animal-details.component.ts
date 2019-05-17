@@ -12,6 +12,14 @@ export class AnimalDetailsComponent {
   @Input() group: FormGroup;
   @Input() set animal(value: Animal) {
     this.selectedAnimal = value;
+    if(!value) return;
+    this.group.patchValue({
+      id: value.id,
+      name: value.name,
+      height: value.height,
+      mass: value.mass,
+      continent: value.continent
+    })
   }
   @Output() submitted = new EventEmitter();
   @Output() cancelled = new EventEmitter();

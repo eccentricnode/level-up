@@ -15,7 +15,7 @@ export class AnimalsListComponent {
     this.selected.emit(animal);
   }
 
-  remove(animalId: string) {
-    this.deleted.emit(animalId);
+  remove(animal: string) {
+    this.deleted.emit(animal);
   }
 }
