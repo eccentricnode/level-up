@@ -109,6 +109,12 @@
     },
     "volumes-e2e": {
       "tags": []
+    },
+    "animals": {
+      "tags": []
+    },
+    "animals-e2e": {
+      "tags": []
     }
   }
 }

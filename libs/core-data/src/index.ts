@@ -1,4 +1,7 @@
 export { CoreDataModule } from './lib/core-data.module';
+export { NotifyService } from './lib/notify/notify.service';
+export { AuthService } from './lib/auth/auth.service';
+export { AuthGuardService } from './lib/auth/auth-guard.service';
 
 export { PokemonService } from './lib/pokemon/pokemon.service';
 export { Pokemon } from './lib/pokemon/pokemon.model';
@@ -62,3 +65,6 @@ export { League } from './lib/leagues/league.model';
 export { VolumesService } from './lib/volumes/volumes.service';
 export { VolumesFacade } from './lib/store/volumes/volumes.facade';
 export { Volume } from './lib/volumes/volume.model';
+
+export { AnimalsService } from './lib/animals/animals.service';
+export { Animal } from './lib/animals/animal.model';
