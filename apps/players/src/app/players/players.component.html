@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="list-grid">
+    <level-players-list
+      [players]="players$ | async"
+      (selected)="selectPlayer($event)"
+      (deleted)="removePlayer($event)">
+    </level-players-list>
+  </div>
+
+  <div class="details-grid">
+    <level-player-details
+      [group]="form"
+      [selectedPlayer]="selectedPlayer"
+      (submitted)="savePlayer($event)"
+      (cancelled)="reset($event)">
+    </level-player-details>
+  </div>
+</div>

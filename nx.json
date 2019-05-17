@@ -115,6 +115,12 @@
     },
     "animals-e2e": {
       "tags": []
+    },
+    "players": {
+      "tags": []
+    },
+    "players-e2e": {
+      "tags": []
     }
   }
 }

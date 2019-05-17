@@ -69,3 +69,6 @@ export { Volume } from './lib/volumes/volume.model';
 export { AnimalsService } from './lib/animals/animals.service';
 export { AnimalsFacade } from './lib/store/animals/animals.facade';
 export { Animal } from './lib/animals/animal.model';
+
+export { PlayersService } from './lib/players/players.service';
+export { Player } from './lib/players/player.model';
