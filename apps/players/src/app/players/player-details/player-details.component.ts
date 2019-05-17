@@ -14,7 +14,6 @@ export class PlayerDetailsComponent {
 
   @Input() set selectedPlayer(value: Player) {
     this.currentPlayer = value;
-    console.log(value);
     if(!value) return;
     this.group.patchValue({
       id: value.id,
