@@ -16,6 +16,7 @@ import * as fromVehicles from './vehicles/vehicles.reducer';
 import * as fromLeagues from './leagues/leagues.reducer';
 import * as fromVolumes from './volumes/volumes.reducer';
 import * as fromAnimals from './animals/animals.reducer';
+import * as fromPlayers from './players/players.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -33,6 +34,7 @@ import { Vehicle } from '../vehicles/vehicle.model';
 import { League } from '../leagues/league.model';
 import { Volume } from '../volumes/volume.model';
 import { Animal } from '../animals/animal.model';
+import { Player } from '../players/player.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -51,6 +53,7 @@ export interface AppState {
     leagues: fromLeagues.LeaguesState
     volumes: fromVolumes.VolumesState
     animals: fromAnimals.AnimalsState
+    players: fromPlayers.PlayersState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -70,6 +73,7 @@ export const reducers: ActionReducerMap<AppState> = {
     leagues: fromLeagues.leaguesReducer,
     volumes: fromVolumes.volumesReducer,
     animals: fromAnimals.animalsReducer,
+    players: fromPlayers.playersReducer,
 }
 
 //-------------------------------------------------------------------
@@ -668,5 +672,45 @@ export const selectCurrentAnimal = createSelector(
     selectCurrentAnimalId,
     (animalEntities, animalId) => {
         return animalId ? animalEntities[animalId] : emptyAnimal;
+    }
+);
+
+//-------------------------------------------------------------------
+// PLAYERS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectPlayersState = createFeatureSelector<fromPlayers.PlayersState>('players');
+
+export const selectPlayerIds = createSelector(
+    selectPlayersState,
+    fromPlayers.selectPlayerIds
+);
+export const selectPlayerEntities = createSelector(
+    selectPlayersState,
+    fromPlayers.selectPlayerEntities
+);
+export const selectAllPlayers = createSelector(
+    selectPlayersState,
+    fromPlayers.selectAllPlayers
+);
+export const selectCurrentPlayerId = createSelector(
+    selectPlayersState,
+    fromPlayers.getSelectedPlayerId
+);
+
+const emptyPlayer: Player = {
+    id: null, 
+    name: '', 
+    height: '',
+    position: '',
+    number: null,
+    team: ''
+}
+
+export const selectCurrentPlayer = createSelector(
+    selectPlayerEntities,
+    selectCurrentPlayerId,
+    (playerEntities, playerId) => {
+        return playerId ? playerEntities[playerId] : emptyPlayer;
     }
 );

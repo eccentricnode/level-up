@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Player, PlayersService } from '@level/core-data';
+import { Player, PlayersFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-players',
@@ -10,26 +10,22 @@ import { Player, PlayersService } from '@level/core-data';
 })
 export class PlayersComponent implements OnInit {
   form: FormGroup;
-  players$: Observable<Player[]>;
-  selectedPlayer;
+  players$: Observable<Player[]> = this.playersFacade.allPlayers$;
+  selectedPlayer$: Observable<Player> = this.playersFacade.selectedPlayer$;
 
   constructor(
-    private playersService: PlayersService,
+    private playersFacade: PlayersFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.initForm();
-    this.getPlayers();
+    this.playersFacade.loadPlayers();
     this.reset();
   }
 
-  getPlayers() {
-    this.players$ = this.playersService.all();
-  }
-
   selectPlayer(player) {
-    this.selectedPlayer = player;
+    this.playersFacade.selectPlayer(player);
   }
 
   reset() {

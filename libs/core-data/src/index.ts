@@ -71,4 +71,5 @@ export { AnimalsFacade } from './lib/store/animals/animals.facade';
 export { Animal } from './lib/animals/animal.model';
 
 export { PlayersService } from './lib/players/players.service';
+export { PlayersFacade } from './lib/store/players/players.facade';
 export { Player } from './lib/players/player.model';

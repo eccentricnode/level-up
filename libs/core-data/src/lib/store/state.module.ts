@@ -80,6 +80,15 @@ import { AnimalsFacade } from './animals/animals.facade';
         VolumesEffects,
         AnimalsEffects,
       ]),
+    StoreModule.forRoot(
+  { players: playersReducer },
+  {
+    initialState : { players : playersInitialState },
+    metaReducers : !environment.production ? [storeFreeze] : []
+  }
+),
+    EffectsModule.forRoot([PlayersEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
@@ -98,6 +107,7 @@ import { AnimalsFacade } from './animals/animals.facade';
     LeaguesFacade,
     VolumesFacade,
     AnimalsFacade,
+    PlayersFacade,
   ]
 })
 export class StateModule {}
