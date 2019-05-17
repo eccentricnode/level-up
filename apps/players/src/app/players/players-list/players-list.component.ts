@@ -9,13 +9,8 @@ import { Player } from '@level/core-data';
 export class PlayersListComponent {
   @Input() players: Player;
   @Output() selected = new EventEmitter();
-  @Output() deleted = new EventEmitter();
 
   select(player: Player) {
     this.selected.emit(player);
-  }
-
-  remove(player: Player) {
-    this.deleted.emit(player);
   }
 }

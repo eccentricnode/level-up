@@ -32,22 +32,6 @@ export class PlayersComponent implements OnInit {
     this.selectedPlayer = player;
   }
 
-  savePlayer(player: Player) {
-    player.id ? this.updatePlayer(player) : this.createPlayer(player);
-  }
-
-  createPlayer(player) {
-    this.playersService.create(player);
-  }
-
-  updatePlayer(player) {
-    this.playersService.update(player);
-  }
-
-  removePlayer(player: Player) {
-    this.playersService.delete(player.id);
-  }
-
   reset() {
     this.form.reset();
     this.selectPlayer({id: null});
@@ -56,10 +40,11 @@ export class PlayersComponent implements OnInit {
   private initForm() {
     this.form = this.formBuilder.group({
       id: null, 
-      name: ['', Validators.compose([Validators.required])],
-      height: ['', Validators.compose([Validators.required])],
-      number: ['', Validators.compose([Validators.required])],
-      team: ['', Validators.compose([Validators.required])],
+      name: { value: '', disabled: true },
+      height: { value: '', disabled: true },
+      position: { value: '', disabled: true },
+      number: { value: '', disabled: true },
+      team: { value: '', disabled: true },
     });
   }
 }

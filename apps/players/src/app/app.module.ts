@@ -9,8 +9,6 @@ import { MaterialModule } from '@level/material';
 import { CoreDataModule } from '@level/core-data';
 
 import { AppComponent } from './app.component';
-import { NxModule } from '@nrwl/nx';
-import { RouterModule } from '@angular/router';
 import { PlayersComponent } from './players/players.component';
 import { LoginComponent } from './login/login.component';
 import { PlayersListComponent } from './players/players-list/players-list.component';

@@ -1,42 +1,24 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title *ngIf="determineUpdate(); else submitRef">
-      Update {{currentPlayer.name}}'s Info
-    </mat-card-title>
-    <ng-template #submitRef>
-      <mat-card-title>
-        Add a NBA Player
-      </mat-card-title>
-    </ng-template>
-  </mat-card-header>
-  <form [formGroup]="group" (submit)="submit(form)" #form="ngForm">
+  <form [formGroup]="group">
     <mat-card-content>
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput type="text" placeholder="Enter Name" fromControlName="name">
-        <mat-error *ngIf="validateField('name', form)">Please, enter a players's name</mat-error>
+        <input matInput type="text" placeholder="Name" formControlName="name">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Height</mat-label>
-        <input matInput type="text" placeholder="Enter Height" fromControlName="height">
-        <mat-error *ngIf="validateField('height', form)">Please, enter a player's height</mat-error>
+        <input matInput type="text" placeholder="Height" formControlName="height">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Number</mat-label>
-        <input matInput type="number" placeholder="Enter number" fromControlName="number">
-        <mat-error *ngIf="validateField('number', form)">Please, enter a player's number</mat-error>
+        <input matInput type="text" placeholder="Position" formControlName="position">
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Team</mat-label>
-        <input matInput type="text" placeholder="Enter Team" fromControlName="team">
-        <mat-error *ngIf="validateField('team', form)">Please, enter a player's team</mat-error>
+        <input matInput type="number" placeholder="Number" formControlName="number">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput type="text" placeholder="Team" formControlName="team">
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit" color="primary">
-        {{determineUpdate() ? 'Update' : 'Submit'}}
-      </button>
-      <button mat-raised-button type="reset" color="accent" (click)="cancel()">Cancel</button>
+      <button mat-raised-button type="reset" color="accent" (click)="resetForm()">reset</button>
     </mat-card-actions>
   </form>
 </mat-card>

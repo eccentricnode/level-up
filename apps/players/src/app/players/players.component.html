@@ -2,8 +2,7 @@
   <div class="list-grid">
     <level-players-list
       [players]="players$ | async"
-      (selected)="selectPlayer($event)"
-      (deleted)="removePlayer($event)">
+      (selected)="selectPlayer($event)">
     </level-players-list>
   </div>
 
@@ -11,8 +10,7 @@
     <level-player-details
       [group]="form"
       [selectedPlayer]="selectedPlayer"
-      (submitted)="savePlayer($event)"
-      (cancelled)="reset($event)">
+      (reset)="reset($event)">
     </level-player-details>
   </div>
 </div>

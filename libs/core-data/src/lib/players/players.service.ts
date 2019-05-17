@@ -34,6 +34,7 @@ export class PlayersService {
   }
 
   delete(playerId) {
+    console.log(this.http.delete(this.getUrlForId(playerId)));
     return this.http.delete(this.getUrlForId(playerId));
   }
 }
