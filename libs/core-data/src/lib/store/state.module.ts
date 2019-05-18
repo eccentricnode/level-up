@@ -55,6 +55,9 @@ import { VolumesFacade } from './volumes/volumes.facade';
 import { AnimalsEffects } from './animals/animals.effects';
 import { AnimalsFacade } from './animals/animals.facade';
 
+import { PlayersEffects } from './players/players.effects';
+import { PlayersFacade } from './players/players.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -79,16 +82,8 @@ import { AnimalsFacade } from './animals/animals.facade';
         LeaguesEffects,
         VolumesEffects,
         AnimalsEffects,
+        PlayersEffects
       ]),
-    StoreModule.forRoot(
-  { players: playersReducer },
-  {
-    initialState : { players : playersInitialState },
-    metaReducers : !environment.production ? [storeFreeze] : []
-  }
-),
-    EffectsModule.forRoot([PlayersEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
