@@ -73,3 +73,6 @@ export { Animal } from './lib/animals/animal.model';
 export { PlayersService } from './lib/players/players.service';
 export { PlayersFacade } from './lib/store/players/players.facade';
 export { Player } from './lib/players/player.model';
+
+export { FruitsService } from './lib/fruits/fruits.service';
+export { Fruit } from './lib/fruits/fruit.model';

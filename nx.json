@@ -121,6 +121,12 @@
     },
     "players-e2e": {
       "tags": []
+    },
+    "fruit": {
+      "tags": []
+    },
+    "fruit-e2e": {
+      "tags": []
     }
   }
 }
