@@ -33,7 +33,7 @@ export class FruitsLoaded implements Action {
 }
 
 export class AddFruit implements Action {
-  readonly type = FruitsActionTypes.FruitAdded;
+  readonly type = FruitsActionTypes.AddFruit;
   constructor(public payload: Fruit) { }
 }
 

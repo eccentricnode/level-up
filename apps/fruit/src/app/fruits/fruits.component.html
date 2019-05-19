@@ -10,7 +10,7 @@
   <div class="details-grid">
     <level-fruits-details
       [group]="form"
-      [selectedFruit]="selectedFruit"
+      [selectedFruit]="selectedFruit$ | async"
       (submitted)="saveFruit($event)"
       (cancelled)="reset($event)">
     </level-fruits-details>

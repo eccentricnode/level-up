@@ -11,7 +11,7 @@ import { Fruit, FruitsFacade } from '@level/core-data';
 export class FruitsComponent implements OnInit {
   form: FormGroup;
   fruits$: Observable<Fruit[]> = this.fruitsFacade.allFruits$;
-  selectedFruit: Observable<Fruit> = this.fruitsFacade.selectedFruit$;
+  selectedFruit$: Observable<Fruit> = this.fruitsFacade.selectedFruit$;
 
   constructor(
     private fruitsFacade: FruitsFacade,
@@ -21,14 +21,15 @@ export class FruitsComponent implements OnInit {
   ngOnInit() {
     this.fruitsFacade.loadFruits();
     this.initForm();
+    this.fruitsFacade.mutations$.subscribe(_=> this.reset());
     this.reset();
   }
 
   selectFruit(fruit) {
-    this.selectedFruit = fruit;
+    this.fruitsFacade.selectFruit(fruit.id);
   }
 
-  saveFruit(fruit:Fruit) {
+  saveFruit(fruit: Fruit) {
     fruit.id ? this.fruitsFacade.updateFruit(fruit) : this.fruitsFacade.addFruit(fruit);
   }
 

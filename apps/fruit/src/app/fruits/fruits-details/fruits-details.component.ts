@@ -41,6 +41,6 @@ export class FruitsDetailsComponent {
   }
 
   determineUpdate() {
-    return !!this.group.value;
+    return !!this.group.value.id;
   }
 }

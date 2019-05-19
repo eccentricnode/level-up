@@ -23,6 +23,7 @@
     "deploy:volumes-app": "ng build --project volumes && cp ./dist/apps/volumes/index.html ./dist/apps/volumes/200.html && surge ./dist/apps/volumes/ https://googleBooks-api-search.surge.sh/",
     "deploy:animals-app": "ng build --project animals && cp ./dist/apps/animals/index.html ./dist/apps/animals/200.html && surge ./dist/apps/animals/ https://animals-list.surge.sh/",
     "deploy:players-app": "ng build --project players && cp ./dist/apps/players/index.html ./dist/apps/players/200.html && surge ./dist/apps/players/ https://players-list.surge.sh/",
+    "deploy:fruits-app": "ng build --project fruits && cp ./dist/apps/fruits/index.html ./dist/apps/fruits/200.html && surge ./dist/apps/fruits/ https://fruits-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
