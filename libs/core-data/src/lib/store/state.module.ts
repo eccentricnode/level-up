@@ -57,11 +57,9 @@ import { AnimalsFacade } from './animals/animals.facade';
 
 import { PlayersEffects } from './players/players.effects';
 import { PlayersFacade } from './players/players.facade';
-import { FRUITS_FEATURE_KEY, initialState as fruitsInitialState, fruitsReducer } from './+state/fruits.reducer';
-import { FruitsEffects } from './+state/fruits.effects';
-import { FruitsFacade } from './+state/fruits.facade';
-import { environment } from '../environments/environment';
-import { storeFreeze } from 'ngrx-store-freeze';
+
+import { FruitsEffects } from './fruits/fruits.effects';
+import { FruitsFacade } from './fruits/fruits.facade';
 
 @NgModule({
   declarations: [],
@@ -87,17 +85,9 @@ import { storeFreeze } from 'ngrx-store-freeze';
         LeaguesEffects,
         VolumesEffects,
         AnimalsEffects,
-        PlayersEffects
+        PlayersEffects,
+        FruitsEffects,
       ]),
-    StoreModule.forRoot(
-  { fruits: fruitsReducer },
-  {
-    initialState : { fruits : fruitsInitialState },
-    metaReducers : !environment.production ? [storeFreeze] : []
-  }
-),
-    EffectsModule.forRoot([FruitsEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 

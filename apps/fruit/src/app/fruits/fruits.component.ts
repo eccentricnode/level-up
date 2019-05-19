@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Fruit, FruitsService } from '@level/core-data';
+import { Fruit, FruitsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-fruits',
@@ -10,22 +10,18 @@ import { Fruit, FruitsService } from '@level/core-data';
 })
 export class FruitsComponent implements OnInit {
   form: FormGroup;
-  fruits$: Observable<Fruit[]>
-  selectedFruit: Fruit;
+  fruits$: Observable<Fruit[]> = this.fruitsFacade.allFruits$;
+  selectedFruit: Observable<Fruit> = this.fruitsFacade.selectedFruit$;
 
   constructor(
-    private fruitsService: FruitsService,
+    private fruitsFacade: FruitsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.getFruits();
+    this.fruitsFacade.loadFruits();
     this.initForm();
     this.reset();
-  }
-
-  getFruits() {
-    this.fruits$ = this.fruitsService.all();
   }
 
   selectFruit(fruit) {
@@ -33,31 +29,11 @@ export class FruitsComponent implements OnInit {
   }
 
   saveFruit(fruit:Fruit) {
-    fruit.id ? this.updateFruit(fruit) : this.createFruit(fruit);
-  }
-
-  createFruit(fruit: Fruit) {
-    this.fruitsService.create(fruit)
-      .subscribe((res: Fruit) => {
-        this.reset();
-        this.getFruits();
-      });
-  }
-
-  updateFruit(fruit: Fruit) {
-    this.fruitsService.update(fruit)
-      .subscribe((res: Fruit) => {
-        this.reset();
-        this.getFruits();
-      });
+    fruit.id ? this.fruitsFacade.updateFruit(fruit) : this.fruitsFacade.addFruit(fruit);
   }
 
   removeFruit(fruit: Fruit) {
-    this.fruitsService.delete(fruit)
-      .subscribe((res: Fruit) => {
-        this.reset();
-        this.getFruits();
-      });
+    this.fruitsFacade.deleteFruit(fruit);
   }
 
   reset() {

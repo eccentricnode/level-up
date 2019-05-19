@@ -17,6 +17,7 @@ import * as fromLeagues from './leagues/leagues.reducer';
 import * as fromVolumes from './volumes/volumes.reducer';
 import * as fromAnimals from './animals/animals.reducer';
 import * as fromPlayers from './players/players.reducer';
+import * as fromFruits from './fruits/fruits.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -35,6 +36,7 @@ import { League } from '../leagues/league.model';
 import { Volume } from '../volumes/volume.model';
 import { Animal } from '../animals/animal.model';
 import { Player } from '../players/player.model';
+import { Fruit } from '../fruits/fruit.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -54,6 +56,7 @@ export interface AppState {
     volumes: fromVolumes.VolumesState
     animals: fromAnimals.AnimalsState
     players: fromPlayers.PlayersState
+    fruits: fromFruits.FruitsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -74,6 +77,7 @@ export const reducers: ActionReducerMap<AppState> = {
     volumes: fromVolumes.volumesReducer,
     animals: fromAnimals.animalsReducer,
     players: fromPlayers.playersReducer,
+    fruits: fromFruits.fruitsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -712,5 +716,44 @@ export const selectCurrentPlayer = createSelector(
     selectCurrentPlayerId,
     (playerEntities, playerId) => {
         return playerId ? playerEntities[playerId] : emptyPlayer;
+    }
+);
+
+//-------------------------------------------------------------------
+// FRUITS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectFruitsState = createFeatureSelector<fromFruits.FruitsState>('fruits');
+
+export const selectFruitIds = createSelector(
+    selectFruitsState,
+    fromFruits.selectFruitIds
+);
+export const selectFruitEntities = createSelector(
+    selectFruitsState,
+    fromFruits.selectFruitEntities
+);
+export const selectAllFruits = createSelector(
+    selectFruitsState,
+    fromFruits.selectAllFruits
+);
+export const selectCurrentFruitId = createSelector(
+    selectFruitsState,
+    fromFruits.getSelectedFruitId
+);
+
+const emptyFruit: Fruit = {
+    id: null, 
+    name: '',
+    calories: '',
+    carbohydrates: null,
+    sugar: null,
+}
+
+export const selectCurrentFruit = createSelector(
+    selectFruitEntities,
+    selectCurrentFruitId,
+    (fruitEntities, fruitId) => {
+        return fruitId ? fruitEntities[fruitId] : emptyFruit;
     }
 );
