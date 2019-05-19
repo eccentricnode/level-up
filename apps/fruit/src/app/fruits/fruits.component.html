@@ -9,7 +9,10 @@
 
   <div class="details-grid">
     <level-fruits-details
-      >
+      [group]="form"
+      [selectedFruit]="selectedFruit"
+      (submitted)="saveFruit($event)"
+      (cancelled)="reset($event)">
     </level-fruits-details>
   </div>
 </div>

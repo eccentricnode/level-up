@@ -37,15 +37,27 @@ export class FruitsComponent implements OnInit {
   }
 
   createFruit(fruit: Fruit) {
-    this.fruitsService.create(fruit);
+    this.fruitsService.create(fruit)
+      .subscribe((res: Fruit) => {
+        this.reset();
+        this.getFruits();
+      });
   }
 
   updateFruit(fruit: Fruit) {
-    this.fruitsService.update(fruit);
+    this.fruitsService.update(fruit)
+      .subscribe((res: Fruit) => {
+        this.reset();
+        this.getFruits();
+      });
   }
 
   removeFruit(fruit: Fruit) {
-    this.fruitsService.delete(fruit.id);
+    this.fruitsService.delete(fruit)
+      .subscribe((res: Fruit) => {
+        this.reset();
+        this.getFruits();
+      });
   }
 
   reset() {
