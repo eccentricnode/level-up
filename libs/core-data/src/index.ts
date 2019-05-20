@@ -81,3 +81,6 @@ export { Fruit } from './lib/fruits/fruit.model';
 export { InstrumentsService } from './lib/instruments/instruments.service';
 export { InstrumentsFacade } from './lib/store/instruments/instruments.facade';
 export { Instrument } from './lib/instruments/instrument.model';
+
+export { PizzaService } from './lib/pizza/pizza.service';
+export { Pizza } from './lib/pizza/pizza.model';
