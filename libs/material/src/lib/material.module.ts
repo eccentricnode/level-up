@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { 
   MatButtonModule,
   MatCardModule,
@@ -23,6 +24,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    DragDropModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -42,6 +44,7 @@ import {
     MatButtonToggleModule
   ], 
   exports: [
+    DragDropModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
