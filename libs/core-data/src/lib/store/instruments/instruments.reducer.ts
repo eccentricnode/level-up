@@ -16,7 +16,7 @@ export const initialState: InstrumentsState = adapter.getInitialState({
 export function instrumentsReducer(state: InstrumentsState = initialState, action: InstrumentsAction): InstrumentsState {
   switch (action.type) {
     case InstrumentsActionTypes.InstrumentSelected: {
-      return Object.assign({}, state, { selectedInstrumentId: action.payload });
+      return Object.assign({}, state, { selectedInstrumentId: action.payload.id });
     }
 
     case InstrumentsActionTypes.InstrumentsLoaded: {

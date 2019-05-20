@@ -57,7 +57,7 @@ export class InstrumentsEffects {
   @Effect()
       deleteInstrument$ = this.dataPersistence.pessimisticUpdate(InstrumentsActionTypes.DeleteInstrument, {
         run: (action: DeleteInstrument, state: InstrumentsState) => {
-          return this.instrumentsService.create(action.payload).pipe(map((res: Instrument) => new InstrumentDeleted(action.payload)))
+          return this.instrumentsService.delete(action.payload.id).pipe(map((res: Instrument) => new InstrumentDeleted(action.payload)))
         },
 
         onError: (action: DeleteInstrument, error) => {
