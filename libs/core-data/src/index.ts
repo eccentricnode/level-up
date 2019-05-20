@@ -77,3 +77,6 @@ export { Player } from './lib/players/player.model';
 export { FruitsService } from './lib/fruits/fruits.service';
 export { FruitsFacade } from './lib/store/fruits/fruits.facade'
 export { Fruit } from './lib/fruits/fruit.model';
+
+export { InstrumentsService } from './lib/instruments/instruments.service';
+export { Instrument } from './lib/instruments/instrument.model';
