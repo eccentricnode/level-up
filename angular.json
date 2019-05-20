@@ -2707,6 +2707,138 @@
           }
         }
       }
+    },
+    "pizza": {
+      "root": "apps/pizza/",
+      "sourceRoot": "apps/pizza/src",
+      "projectType": "application",
+      "prefix": "level",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/pizza",
+            "index": "apps/pizza/src/index.html",
+            "main": "apps/pizza/src/main.ts",
+            "polyfills": "apps/pizza/src/polyfills.ts",
+            "tsConfig": "apps/pizza/tsconfig.app.json",
+            "assets": [
+              "apps/pizza/src/favicon.ico",
+              "apps/pizza/src/assets"
+            ],
+            "styles": [
+              "apps/pizza/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/pizza/src/environments/environment.ts",
+                  "with": "apps/pizza/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "pizza:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pizza:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pizza:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/pizza/src/test.ts",
+            "polyfills": "apps/pizza/src/polyfills.ts",
+            "tsConfig": "apps/pizza/tsconfig.spec.json",
+            "karmaConfig": "apps/pizza/karma.conf.js",
+            "styles": [
+              "apps/pizza/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/pizza/src/favicon.ico",
+              "apps/pizza/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/pizza/tsconfig.app.json",
+              "apps/pizza/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "pizza-e2e": {
+      "root": "apps/pizza-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/pizza-e2e/cypress.json",
+            "tsConfig": "apps/pizza-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pizza:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pizza:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/pizza-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

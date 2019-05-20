@@ -133,6 +133,12 @@
     },
     "instruments-e2e": {
       "tags": []
+    },
+    "pizza": {
+      "tags": []
+    },
+    "pizza-e2e": {
+      "tags": []
     }
   }
 }
