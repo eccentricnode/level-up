@@ -18,6 +18,7 @@ import * as fromVolumes from './volumes/volumes.reducer';
 import * as fromAnimals from './animals/animals.reducer';
 import * as fromPlayers from './players/players.reducer';
 import * as fromFruits from './fruits/fruits.reducer';
+import * as fromInstruments from './instruments/instruments.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -37,6 +38,7 @@ import { Volume } from '../volumes/volume.model';
 import { Animal } from '../animals/animal.model';
 import { Player } from '../players/player.model';
 import { Fruit } from '../fruits/fruit.model';
+import { Instrument } from '../instruments/instrument.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -57,6 +59,7 @@ export interface AppState {
     animals: fromAnimals.AnimalsState
     players: fromPlayers.PlayersState
     fruits: fromFruits.FruitsState
+    instruments: fromInstruments.InstrumentsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -78,6 +81,7 @@ export const reducers: ActionReducerMap<AppState> = {
     animals: fromAnimals.animalsReducer,
     players: fromPlayers.playersReducer,
     fruits: fromFruits.fruitsReducer,
+    instruments: fromInstruments.instrumentsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -755,5 +759,44 @@ export const selectCurrentFruit = createSelector(
     selectCurrentFruitId,
     (fruitEntities, fruitId) => {
         return fruitId ? fruitEntities[fruitId] : emptyFruit;
+    }
+);
+
+//-------------------------------------------------------------------
+// INSTRUMENTS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectInstrumentsState = createFeatureSelector<fromInstruments.InstrumentsState>('instruments');
+
+export const selectInstrumentIds = createSelector(
+    selectInstrumentsState,
+    fromInstruments.selectInstrumentIds
+);
+export const selectInstrumentEntities = createSelector(
+    selectInstrumentsState, 
+    fromInstruments.selectInstrumentEntities
+);
+export const selectAllInstruments = createSelector(
+    selectInstrumentsState,
+    fromInstruments.selectAllInstruments
+);
+export const selectCurrentInstrumentId = createSelector(
+    selectInstrumentsState,
+    fromInstruments.getSelectedInstrumentId
+);
+
+const emptyInstrument: Instrument = {
+    id: null,
+    name: '',
+    year: '',
+    inventor: '',
+    country: ''
+}
+
+export const selectCurrentInstrument = createSelector(
+    selectInstrumentEntities,
+    selectCurrentInstrumentId,
+    (instrumentEntities, instrumentId) => {
+        return instrumentId ? instrumentEntities[instrumentId] : emptyInstrument;
     }
 );

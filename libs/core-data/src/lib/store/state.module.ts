@@ -61,6 +61,9 @@ import { PlayersFacade } from './players/players.facade';
 import { FruitsEffects } from './fruits/fruits.effects';
 import { FruitsFacade } from './fruits/fruits.facade';
 
+import { InstrumentsEffects } from './instruments/instruments.effects';
+import { InstrumentsFacade } from './instruments/instruments.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -87,6 +90,7 @@ import { FruitsFacade } from './fruits/fruits.facade';
         AnimalsEffects,
         PlayersEffects,
         FruitsEffects,
+        InstrumentsEffects,
       ]),
   ],
   providers: [
@@ -108,6 +112,7 @@ import { FruitsFacade } from './fruits/fruits.facade';
     AnimalsFacade,
     PlayersFacade,
     FruitsFacade,
+    InstrumentsFacade,
   ]
 })
 export class StateModule {}

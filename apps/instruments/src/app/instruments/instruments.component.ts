@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Instrument, InstrumentsService } from '@level/core-data';
+import { Instrument, InstrumentsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-instruments',
@@ -10,54 +10,32 @@ import { Instrument, InstrumentsService } from '@level/core-data';
 })
 export class InstrumentsComponent implements OnInit {
   form: FormGroup;
-  instruments$: Observable<Instrument[]>;
-  selectedInstrument;
+  instruments$: Observable<Instrument[]> = this.instrumentsFacade.allInstruments$;
+  selectedInstrument$: Observable<Instrument> = this.instrumentsFacade.selectedInstrument$;
 
   constructor(
-    private instrumentsService: InstrumentsService,
+    private instrumentsFacade: InstrumentsFacade,
     private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.instrumentsFacade.loadInstruments();
     this.initForm();
-    this.getInstruments();
+    this.instrumentsFacade.mutations$.subscribe(_ => this.reset());
     this.reset();
   }
 
-  getInstruments() {
-    this.instruments$ = this.instrumentsService.all();
-  }
-
   selectInstrument(instrument) {
-    this.selectedInstrument = instrument;
+    this.instrumentsFacade.selectInstrument(instrument);
   }
 
   saveInstrumnent(instrument: Instrument) {
-    instrument.id ? this.updateInstrument(instrument) : this.createInstrument(instrument);
+    instrument.id ? this.instrumentsFacade.updateInstrument(instrument) : this.instrumentsFacade.addInstrument(instrument);
   }
 
-  createInstrument(instrument: Instrument) {
-    this.instrumentsService.create(instrument)
-      .subscribe((res: Instrument) => {
-        this.reset();
-        this.getInstruments();
-      });
-  }
-
-  updateInstrument(instrument: Instrument) {
-    this.instrumentsService.update(instrument)
-      .subscribe((res: Instrument) => {
-        this.reset();
-        this.getInstruments();
-      });
-  }
 
   removeInstrument(instrument) {
-    this.instrumentsService.delete(instrument.id)
-      .subscribe(res => {
-        this.reset();
-        this.getInstruments();
-      })
+    this.instrumentsFacade.deleteInstrument(instrument);
   }
 
   reset() {

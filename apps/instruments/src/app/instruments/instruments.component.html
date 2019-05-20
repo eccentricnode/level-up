@@ -10,7 +10,7 @@
   <div class="details-grid">
     <level-instruments-details
       [group]="form"
-      [selectedInstrument]="selectedInstrument"
+      [selectedInstrument]="selectedInstrument$ | async"
       (submitted)="saveInstrumnent($event)"
       (cancelled)="reset($event)">
     </level-instruments-details>

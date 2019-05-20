@@ -79,4 +79,5 @@ export { FruitsFacade } from './lib/store/fruits/fruits.facade'
 export { Fruit } from './lib/fruits/fruit.model';
 
 export { InstrumentsService } from './lib/instruments/instruments.service';
+export { InstrumentsFacade } from './lib/store/instruments/instruments.facade';
 export { Instrument } from './lib/instruments/instrument.model';
