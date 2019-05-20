@@ -63,6 +63,11 @@ import { FruitsFacade } from './fruits/fruits.facade';
 
 import { InstrumentsEffects } from './instruments/instruments.effects';
 import { InstrumentsFacade } from './instruments/instruments.facade';
+import { PIZZAS_FEATURE_KEY, initialState as pizzasInitialState, pizzasReducer } from './+state/pizzas.reducer';
+import { PizzasEffects } from './+state/pizzas.effects';
+import { PizzasFacade } from './+state/pizzas.facade';
+import { environment } from '../environments/environment';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 @NgModule({
   declarations: [],
@@ -92,6 +97,15 @@ import { InstrumentsFacade } from './instruments/instruments.facade';
         FruitsEffects,
         InstrumentsEffects,
       ]),
+    StoreModule.forRoot(
+  { pizzas: pizzasReducer },
+  {
+    initialState : { pizzas : pizzasInitialState },
+    metaReducers : !environment.production ? [storeFreeze] : []
+  }
+),
+    EffectsModule.forRoot([PizzasEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
@@ -113,6 +127,7 @@ import { InstrumentsFacade } from './instruments/instruments.facade';
     PlayersFacade,
     FruitsFacade,
     InstrumentsFacade,
+    PizzasFacade,
   ]
 })
 export class StateModule {}
