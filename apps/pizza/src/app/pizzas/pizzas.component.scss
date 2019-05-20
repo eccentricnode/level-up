@@ -1,0 +1,19 @@
+.wrapper {
+  
+  .dragDropList {
+    grid-column: 5/9;
+    grid-row: 2;
+    
+    .pop {
+      height: 50px;
+      // width: 40%;
+      // margin-left: 20px;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+
+}

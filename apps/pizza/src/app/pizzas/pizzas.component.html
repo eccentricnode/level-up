@@ -1,3 +1,15 @@
-<p>
-  pizzas works!
-</p>
+<div class="wrapper">
+  <div class="dragDropList">
+    <mat-card>
+      <span *ngIf="pizzas; else loading">
+        <h2>Sort the Pizzas, from Best to Worst</h2>
+          <div class="sortList" cdkDropList (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let pizza of pizzas" cdkDrag>{{pizza.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        loading stuff....
+      </ng-template>
+    </mat-card>
+  </div>
+</div>
