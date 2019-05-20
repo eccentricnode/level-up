@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initForm();
+    localStorage.setItem('verified', '');
   }
 
   login() {

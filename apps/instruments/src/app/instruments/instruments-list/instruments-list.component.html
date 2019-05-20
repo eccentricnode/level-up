@@ -1,3 +1,20 @@
-<p>
-  instruments-list works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Instruments List</mat-card-title>
+      <br>
+    <mat-card-subtitle>Select a Instrument!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let instrument of instruments"
+                      class="mat-list-option"
+                      (click)="select(instrument)">
+        <h4 matLine>{{instrument.name}}</h4>
+        <button mat-mini-fab 
+            (click)="remove(instrument);$event.stopImmediatePropagation()">
+          <mat-icon>clear</mat-icon>  
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

@@ -19,6 +19,9 @@ export class InstrumentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.initForm();
+    this.getInstruments();
+    this.reset();
   }
 
   getInstruments() {
@@ -26,11 +29,11 @@ export class InstrumentsComponent implements OnInit {
   }
 
   selectInstrument(instrument) {
-    this.selectInstrument = instrument;
+    this.selectedInstrument = instrument;
   }
 
   saveInstrumnent(instrument: Instrument) {
-
+    instrument.id ? this.updateInstrument(instrument) : this.createInstrument(instrument);
   }
 
   createInstrument(instrument: Instrument) {
@@ -49,8 +52,8 @@ export class InstrumentsComponent implements OnInit {
       });
   }
 
-  removeInstrument(instrument: string) {
-    this.instrumentsService.delete(instrument)
+  removeInstrument(instrument) {
+    this.instrumentsService.delete(instrument.id)
       .subscribe(res => {
         this.reset();
         this.getInstruments();
