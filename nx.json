@@ -127,6 +127,12 @@
     },
     "fruit-e2e": {
       "tags": []
+    },
+    "instruments": {
+      "tags": []
+    },
+    "instruments-e2e": {
+      "tags": []
     }
   }
 }
