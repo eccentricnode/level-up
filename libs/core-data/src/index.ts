@@ -83,4 +83,5 @@ export { InstrumentsFacade } from './lib/store/instruments/instruments.facade';
 export { Instrument } from './lib/instruments/instrument.model';
 
 export { PizzaService } from './lib/pizza/pizza.service';
+export { PizzasFacade } from './lib/store/pizzas/pizzas.facade';
 export { Pizza } from './lib/pizza/pizza.model';

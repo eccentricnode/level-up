@@ -19,6 +19,7 @@ import * as fromAnimals from './animals/animals.reducer';
 import * as fromPlayers from './players/players.reducer';
 import * as fromFruits from './fruits/fruits.reducer';
 import * as fromInstruments from './instruments/instruments.reducer';
+import * as fromPizzas from './pizzas/pizzas.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -39,6 +40,7 @@ import { Animal } from '../animals/animal.model';
 import { Player } from '../players/player.model';
 import { Fruit } from '../fruits/fruit.model';
 import { Instrument } from '../instruments/instrument.model';
+import { Pizza } from '../pizza/pizza.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -60,6 +62,7 @@ export interface AppState {
     players: fromPlayers.PlayersState
     fruits: fromFruits.FruitsState
     instruments: fromInstruments.InstrumentsState
+    pizzas: fromPizzas.PizzasState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -82,6 +85,7 @@ export const reducers: ActionReducerMap<AppState> = {
     players: fromPlayers.playersReducer,
     fruits: fromFruits.fruitsReducer,
     instruments: fromInstruments.instrumentsReducer,
+    pizzas: fromPizzas.pizzasReducer,
 }
 
 //-------------------------------------------------------------------
@@ -798,5 +802,36 @@ export const selectCurrentInstrument = createSelector(
     selectCurrentInstrumentId,
     (instrumentEntities, instrumentId) => {
         return instrumentId ? instrumentEntities[instrumentId] : emptyInstrument;
+    }
+);
+
+//-------------------------------------------------------------------
+// PIZZAS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectPizzasState = createFeatureSelector<fromPizzas.PizzasState>('pizzas');
+
+export const selectPizzaIds = createSelector(
+    selectPizzasState,
+    fromPizzas.selectPizzaIds
+);
+export const selectPizzaEntities = createSelector(
+    selectPizzasState,
+    fromPizzas.selectPizzaEntities
+);
+export const selectAllPizzas = createSelector(
+    selectPizzasState,
+    fromPizzas.selectAllPizzas
+);
+export const selectCurrentPizzaId = createSelector(
+    selectPizzasState,
+    fromPizzas.getSelectedPizzaId
+);
+
+export const selectCurrentPizza = createSelector(
+    selectPizzaEntities,
+    selectCurrentPizzaId,
+    (pizzaEntities, pizzaId) => {
+        return pizzaId ? pizzaEntities[pizzaId] : {} as Pizza;
     }
 );

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
-import { PizzaService, Pizza } from '@level/core-data';
+import { PizzaService, Pizza, PizzasFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-pizzas',
@@ -9,21 +9,17 @@ import { PizzaService, Pizza } from '@level/core-data';
   styleUrls: ['./pizzas.component.scss']
 })
 export class PizzasComponent implements OnInit {
-  pizzas$: Observable<Pizza[]>;
+  pizzas$: Observable<Pizza[]> = this.pizzaFacade.allPizzas$;
 
   pizzas: Pizza[];
 
   constructor(
-    private pizzaService: PizzaService
+    private pizzaFacade: PizzasFacade
   ) { }
 
   ngOnInit() {
-    this.getPizzas();
+    this.pizzaFacade.loadAll();
     this.pizzas$.subscribe(pizzas => this.pizzas = pizzas);
-  }
-
-  getPizzas() {
-    this.pizzas$ = this.pizzaService.all();
   }
 
   drop(event: CdkDragDrop<string[]>) {
