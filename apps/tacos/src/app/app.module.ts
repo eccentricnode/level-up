@@ -1,20 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { NxModule } from '@nrwl/nx';
+import { MaterialModule } from '@level/material';
+import { CoreDataModule } from '@level/core-data';
 
 import { AppComponent } from './app.component';
-import { NxModule } from '@nrwl/nx';
-import { RouterModule } from '@angular/router';
 import { TacosComponent } from './tacos/tacos.component';
 import { LoginComponent } from './login/login.component';
-import { TacosListComponent } from './tacos/tacos-list/tacos-list.component';
-import { TacoDetailsComponent } from './tacos/taco-details/taco-details.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, TacosComponent, LoginComponent, TacosListComponent, TacoDetailsComponent],
+  declarations: [AppComponent, TacosComponent, LoginComponent],
   imports: [
     BrowserModule,
     NxModule.forRoot(),
-    RouterModule.forRoot([], { initialNavigation: 'enabled' })
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreDataModule,
+    HttpClientModule,
+    MaterialModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
