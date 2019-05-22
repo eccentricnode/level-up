@@ -127,7 +127,6 @@ import { DrinksFacade } from './drinks/drinks.facade';
     InstrumentsFacade,
     PizzasFacade,
     TacosFacade,
-    Facade,
     DrinksFacade,
   ]
 })
