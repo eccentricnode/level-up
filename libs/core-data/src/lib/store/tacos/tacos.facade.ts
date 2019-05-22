@@ -2,19 +2,17 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { TacosPartialState } from './tacos.reducer';
-import { tacosQuery } from './tacos.selectors';
-import { LoadTacos } from './tacos.actions';
+import { selectAllTacos } from '..';
+import * as TacosActions from './tacos.actions';
+import { TacosState } from './tacos.reducer';
 
 @Injectable()
 export class TacosFacade {
-  loaded$ = this.store.pipe(select(tacosQuery.getLoaded));
-  allTacos$ = this.store.pipe(select(tacosQuery.getAllTacos));
-  selectedTacos$ = this.store.pipe(select(tacosQuery.getSelectedTacos));
+  allTacos$ = this.store.pipe(select(selectAllTacos));
 
-  constructor(private store: Store<TacosPartialState>) {}
+  constructor(private store: Store<TacosState>) {}
 
   loadAll() {
-    this.store.dispatch(new LoadTacos());
+    this.store.dispatch(new TacosActions.LoadTacos());
   }
 }

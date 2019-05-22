@@ -1,30 +1,26 @@
 import { Action } from '@ngrx/store';
-import { Entity } from './tacos.reducer';
+import { Taco } from '../../tacos/taco.model';
 
 export enum TacosActionTypes {
+  TacosAction = '[Tacos] Action',
   LoadTacos = '[Tacos] Load Tacos',
   TacosLoaded = '[Tacos] Tacos Loaded',
-  TacosLoadError = '[Tacos] Tacos Load Error'
+}
+
+export class Tacos implements Action {
+  readonly type = TacosActionTypes.TacosAction
 }
 
 export class LoadTacos implements Action {
   readonly type = TacosActionTypes.LoadTacos;
 }
 
-export class TacosLoadError implements Action {
-  readonly type = TacosActionTypes.TacosLoadError;
-  constructor(public payload: any) {}
-}
-
 export class TacosLoaded implements Action {
   readonly type = TacosActionTypes.TacosLoaded;
-  constructor(public payload: Entity[]) {}
+  constructor(public payload: Taco[]) {}
 }
 
-export type TacosAction = LoadTacos | TacosLoaded | TacosLoadError;
-
-export const fromTacosActions = {
-  LoadTacos,
-  TacosLoaded,
-  TacosLoadError
-};
+export type TacosAction = Tacos
+  | LoadTacos
+  | TacosLoaded 
+;

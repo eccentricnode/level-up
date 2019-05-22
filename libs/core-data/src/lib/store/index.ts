@@ -20,6 +20,7 @@ import * as fromPlayers from './players/players.reducer';
 import * as fromFruits from './fruits/fruits.reducer';
 import * as fromInstruments from './instruments/instruments.reducer';
 import * as fromPizzas from './pizzas/pizzas.reducer';
+import * as fromTacos from './tacos/tacos.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -41,6 +42,7 @@ import { Player } from '../players/player.model';
 import { Fruit } from '../fruits/fruit.model';
 import { Instrument } from '../instruments/instrument.model';
 import { Pizza } from '../pizza/pizza.model';
+import { Taco } from '../tacos/taco.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -63,6 +65,7 @@ export interface AppState {
     fruits: fromFruits.FruitsState
     instruments: fromInstruments.InstrumentsState
     pizzas: fromPizzas.PizzasState
+    tacos: fromTacos.TacosState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -86,6 +89,7 @@ export const reducers: ActionReducerMap<AppState> = {
     fruits: fromFruits.fruitsReducer,
     instruments: fromInstruments.instrumentsReducer,
     pizzas: fromPizzas.pizzasReducer,
+    tacos: fromTacos.tacosReducer,
 }
 
 //-------------------------------------------------------------------
@@ -833,5 +837,36 @@ export const selectCurrentPizza = createSelector(
     selectCurrentPizzaId,
     (pizzaEntities, pizzaId) => {
         return pizzaId ? pizzaEntities[pizzaId] : {} as Pizza;
+    }
+);
+
+//-------------------------------------------------------------------
+// TACOS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectTacosState = createFeatureSelector<fromTacos.TacosState>('tacos');
+
+export const selectTacoIds = createSelector(
+    selectTacosState,
+    fromTacos.selectTacoIds
+);
+export const selectTacoEntities = createSelector(
+    selectTacosState,
+    fromTacos.selectTacoEntities
+);
+export const selectAllTacos = createSelector(
+    selectTacosState,
+    fromTacos.selectAllTacos
+);
+export const selectCurrentTacoId = createSelector(
+    selectTacosState,
+    fromTacos.getSelectedTacoId
+);
+
+export const selectCurrentTaco = createSelector(
+    selectTacoEntities,
+    selectCurrentTacoId,
+    (tacoEntities, tacoId) => {
+        return tacoId ? tacoEntities[tacoId] : {} as Taco;
     }
 );
