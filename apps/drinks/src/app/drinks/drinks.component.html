@@ -1,11 +1,14 @@
-<div class="wrapper">
+<div class="wrapper" cdkDropListGroup>
+  <h1>Sort the Drinks from Best to Worst</h1>
   <div class="firstDragDropList">
     <mat-card>
-      <span *ngIf="drinks; else loading">
-        <h2>Sort the Drinks, from Best to Worst</h2>
-          <div class="sortList" cdkDropList #firstList="cdkDropList"
-            [cdkDropListConnectedTo]="secondList" (cdkDropListDropped)="drop($event)">
-          <div class="pop" *ngFor="let drink of drinks" cdkDrag>{{drink.name}}</div>
+      <span *ngIf="worstDrinks; else loading">
+        <h2>Worst</h2>
+          <div class="sortList" 
+               cdkDropList 
+               [cdkDropListData]="worstDrinks"
+               (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let drink of worstDrinks" cdkDrag>{{drink.name}}</div>
         </div>
       </span>
       <ng-template #loading>
@@ -16,11 +19,13 @@
 
   <div class="secondDragDropList">
     <mat-card>
-      <span *ngIf="drinks; else loading">
-        <h2>Sort the Drinks, from Best to Worst</h2>
-          <div class="sortList" cdkDropList #secondList="cdkDropList"
-            [cdkDropListConnectedTo]="firstList" (cdkDropListDropped)="drop($event)">
-          <div class="pop" *ngFor="let drink of drinks" cdkDrag>{{drink.name}}</div>
+      <span *ngIf="worstDrinks; else loading">
+        <h2>Best</h2>
+          <div class="sortList" 
+               cdkDropList
+               [cdkDropListData]="bestDrinks"
+               (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let drink of bestDrinks" cdkDrag>{{drink.name}}</div>
         </div>
       </span>
       <ng-template #loading>

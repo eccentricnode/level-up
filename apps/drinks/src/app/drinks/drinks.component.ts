@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { DrinksService, Drink } from '@level/core-data';
 
@@ -10,14 +10,22 @@ import { DrinksService, Drink } from '@level/core-data';
 })
 export class DrinksComponent implements OnInit {
   drinks$: Observable<Drink[]>;
-  drinks: Drink[];
-
+  worstDrinks: Drink[] = [];
+  bestDrinks: Drink[] = [
+    {
+      id: 34,
+      name: "Joker Mad",
+      caffeine: 206,
+      sugar: 54,
+      founder: "Hansen's Beverages"
+    }
+  ];
 
   constructor(private drinksService: DrinksService) { }
 
   ngOnInit() {
     this.getDrinks();
-    this.drinks$.subscribe(drinks => this.drinks = drinks);
+    this.drinks$.subscribe(drinks => this.worstDrinks = drinks);
   }
 
   getDrinks() {
@@ -25,7 +33,11 @@ export class DrinksComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.drinks, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data,
+        event.previousIndex, event.currentIndex);
+    }
   }
-
 }
