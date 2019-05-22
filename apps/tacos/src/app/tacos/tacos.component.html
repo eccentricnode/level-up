@@ -1,3 +1,15 @@
-<p>
-  tacos works!
-</p>
+<div class="wrapper">
+  <div class="dragDropList">
+    <mat-card>
+      <span *ngIf="tacos; else loading">
+        <h2>Sort the Tacos, from Best to Worst</h2>
+          <div class="sortList" cdkDropList (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let taco of tacos" cdkDrag>{{taco.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        loading stuff....
+      </ng-template>
+    </mat-card>
+  </div>
+</div>
