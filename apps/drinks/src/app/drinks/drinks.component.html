@@ -1,9 +1,25 @@
 <div class="wrapper">
-  <div class="dragDropList">
+  <div class="firstDragDropList">
     <mat-card>
       <span *ngIf="drinks; else loading">
         <h2>Sort the Drinks, from Best to Worst</h2>
-          <div class="sortList" cdkDropList (cdkDropListDropped)="drop($event)">
+          <div class="sortList" cdkDropList #firstList="cdkDropList"
+            [cdkDropListConnectedTo]="secondList" (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let drink of drinks" cdkDrag>{{drink.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <div class="secondDragDropList">
+    <mat-card>
+      <span *ngIf="drinks; else loading">
+        <h2>Sort the Drinks, from Best to Worst</h2>
+          <div class="sortList" cdkDropList #secondList="cdkDropList"
+            [cdkDropListConnectedTo]="firstList" (cdkDropListDropped)="drop($event)">
           <div class="pop" *ngFor="let drink of drinks" cdkDrag>{{drink.name}}</div>
         </div>
       </span>
