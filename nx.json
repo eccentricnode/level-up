@@ -139,6 +139,12 @@
     },
     "pizza-e2e": {
       "tags": []
+    },
+    "tacos": {
+      "tags": []
+    },
+    "tacos-e2e": {
+      "tags": []
     }
   }
 }
