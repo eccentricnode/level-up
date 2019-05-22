@@ -70,8 +70,8 @@ import { PizzasFacade } from './pizzas/pizzas.facade';
 import { TacosEffects } from './tacos/tacos.effects';
 import { TacosFacade } from './tacos/tacos.facade';
 
-import { DrinksEffects } from './+state/drinks.effects';
-import { DrinksFacade } from './+state/drinks.facade';
+import { DrinksEffects } from './drinks/drinks.effects';
+import { DrinksFacade } from './drinks/drinks.facade';
 
 @NgModule({
   declarations: [],

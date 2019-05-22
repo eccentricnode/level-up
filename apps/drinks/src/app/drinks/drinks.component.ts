@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
-import { DrinksService, Drink } from '@level/core-data';
+import { Drink, DrinksFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-drinks',
@@ -9,8 +9,8 @@ import { DrinksService, Drink } from '@level/core-data';
   styleUrls: ['./drinks.component.scss']
 })
 export class DrinksComponent implements OnInit {
-  drinks$: Observable<Drink[]>;
-  worstDrinks: Drink[] = [];
+  drinks$: Observable<Drink[]> = this.drinksFacade.allDrinks$;
+  worstDrinks: Drink[];
   bestDrinks: Drink[] = [
     {
       id: 34,
@@ -21,15 +21,11 @@ export class DrinksComponent implements OnInit {
     }
   ];
 
-  constructor(private drinksService: DrinksService) { }
+  constructor(private drinksFacade: DrinksFacade) { }
 
   ngOnInit() {
-    this.getDrinks();
+    this.drinksFacade.loadAll();
     this.drinks$.subscribe(drinks => this.worstDrinks = drinks);
-  }
-
-  getDrinks() {
-    this.drinks$ = this.drinksService.all();
   }
 
   drop(event: CdkDragDrop<string[]>) {

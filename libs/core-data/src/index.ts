@@ -91,4 +91,5 @@ export { TacosFacade } from './lib/store/tacos/tacos.facade';
 export { Taco } from './lib/tacos/taco.model';
 
 export { DrinksService } from './lib/drinks/drinks.service';
+export { DrinksFacade } from './lib/store/drinks/drinks.facade';
 export { Drink } from './lib/drinks/drink.model';
