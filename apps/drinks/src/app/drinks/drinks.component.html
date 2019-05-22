@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <div class="dragDropList">
+    <mat-card>
+      <span *ngIf="drinks; else loading">
+        <h2>Sort the Drinks, from Best to Worst</h2>
+          <div class="sortList" cdkDropList (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let drink of drinks" cdkDrag>{{drink.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+      </ng-template>
+    </mat-card>
+  </div>
+</div>

@@ -2971,6 +2971,138 @@
           }
         }
       }
+    },
+    "drinks": {
+      "root": "apps/drinks/",
+      "sourceRoot": "apps/drinks/src",
+      "projectType": "application",
+      "prefix": "level",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/drinks",
+            "index": "apps/drinks/src/index.html",
+            "main": "apps/drinks/src/main.ts",
+            "polyfills": "apps/drinks/src/polyfills.ts",
+            "tsConfig": "apps/drinks/tsconfig.app.json",
+            "assets": [
+              "apps/drinks/src/favicon.ico",
+              "apps/drinks/src/assets"
+            ],
+            "styles": [
+              "apps/drinks/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/drinks/src/environments/environment.ts",
+                  "with": "apps/drinks/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "drinks:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "drinks:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "drinks:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/drinks/src/test.ts",
+            "polyfills": "apps/drinks/src/polyfills.ts",
+            "tsConfig": "apps/drinks/tsconfig.spec.json",
+            "karmaConfig": "apps/drinks/karma.conf.js",
+            "styles": [
+              "apps/drinks/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/drinks/src/favicon.ico",
+              "apps/drinks/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/drinks/tsconfig.app.json",
+              "apps/drinks/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "drinks-e2e": {
+      "root": "apps/drinks-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/drinks-e2e/cypress.json",
+            "tsConfig": "apps/drinks-e2e/tsconfig.e2e.json",
+            "devServerTarget": "drinks:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "drinks:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/drinks-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

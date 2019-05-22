@@ -145,6 +145,12 @@
     },
     "tacos-e2e": {
       "tags": []
+    },
+    "drinks": {
+      "tags": []
+    },
+    "drinks-e2e": {
+      "tags": []
     }
   }
 }
