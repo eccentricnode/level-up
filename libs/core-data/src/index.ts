@@ -93,3 +93,6 @@ export { Taco } from './lib/tacos/taco.model';
 export { DrinksService } from './lib/drinks/drinks.service';
 export { DrinksFacade } from './lib/store/drinks/drinks.facade';
 export { Drink } from './lib/drinks/drink.model';
+
+export { BurgersService } from './lib/burgers/burgers.service';
+export { Burger } from './lib/burgers/burger.model';

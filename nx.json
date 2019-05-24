@@ -151,6 +151,12 @@
     },
     "drinks-e2e": {
       "tags": []
+    },
+    "burgers": {
+      "tags": []
+    },
+    "burgers-e2e": {
+      "tags": []
     }
   }
 }
