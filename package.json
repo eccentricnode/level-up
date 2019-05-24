@@ -29,6 +29,7 @@
     "deploy:tacos-app": "ng build --project tacos && cp ./dist/apps/tacos/index.html ./dist/apps/tacos/200.html && surge ./dist/apps/tacos/ https://tacos-list.surge.sh/",
     "deploy:drinks-app": "ng build --project drinks && cp ./dist/apps/drinks/index.html ./dist/apps/drinks/200.html && surge ./dist/apps/drinks/ https://drinks-list.surge.sh/",
     "deploy:burgers-app": "ng build --project burgers && cp ./dist/apps/burgers/index.html ./dist/apps/burgers/200.html && surge ./dist/apps/burgers/ https://burgers-list.surge.sh/",
+    "deploy:items-app": "ng build --project items && cp ./dist/apps/items/index.html ./dist/apps/items/200.html && surge ./dist/apps/items/ https://items-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",

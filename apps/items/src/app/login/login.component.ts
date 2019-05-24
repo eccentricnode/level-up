@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.verfiedUser.password === password;
 
     if (this.form.valid && verifiedUser) {
-      this.router.navigateByUrl('/burgers');
+      this.router.navigateByUrl('/items');
       this.authService.setToken(username);
       this.notifyService.notify(`Welcome ${username}`, 'YeaH!' );
     }
