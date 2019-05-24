@@ -2,13 +2,13 @@
   <h1>Sort the Drinks from Best to Worst</h1>
   <div class="firstDragDropList">
     <mat-card>
-      <span *ngIf="worstBurgers; else loading">
+      <span *ngIf="worstItems; else loading">
         <h2>Worst</h2>
         <div class="sortList" 
             cdkDropList 
-            [cdkDropListData]="worstBurgers"
+            [cdkDropListData]="worstItems"
             (cdkDropListDropped)="drop($event)">
-          <div class="pop" *ngFor="let burger of worstBurgers" cdkDrag>{{burger.name}}</div>
+          <div class="pop" *ngFor="let item of worstItems" cdkDrag>{{item.name}}</div>
         </div>
       </span>
       <ng-template #loading>
@@ -19,13 +19,13 @@
 
   <div class="secondDragDropList">
     <mat-card>
-      <span *ngIf="worstBurgers; else loading">
+      <span *ngIf="worstItems; else loading">
         <h2>Best</h2>
         <div class="sortList" 
           cdkDropList
-          [cdkDropListData]="bestBurgers"
+          [cdkDropListData]="bestItems"
           (cdkDropListDropped)="drop($event)">
-          <div class="pop" *ngFor="let burger of bestBurgers" cdkDrag>{{burger.name}}</div>
+          <div class="pop" *ngFor="let item of bestItems" cdkDrag>{{item.name}}</div>
         </div>
       </span>
       <ng-template #loading>

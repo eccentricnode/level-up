@@ -76,6 +76,9 @@ import { DrinksFacade } from './drinks/drinks.facade';
 import { BurgersEffects } from './burgers/burgers.effects';
 import { BurgersFacade } from './burgers/burgers.facade';
 
+import { ItemsEffects } from './items/items.effects';
+import { ItemsFacade } from './items/items.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -106,7 +109,8 @@ import { BurgersFacade } from './burgers/burgers.facade';
         PizzasEffects,
         TacosEffects,
         DrinksEffects,
-        BurgersEffects
+        BurgersEffects,
+        ItemsEffects,
       ]),
   ],
   providers: [
@@ -133,6 +137,7 @@ import { BurgersFacade } from './burgers/burgers.facade';
     TacosFacade,
     DrinksFacade,
     BurgersFacade,
+    ItemsFacade,
   ]
 })
 export class StateModule {}

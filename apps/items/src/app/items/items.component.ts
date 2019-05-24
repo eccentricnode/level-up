@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Item } from '@level/core-data';
+import { Item, ItemsFacade } from '@level/core-data';
 
 @Component({
   selector: 'level-items',
@@ -9,7 +9,7 @@ import { Item } from '@level/core-data';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  items$: Observable<Item[]> = ;
+  items$: Observable<Item[]> = this.itemsFacade.allItems$;
   worstItems: Item[];
   bestItems: Item[] = [
     {
@@ -20,10 +20,10 @@ export class ItemsComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private itemsFacade: ItemsFacade) { }
 
   ngOnInit() {
-
+    this.itemsFacade.loadAll();
     this.items$.subscribe(items => this.worstItems = items);
   }
 

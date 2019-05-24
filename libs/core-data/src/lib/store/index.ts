@@ -23,6 +23,7 @@ import * as fromPizzas from './pizzas/pizzas.reducer';
 import * as fromTacos from './tacos/tacos.reducer';
 import * as fromDrinks from './drinks/drinks.reducer';
 import * as fromBurgers from './burgers/burgers.reducer';
+import * as fromItems from './items/items.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -47,6 +48,7 @@ import { Pizza } from '../pizza/pizza.model';
 import { Taco } from '../tacos/taco.model';
 import { Drink } from '../drinks/drink.model';
 import { Burger } from '../burgers/burger.model';
+import { Item } from '../items/item.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -72,6 +74,7 @@ export interface AppState {
     tacos: fromTacos.TacosState
     drinks: fromDrinks.DrinksState
     burgers: fromBurgers.BurgersState
+    items: fromItems.ItemsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -98,6 +101,7 @@ export const reducers: ActionReducerMap<AppState> = {
     tacos: fromTacos.tacosReducer,
     drinks: fromDrinks.drinksReducer,
     burgers: fromBurgers.burgersReducer,
+    items: fromItems.itemsReducer
 }
 
 //-------------------------------------------------------------------
@@ -938,5 +942,35 @@ export const selectCurrentBurger = createSelector(
     selectCurrentBurgerId,
     (burgerEntities, burgerId) => {
         return burgerId ? burgerEntities[burgerId] : {} as Burger;
+    }
+);
+//-------------------------------------------------------------------
+// ITEMS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectItemsState = createFeatureSelector<fromItems.ItemsState>('items');
+
+export const selectItemIds = createSelector(
+    selectItemsState,
+    fromItems.selectItemIds
+);
+export const selectItemEntities = createSelector(
+    selectItemsState,
+    fromItems.selectItemEntities
+);
+export const selectAllItems = createSelector(
+    selectItemsState,
+    fromItems.selectAllItems
+);
+export const selectCurrentItemId = createSelector(
+    selectItemsState,
+    fromItems.getSelectedItemId
+);
+
+export const selectCurrentItem = createSelector(
+    selectItemEntities,
+    selectCurrentItemId,
+    (itemEntities, itemId) => {
+        return itemId ? itemEntities[itemId] : {} as Item;
     }
 );
