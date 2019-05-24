@@ -157,6 +157,12 @@
     },
     "burgers-e2e": {
       "tags": []
+    },
+    "items": {
+      "tags": []
+    },
+    "items-e2e": {
+      "tags": []
     }
   }
 }

@@ -97,3 +97,6 @@ export { Drink } from './lib/drinks/drink.model';
 export { BurgersService } from './lib/burgers/burgers.service';
 export { BurgersFacade } from './lib/store/burgers/burgers.facade';
 export { Burger } from './lib/burgers/burger.model';
+
+export { ItemsService } from './lib/items/items.service'
+export { Item } from './lib/items/item.model';
