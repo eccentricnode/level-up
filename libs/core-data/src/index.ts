@@ -95,4 +95,5 @@ export { DrinksFacade } from './lib/store/drinks/drinks.facade';
 export { Drink } from './lib/drinks/drink.model';
 
 export { BurgersService } from './lib/burgers/burgers.service';
+export { BurgersFacade } from './lib/store/burgers/burgers.facade';
 export { Burger } from './lib/burgers/burger.model';

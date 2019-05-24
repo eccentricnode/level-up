@@ -22,6 +22,7 @@ import * as fromInstruments from './instruments/instruments.reducer';
 import * as fromPizzas from './pizzas/pizzas.reducer';
 import * as fromTacos from './tacos/tacos.reducer';
 import * as fromDrinks from './drinks/drinks.reducer';
+import * as fromBurgers from './burgers/burgers.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -45,6 +46,7 @@ import { Instrument } from '../instruments/instrument.model';
 import { Pizza } from '../pizza/pizza.model';
 import { Taco } from '../tacos/taco.model';
 import { Drink } from '../drinks/drink.model';
+import { Burger } from '../burgers/burger.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -69,6 +71,7 @@ export interface AppState {
     pizzas: fromPizzas.PizzasState
     tacos: fromTacos.TacosState
     drinks: fromDrinks.DrinksState
+    burgers: fromBurgers.BurgersState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -93,7 +96,8 @@ export const reducers: ActionReducerMap<AppState> = {
     instruments: fromInstruments.instrumentsReducer,
     pizzas: fromPizzas.pizzasReducer,
     tacos: fromTacos.tacosReducer,
-    drinks: fromDrinks.drinksReducer
+    drinks: fromDrinks.drinksReducer,
+    burgers: fromBurgers.burgersReducer,
 }
 
 //-------------------------------------------------------------------
@@ -903,5 +907,36 @@ export const selectCurrentDrink = createSelector(
     selectCurrentDrinkId,
     (drinkEntities, drinkId) => {
         return drinkId ? drinkEntities[drinkId] : {} as Drink;
+    }
+);
+
+//-------------------------------------------------------------------
+// BURGERS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectBurgersState = createFeatureSelector<fromBurgers.BurgersState>('burgers');
+
+export const selectBurgerIds = createSelector(
+    selectBurgersState,
+    fromBurgers.selectBurgerIds
+);
+export const selectBurgerEntities = createSelector(
+    selectBurgersState,
+    fromBurgers.selectBurgerEntities
+);
+export const selectAllBurgers = createSelector(
+    selectBurgersState,
+    fromBurgers.selectAllBurgers
+);
+export const selectCurrentBurgerId = createSelector(
+    selectBurgersState,
+    fromBurgers.getSelectedBurgerId
+);
+
+export const selectCurrentBurger = createSelector(
+    selectBurgerEntities,
+    selectCurrentBurgerId,
+    (burgerEntities, burgerId) => {
+        return burgerId ? burgerEntities[burgerId] : {} as Burger;
     }
 );
