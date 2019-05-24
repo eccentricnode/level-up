@@ -4,10 +4,10 @@
     <mat-card>
       <span *ngIf="worstBurgers; else loading">
         <h2>Worst</h2>
-          <div class="sortList" 
-               cdkDropList 
-               [cdkDropListData]="worstBurgers"
-               (cdkDropListDropped)="drop($event)">
+        <div class="sortList" 
+            cdkDropList 
+            [cdkDropListData]="worstBurgers"
+            (cdkDropListDropped)="drop($event)">
           <div class="pop" *ngFor="let burger of worstBurgers" cdkDrag>{{burger.name}}</div>
         </div>
       </span>
@@ -21,10 +21,10 @@
     <mat-card>
       <span *ngIf="worstBurgers; else loading">
         <h2>Best</h2>
-          <div class="sortList" 
-               cdkDropList
-               [cdkDropListData]="bestBurgers"
-               (cdkDropListDropped)="drop($event)">
+        <div class="sortList" 
+          cdkDropList
+          [cdkDropListData]="bestBurgers"
+          (cdkDropListDropped)="drop($event)">
           <div class="pop" *ngFor="let burger of bestBurgers" cdkDrag>{{burger.name}}</div>
         </div>
       </span>

@@ -11,12 +11,10 @@ import { CoreDataModule } from '@level/core-data';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { BurgersComponent } from './burgers/burgers.component';
-import { BurgersListComponent } from './burgers/burgers-list/burgers-list.component';
-import { BurgerDetailsComponent } from './burgers/burger-details/burger-details.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, BurgersComponent, BurgersListComponent, BurgerDetailsComponent],
+  declarations: [AppComponent, LoginComponent, BurgersComponent],
   imports: [
     BrowserModule,
     NxModule.forRoot(),
