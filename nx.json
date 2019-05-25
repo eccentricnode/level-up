@@ -163,6 +163,12 @@
     },
     "items-e2e": {
       "tags": []
+    },
+    "operating-systems": {
+      "tags": []
+    },
+    "operating-systems-e2e": {
+      "tags": []
     }
   }
 }

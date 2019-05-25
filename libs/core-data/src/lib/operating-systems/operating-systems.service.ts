@@ -7,8 +7,8 @@ const BASE_URL = `https://nestjs-apis.shivalbigman.now.sh`;
 @Injectable({
   providedIn: 'root'
 })
-export class ItemsService {
-  model = `items`;
+export class OperatingSystemsService {
+  model = `os-list`;
 
   constructor(private http: HttpClient) { }
 
