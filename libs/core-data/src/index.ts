@@ -101,3 +101,7 @@ export { Burger } from './lib/burgers/burger.model';
 export { ItemsService } from './lib/items/items.service';
 export { ItemsFacade } from './lib/store/items/items.facade';
 export { Item } from './lib/items/item.model';
+
+export { OperatingSystemsService } from './lib/operating-systems/operating-systems.service';
+export { OperatingSystemsFacade } from './lib/store/operating-systems/operating-systems.facade';
+export { OperatingSystem } from './lib/operating-systems/operating-system.model';

@@ -24,6 +24,7 @@ import * as fromTacos from './tacos/tacos.reducer';
 import * as fromDrinks from './drinks/drinks.reducer';
 import * as fromBurgers from './burgers/burgers.reducer';
 import * as fromItems from './items/items.reducer';
+import * as fromOSs from './operating-systems/operating-systems.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -49,6 +50,7 @@ import { Taco } from '../tacos/taco.model';
 import { Drink } from '../drinks/drink.model';
 import { Burger } from '../burgers/burger.model';
 import { Item } from '../items/item.model';
+import { OperatingSystem } from '../operating-systems/operating-system.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -75,6 +77,7 @@ export interface AppState {
     drinks: fromDrinks.DrinksState
     burgers: fromBurgers.BurgersState
     items: fromItems.ItemsState
+    oss: fromOSs.OperatingSystemsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -101,7 +104,8 @@ export const reducers: ActionReducerMap<AppState> = {
     tacos: fromTacos.tacosReducer,
     drinks: fromDrinks.drinksReducer,
     burgers: fromBurgers.burgersReducer,
-    items: fromItems.itemsReducer
+    items: fromItems.itemsReducer,
+    oss: fromOSs.operatingSystemsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -972,5 +976,36 @@ export const selectCurrentItem = createSelector(
     selectCurrentItemId,
     (itemEntities, itemId) => {
         return itemId ? itemEntities[itemId] : {} as Item;
+    }
+);
+
+//-------------------------------------------------------------------
+// OS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectOSState = createFeatureSelector<fromOSs.OperatingSystemsState>('oss');
+
+export const selectOSIds = createSelector(
+    selectOSState,
+    fromOSs.selectOSIds
+);
+export const selectOSEntities = createSelector(
+    selectOSState,
+    fromOSs.selectOSEntities
+);
+export const selectAllOSs = createSelector(
+    selectOSState,
+    fromOSs.selectAllOSs
+);
+export const selectCurrentOSId = createSelector(
+    selectOSState,
+    fromOSs.getSelectedOSId
+);
+
+export const selectCurrentOS = createSelector(
+    selectOSEntities,
+    selectCurrentOSId,
+    (osEntities, osId) => {
+        return osId ? osEntities[osId] : {} as OperatingSystem;
     }
 );

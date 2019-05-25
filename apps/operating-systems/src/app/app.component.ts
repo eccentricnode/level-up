@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@level/core-data';
 
 @Component({
   selector: 'level-root',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'operating-systems';
+  title = 'Operating Systems List Drag and Drop';
+  authenticated = false;
+  links = [
+    { path: '/login', icon: 'home', title: 'Login' },
+    { path: '/os', icon: 'view_list', title: 'Operating Systems Drag and Drop' }
+  ];
+
+  constructor(
+    private router: Router,
+    public authService: AuthService
+  ) { }
+
+  routeToLogin() {
+    this.router.navigateByUrl('/login');
+    this.authService.setToken();
+  }
 }

@@ -1,3 +1,36 @@
-<p>
-  operating-systems works!
-</p>
+<div class="wrapper" cdkDropListGroup>
+  <h1>Sort the Drinks from Best to Worst</h1>
+  <div class="firstDragDropList">
+    <mat-card>
+      <span *ngIf="worstOS; else loading">
+        <h2>Worst</h2>
+        <div class="sortList" 
+            cdkDropList 
+            [cdkDropListData]="worstOS"
+            (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let os of worstOS" cdkDrag>{{os.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+      </ng-template>
+    </mat-card>
+  </div>
+
+  <div class="secondDragDropList">
+    <mat-card>
+      <span *ngIf="worstOS; else loading">
+        <h2>Best</h2>
+        <div class="sortList" 
+          cdkDropList
+          [cdkDropListData]="bestOS"
+          (cdkDropListDropped)="drop($event)">
+          <div class="pop" *ngFor="let os of bestOS" cdkDrag>{{os.name}}</div>
+        </div>
+      </span>
+      <ng-template #loading>
+        <mat-spinner mode="indeterminate"></mat-spinner>
+      </ng-template>
+    </mat-card>
+  </div>
+</div>

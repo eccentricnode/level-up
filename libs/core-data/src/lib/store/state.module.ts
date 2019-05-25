@@ -79,6 +79,9 @@ import { BurgersFacade } from './burgers/burgers.facade';
 import { ItemsEffects } from './items/items.effects';
 import { ItemsFacade } from './items/items.facade';
 
+import { OperatingSystemsEffects } from './operating-systems/operating-systems.effects';
+import { OperatingSystemsFacade } from './operating-systems/operating-systems.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -111,6 +114,7 @@ import { ItemsFacade } from './items/items.facade';
         DrinksEffects,
         BurgersEffects,
         ItemsEffects,
+        OperatingSystemsEffects,
       ]),
   ],
   providers: [
@@ -138,6 +142,7 @@ import { ItemsFacade } from './items/items.facade';
     DrinksFacade,
     BurgersFacade,
     ItemsFacade,
+    OperatingSystemsFacade,
   ]
 })
 export class StateModule {}
