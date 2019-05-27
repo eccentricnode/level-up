@@ -169,6 +169,12 @@
     },
     "operating-systems-e2e": {
       "tags": []
+    },
+    "elder-scrolls": {
+      "tags": []
+    },
+    "elder-scrolls-e2e": {
+      "tags": []
     }
   }
 }
