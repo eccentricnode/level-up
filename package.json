@@ -31,6 +31,7 @@
     "deploy:burgers-app": "ng build --project burgers && cp ./dist/apps/burgers/index.html ./dist/apps/burgers/200.html && surge ./dist/apps/burgers/ https://burgers-list.surge.sh/",
     "deploy:items-app": "ng build --project items && cp ./dist/apps/items/index.html ./dist/apps/items/200.html && surge ./dist/apps/items/ https://items-list.surge.sh/",
     "deploy:operating-systems-app": "ng build --project operating-systems && cp ./dist/apps/operating-systems/index.html ./dist/apps/operating-systems/200.html && surge ./dist/apps/operating-systems/ https://operating-systems-list.surge.sh/",
+    "deploy:games-app": "ng build --project games && cp ./dist/apps/games/index.html ./dist/apps/games/200.html && surge ./dist/apps/games/ https://games-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
