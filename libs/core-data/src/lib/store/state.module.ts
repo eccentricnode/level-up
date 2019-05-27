@@ -84,6 +84,11 @@ import { OperatingSystemsFacade } from './operating-systems/operating-systems.fa
 
 import { ScrollsEffects } from './scrolls/scrolls.effects';
 import { ScrollsFacade } from './scrolls/scrolls.facade';
+import { BRANDS_FEATURE_KEY, initialState as brandsInitialState, brandsReducer } from './+state/brands.reducer';
+import { BrandsEffects } from './+state/brands.effects';
+import { BrandsFacade } from './+state/brands.facade';
+import { environment } from '../environments/environment';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 @NgModule({
   declarations: [],
@@ -120,6 +125,15 @@ import { ScrollsFacade } from './scrolls/scrolls.facade';
         OperatingSystemsEffects,
         ScrollsEffects,
       ]),
+    StoreModule.forRoot(
+  { brands: brandsReducer },
+  {
+    initialState : { brands : brandsInitialState },
+    metaReducers : !environment.production ? [storeFreeze] : []
+  }
+),
+    EffectsModule.forRoot([BrandsEffects]),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [
     StarshipsFacade, 
@@ -148,6 +162,7 @@ import { ScrollsFacade } from './scrolls/scrolls.facade';
     ItemsFacade,
     OperatingSystemsFacade,
     ScrollsFacade,
+    BrandsFacade,
   ]
 })
 export class StateModule {}

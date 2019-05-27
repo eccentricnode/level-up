@@ -175,6 +175,12 @@
     },
     "elder-scrolls-e2e": {
       "tags": []
+    },
+    "brands": {
+      "tags": []
+    },
+    "brands-e2e": {
+      "tags": []
     }
   }
 }
