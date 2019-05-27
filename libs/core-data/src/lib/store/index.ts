@@ -25,6 +25,7 @@ import * as fromDrinks from './drinks/drinks.reducer';
 import * as fromBurgers from './burgers/burgers.reducer';
 import * as fromItems from './items/items.reducer';
 import * as fromOSs from './operating-systems/operating-systems.reducer';
+import * as fromScrolls from './scrolls/scrolls.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -51,6 +52,7 @@ import { Drink } from '../drinks/drink.model';
 import { Burger } from '../burgers/burger.model';
 import { Item } from '../items/item.model';
 import { OperatingSystem } from '../operating-systems/operating-system.model';
+import { ScrollModel } from '../scrolls/scroll.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -78,6 +80,7 @@ export interface AppState {
     burgers: fromBurgers.BurgersState
     items: fromItems.ItemsState
     oss: fromOSs.OperatingSystemsState
+    scrolls: fromScrolls.ScrollsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -106,6 +109,7 @@ export const reducers: ActionReducerMap<AppState> = {
     burgers: fromBurgers.burgersReducer,
     items: fromItems.itemsReducer,
     oss: fromOSs.operatingSystemsReducer,
+    scrolls: fromScrolls.scrollsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -1007,5 +1011,36 @@ export const selectCurrentOS = createSelector(
     selectCurrentOSId,
     (osEntities, osId) => {
         return osId ? osEntities[osId] : {} as OperatingSystem;
+    }
+);
+
+//-------------------------------------------------------------------
+// SCROLLS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectScrollsState = createFeatureSelector<fromScrolls.ScrollsState>('scrolls');
+
+export const selectScrollIds = createSelector(
+    selectScrollsState,
+    fromScrolls.selectScrollIds
+);
+export const selectScrollEntities = createSelector(
+    selectScrollsState,
+    fromScrolls.selectScrollEntities
+);
+export const selectAllScrolls = createSelector(
+    selectScrollsState,
+    fromScrolls.selectAllScrolls
+);
+export const selectCurrentScrollId = createSelector(
+    selectScrollsState,
+    fromScrolls.getSelectedScrollId
+);
+
+export const selectCurrentScroll = createSelector(
+    selectScrollEntities,
+    selectCurrentScrollId,
+    (scrollEntities, scrollId) => {
+        return scrollId ? scrollEntities[scrollId] : {} as ScrollModel;
     }
 );

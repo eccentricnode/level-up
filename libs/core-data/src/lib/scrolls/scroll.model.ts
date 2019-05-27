@@ -1,4 +1,4 @@
-export interface Scrolls {
+export interface ScrollModel {
     id: string;
     name: string;
     releaseYear: number;

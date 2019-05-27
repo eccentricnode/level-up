@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ScrollsService, Scrolls } from '@level/core-data';
+import { ScrollsFacade, ScrollModel } from '@level/core-data';
 
 @Component({
   selector: 'level-scrolls',
@@ -9,9 +9,9 @@ import { ScrollsService, Scrolls } from '@level/core-data';
   styleUrls: ['./scrolls.component.scss']
 })
 export class ScrollsComponent implements OnInit {
-  scrolls$: Observable<Scrolls[]> 
-  worstGames: Scrolls[];
-  bestGames: Scrolls[] = [
+  scrolls$: Observable<ScrollModel[]> = this.scrollsFacade.allScrolls$;
+  worstGames: ScrollModel[];
+  bestGames: ScrollModel[] = [
     {
       id: '563',
       name: 'Skyrim',
@@ -19,9 +19,11 @@ export class ScrollsComponent implements OnInit {
     },
   ];
 
-  constructor(private scrollsService: ScrollsService) { }
+  constructor(private scrollsFacade: ScrollsFacade) { }
 
   ngOnInit() {
+    this.scrollsFacade.loadAll();
+    this.scrolls$.subscribe(scrolls => this.worstGames = scrolls);
   }
 
   drop(event: CdkDragDrop<string[]>) {

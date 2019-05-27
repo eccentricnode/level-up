@@ -107,4 +107,5 @@ export { OperatingSystemsFacade } from './lib/store/operating-systems/operating-
 export { OperatingSystem } from './lib/operating-systems/operating-system.model';
 
 export { ScrollsService } from  './lib/scrolls/scrolls.service';
-export { Scrolls } from './lib/scrolls/scroll.model';
+export { ScrollsFacade } from './lib/store/scrolls/scrolls.facade';
+export { ScrollModel } from './lib/scrolls/scroll.model';
