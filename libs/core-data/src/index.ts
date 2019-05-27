@@ -105,3 +105,6 @@ export { Item } from './lib/items/item.model';
 export { OperatingSystemsService } from './lib/operating-systems/operating-systems.service';
 export { OperatingSystemsFacade } from './lib/store/operating-systems/operating-systems.facade';
 export { OperatingSystem } from './lib/operating-systems/operating-system.model';
+
+export { ScrollsService } from  './lib/scrolls/scrolls.service';
+export { Scrolls } from './lib/scrolls/scroll.model';
