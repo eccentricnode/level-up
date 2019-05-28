@@ -27,6 +27,7 @@ import * as fromItems from './items/items.reducer';
 import * as fromOSs from './operating-systems/operating-systems.reducer';
 import * as fromScrolls from './scrolls/scrolls.reducer';
 import * as fromBrands from './brands/brands.reducer';
+import * as fromLaptops from './laptops/laptops.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -55,6 +56,7 @@ import { Item } from '../items/item.model';
 import { OperatingSystem } from '../operating-systems/operating-system.model';
 import { ScrollModel } from '../scrolls/scroll.model';
 import { Brand } from '../brands/brand.model';
+import { Laptop } from '../laptops/laptop.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -84,6 +86,7 @@ export interface AppState {
     oss: fromOSs.OperatingSystemsState
     scrolls: fromScrolls.ScrollsState
     brands: fromBrands.BrandsState
+    laptops: fromLaptops.LaptopsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -114,6 +117,7 @@ export const reducers: ActionReducerMap<AppState> = {
     oss: fromOSs.operatingSystemsReducer,
     scrolls: fromScrolls.scrollsReducer,
     brands: fromBrands.brandsReducer,
+    laptops: fromLaptops.laptopsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -1077,5 +1081,36 @@ export const selectCurrentBrand = createSelector(
     selectCurrentBrandId,
     (brandEntities, brandId) => {
         return brandId ? brandEntities[brandId] : {} as Brand;
+    }
+);
+
+//-------------------------------------------------------------------
+// LAPTOPS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectLaptopsState = createFeatureSelector<fromLaptops.LaptopsState>('laptops');
+
+export const selectLaptopIds = createSelector(
+    selectLaptopsState,
+    fromLaptops.selectLaptopIds
+);
+export const selectLaptopEntities = createSelector(
+    selectLaptopsState,
+    fromLaptops.selectLaptopEntities
+);
+export const selectAllLaptops = createSelector(
+    selectLaptopsState,
+    fromLaptops.selectAllLaptops
+);
+export const selectCurrentLaptopId = createSelector(
+    selectLaptopsState,
+    fromLaptops.getSelectedLaptopId
+);
+
+export const selectCurrentLaptop = createSelector(
+    selectLaptopEntities,
+    selectCurrentLaptopId,
+    (laptopEntities, laptopId) => {
+        return laptopId ? laptopEntities[laptopId] : {} as Laptop;
     }
 );

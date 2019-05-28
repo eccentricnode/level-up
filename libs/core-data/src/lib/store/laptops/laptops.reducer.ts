@@ -1,47 +1,41 @@
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+import { Laptop } from '../../laptops/laptop.model';
+
 import { LaptopsAction, LaptopsActionTypes } from './laptops.actions';
 
-export const LAPTOPS_FEATURE_KEY = 'laptops';
-
-/**
- * Interface for the 'Laptops' data used in
- *  - LaptopsState, and
- *  - laptopsReducer
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
-export interface LaptopsState {
-  list: Entity[]; // list of Laptops; analogous to a sql normalized table
-  selectedId?: string | number; // which Laptops record has been selected
-  loaded: boolean; // has the Laptops list been loaded
-  error?: any; // last none error (if any)
+export interface LaptopsState extends EntityState<Laptop> {
+  selectedLaptopId: string | null;
 }
 
-export interface LaptopsPartialState {
-  readonly [LAPTOPS_FEATURE_KEY]: LaptopsState;
-}
+export const adapter: EntityAdapter<Laptop> = createEntityAdapter<Laptop>();
+export const initialState: LaptopsState = adapter.getInitialState ({
+  selectedLaptopId: null,
+});
 
-export const initialState: LaptopsState = {
-  list: [],
-  loaded: false
-};
-
-export function laptopsReducer(
-  state: LaptopsState = initialState,
-  action: LaptopsAction
-): LaptopsState {
+export function laptopsReducer(state: LaptopsState = initialState, action: LaptopsAction): LaptopsState {
   switch (action.type) {
     case LaptopsActionTypes.LaptopsLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
+      return adapter.addAll(action.payload, state);
     }
+
+    default:
+      return state;
   }
-  return state;
 }
+
+export const getSelectedLaptopId = (state: LaptopsState) => state.selectedLaptopId;
+
+// get the selectors
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// select the array of laptop ids
+export const selectLaptopIds = selectIds;
+
+// select the dictionary of laptop entities
+export const selectLaptopEntities = selectEntities;
+
+// select array of laptops 
+export const selectAllLaptops = selectAll;
+
+// select the total laptop count: 
+export const selectLaptopTotal = selectTotal;

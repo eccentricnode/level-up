@@ -1,30 +1,26 @@
 import { Action } from '@ngrx/store';
-import { Entity } from './laptops.reducer';
+import { Laptop } from '../../laptops/laptop.model';
 
 export enum LaptopsActionTypes {
+  LaptopsAction = '[Laptops] Action',
   LoadLaptops = '[Laptops] Load Laptops',
   LaptopsLoaded = '[Laptops] Laptops Loaded',
-  LaptopsLoadError = '[Laptops] Laptops Load Error'
+}
+
+export class Laptops implements Action {
+  readonly type = LaptopsActionTypes.LaptopsAction;
 }
 
 export class LoadLaptops implements Action {
   readonly type = LaptopsActionTypes.LoadLaptops;
 }
 
-export class LaptopsLoadError implements Action {
-  readonly type = LaptopsActionTypes.LaptopsLoadError;
-  constructor(public payload: any) {}
-}
-
 export class LaptopsLoaded implements Action {
   readonly type = LaptopsActionTypes.LaptopsLoaded;
-  constructor(public payload: Entity[]) {}
+  constructor(public payload: Laptop[]) {}
 }
 
-export type LaptopsAction = LoadLaptops | LaptopsLoaded | LaptopsLoadError;
-
-export const fromLaptopsActions = {
-  LoadLaptops,
-  LaptopsLoaded,
-  LaptopsLoadError
-};
+export type LaptopsAction = Laptops
+  | LoadLaptops
+  | LaptopsLoaded
+;

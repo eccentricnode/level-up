@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
+import { map } from 'rxjs/operators';
 
-import { LaptopsPartialState } from './laptops.reducer';
+import { LaptopsState } from './laptops.reducer';
 import {
   LoadLaptops,
   LaptopsLoaded,
-  LaptopsLoadError,
   LaptopsActionTypes
 } from './laptops.actions';
 
+import { LaptopsService } from '../../laptops/laptops.service';
+import { Laptop } from '../../laptops/laptop.model';
+
 @Injectable()
 export class LaptopsEffects {
-  @Effect() loadLaptops$ = this.dataPersistence.fetch(
-    LaptopsActionTypes.LoadLaptops,
-    {
-      run: (action: LoadLaptops, state: LaptopsPartialState) => {
-        // Your custom REST 'load' logic goes here. For now just return an empty list...
-        return new LaptopsLoaded([]);
+  @Effect() loadLaptops$ = this.dataPersistence.fetch(LaptopsActionTypes.LoadLaptops, {
+      run: (action: LoadLaptops, state: LaptopsState) => {
+        return this.laptopsService.all().pipe(map((res: Laptop[]) => new LaptopsLoaded(res)))
       },
 
       onError: (action: LoadLaptops, error) => {
         console.error('Error', error);
-        return new LaptopsLoadError(error);
       }
     }
   );
 
   constructor(
     private actions$: Actions,
-    private dataPersistence: DataPersistence<LaptopsPartialState>
+    private dataPersistence: DataPersistence<LaptopsState>,
+    private laptopsService: LaptopsService
   ) {}
 }

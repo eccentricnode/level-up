@@ -2,19 +2,17 @@ import { Injectable } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 
-import { LaptopsPartialState } from './laptops.reducer';
-import { laptopsQuery } from './laptops.selectors';
-import { LoadLaptops } from './laptops.actions';
+import { selectAllLaptops } from '..';
+import * as LaptopsActions from './laptops.actions';
+import { LaptopsState } from './laptops.reducer';
 
 @Injectable()
 export class LaptopsFacade {
-  loaded$ = this.store.pipe(select(laptopsQuery.getLoaded));
-  allLaptops$ = this.store.pipe(select(laptopsQuery.getAllLaptops));
-  selectedLaptops$ = this.store.pipe(select(laptopsQuery.getSelectedLaptops));
+  allLaptops$ = this.store.pipe(select(selectAllLaptops));
 
-  constructor(private store: Store<LaptopsPartialState>) {}
+  constructor(private store: Store<LaptopsState>) {}
 
   loadAll() {
-    this.store.dispatch(new LoadLaptops());
+    this.store.dispatch(new LaptopsActions.LoadLaptops());
   }
 }
