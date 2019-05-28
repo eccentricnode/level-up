@@ -109,3 +109,6 @@ export { OperatingSystem } from './lib/operating-systems/operating-system.model'
 export { ScrollsService } from  './lib/scrolls/scrolls.service';
 export { ScrollsFacade } from './lib/store/scrolls/scrolls.facade';
 export { ScrollModel } from './lib/scrolls/scroll.model';
+
+export { BrandsFacade} from './lib/store/brands/brands.facade';
+export { Brand } from './lib/brands/brand.model';

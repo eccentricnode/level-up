@@ -26,6 +26,7 @@ import * as fromBurgers from './burgers/burgers.reducer';
 import * as fromItems from './items/items.reducer';
 import * as fromOSs from './operating-systems/operating-systems.reducer';
 import * as fromScrolls from './scrolls/scrolls.reducer';
+import * as fromBrands from './brands/brands.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -53,6 +54,7 @@ import { Burger } from '../burgers/burger.model';
 import { Item } from '../items/item.model';
 import { OperatingSystem } from '../operating-systems/operating-system.model';
 import { ScrollModel } from '../scrolls/scroll.model';
+import { Brand } from '../brands/brand.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -81,6 +83,7 @@ export interface AppState {
     items: fromItems.ItemsState
     oss: fromOSs.OperatingSystemsState
     scrolls: fromScrolls.ScrollsState
+    brands: fromBrands.BrandsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -110,6 +113,7 @@ export const reducers: ActionReducerMap<AppState> = {
     items: fromItems.itemsReducer,
     oss: fromOSs.operatingSystemsReducer,
     scrolls: fromScrolls.scrollsReducer,
+    brands: fromBrands.brandsReducer,
 }
 
 //-------------------------------------------------------------------
@@ -1042,5 +1046,36 @@ export const selectCurrentScroll = createSelector(
     selectCurrentScrollId,
     (scrollEntities, scrollId) => {
         return scrollId ? scrollEntities[scrollId] : {} as ScrollModel;
+    }
+);
+
+//-------------------------------------------------------------------
+// BRANDS SELECTORS
+//-------------------------------------------------------------------
+
+export const selectBrandsState = createFeatureSelector<fromBrands.BrandsState>('brands');
+
+export const selectBrandIds = createSelector(
+    selectBrandsState,
+    fromBrands.selectBrandIds
+);
+export const selectBrandEntities = createSelector(
+    selectBrandsState,
+    fromBrands.selectBrandEntities
+);
+export const selectAllBrands = createSelector(
+    selectBrandsState,
+    fromBrands.selectAllBrands
+);
+export const selectCurrentBrandId = createSelector(
+    selectBrandsState,
+    fromBrands.getSelectedBrandId
+);
+
+export const selectCurrentBrand = createSelector(
+    selectBrandEntities,
+    selectCurrentBrandId,
+    (brandEntities, brandId) => {
+        return brandId ? brandEntities[brandId] : {} as Brand;
     }
 );

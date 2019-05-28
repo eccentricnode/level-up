@@ -1,1 +1,36 @@
-<p>brands works!</p>
+<div class="wrapper" cdkDropListGroup>
+    <h1>Sort the Drinks from Best to Worst</h1>
+    <div class="firstDragDropList">
+      <mat-card>
+        <span *ngIf="worstBrands; else loading">
+          <h2>Worst</h2>
+          <div class="sortList" 
+              cdkDropList 
+              [cdkDropListData]="worstBrands"
+              (cdkDropListDropped)="drop($event)">
+            <div class="pop" *ngFor="let brand of worstBrands" cdkDrag>{{brand.name}}</div>
+          </div>
+        </span>
+        <ng-template #loading>
+          <mat-spinner mode="indeterminate"></mat-spinner>
+        </ng-template>
+      </mat-card>
+    </div>
+  
+    <div class="secondDragDropList">
+      <mat-card>
+        <span *ngIf="worstBrands; else loading">
+          <h2>Best</h2>
+          <div class="sortList"
+            cdkDropList
+            [cdkDropListData]="bestBrands"
+            (cdkDropListDropped)="drop($event)">
+            <div class="pop" *ngFor="let brand of bestBrands" cdkDrag>{{brand.name}}</div>
+          </div>
+        </span>
+        <ng-template #loading>
+          <mat-spinner mode="indeterminate"></mat-spinner>
+        </ng-template>
+      </mat-card>
+    </div>
+  </div>

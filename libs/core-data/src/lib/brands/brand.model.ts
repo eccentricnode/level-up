@@ -1,2 +1,5 @@
-export interface Brand.Model {
+export interface Brand {
+    id: string;
+    name: string;
+    founder: string;
 }
