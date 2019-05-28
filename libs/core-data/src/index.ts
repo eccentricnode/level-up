@@ -112,3 +112,6 @@ export { ScrollModel } from './lib/scrolls/scroll.model';
 
 export { BrandsFacade} from './lib/store/brands/brands.facade';
 export { Brand } from './lib/brands/brand.model';
+
+export { LaptopsFacade } from './lib/store/laptops/laptops.facade';
+export { Laptop } from './lib/laptops/laptop.model';

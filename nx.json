@@ -181,6 +181,12 @@
     },
     "brands-e2e": {
       "tags": []
+    },
+    "laptops": {
+      "tags": []
+    },
+    "laptops-e2e": {
+      "tags": []
     }
   }
 }
