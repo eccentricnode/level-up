@@ -34,6 +34,7 @@
     "deploy:elder-scrolls-app": "ng build --project elder-scrolls && cp ./dist/apps/elder-scrolls/index.html ./dist/apps/elder-scrolls/200.html && surge ./dist/apps/elder-scrolls/ https://elder-scrolls-list.surge.sh/",
     "deploy:brands-app": "ng build --project brands && cp ./dist/apps/brands/index.html ./dist/apps/brands/200.html && surge ./dist/apps/brands/ https://brands-list.surge.sh/",
     "deploy:laptops-app": "ng build --project laptops && cp ./dist/apps/laptops/index.html ./dist/apps/laptops/200.html && surge ./dist/apps/laptops/ https://laptops-list.surge.sh/",
+    "deploy:mmos-app": "ng build --project mmos && cp ./dist/apps/mmos/index.html ./dist/apps/mmos/200.html && surge ./dist/apps/mmos/ https://mmos-list.surge.sh/",
     "build": "ng build",
     "test": "ng test",
     "lint": "./node_modules/.bin/nx lint && ng lint",
