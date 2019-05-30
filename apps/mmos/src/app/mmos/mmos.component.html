@@ -1,0 +1,36 @@
+<div class="wrapper" cdkDropListGroup>
+    <h1>Sort the Laptop Brands from Best to Worst</h1>
+    <div class="firstDragDropList">
+      <mat-card>
+        <span *ngIf="worstMMos; else loading">
+          <h2>Worst</h2>
+          <div class="sortList" 
+              cdkDropList 
+              [cdkDropListData]="worstMMos"
+              (cdkDropListDropped)="drop($event)">
+            <div class="pop" *ngFor="let mmo of worstMMos" cdkDrag>{{mmo.name}}</div>
+          </div>
+        </span>
+        <ng-template #loading>
+          <mat-spinner mode="indeterminate"></mat-spinner>
+        </ng-template>
+      </mat-card>
+    </div>
+  
+    <div class="secondDragDropList">
+      <mat-card>
+        <span *ngIf="worstMMos; else loading">
+          <h2>Best</h2>
+          <div class="sortList"
+            cdkDropList
+            [cdkDropListData]="bestMmos"
+            (cdkDropListDropped)="drop($event)">
+            <div class="pop" *ngFor="let mmo of bestMmos" cdkDrag>{{mmo.name}}</div>
+          </div>
+        </span>
+        <ng-template #loading>
+          <mat-spinner mode="indeterminate"></mat-spinner>
+        </ng-template>
+      </mat-card>
+    </div>
+  </div>

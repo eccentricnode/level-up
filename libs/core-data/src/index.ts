@@ -115,3 +115,6 @@ export { Brand } from './lib/brands/brand.model';
 
 export { LaptopsFacade } from './lib/store/laptops/laptops.facade';
 export { Laptop } from './lib/laptops/laptop.model';
+
+export { MmosFacade } from './lib/store/mmos/mmos.facade';
+export { Mmo } from './lib/mmos/mmo.model';

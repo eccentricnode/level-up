@@ -3894,6 +3894,137 @@
           }
         }
       }
+    },
+    "mmos": {
+      "root": "apps/mmos/",
+      "sourceRoot": "apps/mmos/src",
+      "projectType": "application",
+      "prefix": "level",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mmos",
+            "index": "apps/mmos/src/index.html",
+            "main": "apps/mmos/src/main.ts",
+            "polyfills": "apps/mmos/src/polyfills.ts",
+            "tsConfig": "apps/mmos/tsconfig.app.json",
+            "assets": [
+              "apps/mmos/src/favicon.ico",
+              "apps/mmos/src/assets"
+            ],
+            "styles": [
+              "apps/mmos/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mmos/src/environments/environment.ts",
+                  "with": "apps/mmos/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mmos:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mmos:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mmos:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/mmos/src/test.ts",
+            "polyfills": "apps/mmos/src/polyfills.ts",
+            "tsConfig": "apps/mmos/tsconfig.spec.json",
+            "karmaConfig": "apps/mmos/karma.conf.js",
+            "styles": [
+              "apps/mmos/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/mmos/src/favicon.ico",
+              "apps/mmos/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/mmos/tsconfig.app.json",
+              "apps/mmos/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mmos-e2e": {
+      "root": "apps/mmos-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/mmos-e2e/protractor.conf.js",
+            "devServerTarget": "mmos:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mmos:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/mmos-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

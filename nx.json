@@ -187,6 +187,12 @@
     },
     "laptops-e2e": {
       "tags": []
+    },
+    "mmos": {
+      "tags": []
+    },
+    "mmos-e2e": {
+      "tags": []
     }
   }
 }

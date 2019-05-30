@@ -91,6 +91,9 @@ import { BrandsFacade } from './brands/brands.facade';
 import { LaptopsEffects } from './laptops/laptops.effects';
 import { LaptopsFacade } from './laptops/laptops.facade';
 
+import { MmosEffects } from './mmos/mmos.effects';
+import { MmosFacade } from './mmos/mmos.facade';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -127,7 +130,8 @@ import { LaptopsFacade } from './laptops/laptops.facade';
         ScrollsEffects,
         BrandsEffects,
         LaptopsEffects,
-    ])
+        MmosEffects,
+    ]),
   ],
   providers: [
     StarshipsFacade, 
@@ -158,6 +162,7 @@ import { LaptopsFacade } from './laptops/laptops.facade';
     ScrollsFacade,
     BrandsFacade,
     LaptopsFacade,
+    MmosFacade,
   ]
 })
 export class StateModule {}

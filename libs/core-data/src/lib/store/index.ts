@@ -28,6 +28,7 @@ import * as fromOSs from './operating-systems/operating-systems.reducer';
 import * as fromScrolls from './scrolls/scrolls.reducer';
 import * as fromBrands from './brands/brands.reducer';
 import * as fromLaptops from './laptops/laptops.reducer';
+import * as fromMmos from './mmos/mmos.reducer';
 
 import { Starship } from '../starships/starship.model';
 import { Rocket } from '../rockets/rocket.model';
@@ -57,6 +58,7 @@ import { OperatingSystem } from '../operating-systems/operating-system.model';
 import { ScrollModel } from '../scrolls/scroll.model';
 import { Brand } from '../brands/brand.model';
 import { Laptop } from '../laptops/laptop.model';
+import { Mmo } from '../mmos/mmo.model';
 
 export interface AppState {
     starships: fromStarships.StarshipsState
@@ -87,6 +89,7 @@ export interface AppState {
     scrolls: fromScrolls.ScrollsState
     brands: fromBrands.BrandsState
     laptops: fromLaptops.LaptopsState
+    mmos: fromMmos.MmosState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
@@ -118,6 +121,7 @@ export const reducers: ActionReducerMap<AppState> = {
     scrolls: fromScrolls.scrollsReducer,
     brands: fromBrands.brandsReducer,
     laptops: fromLaptops.laptopsReducer,
+    mmos: fromMmos.mmosReducer,
 }
 
 //-------------------------------------------------------------------
@@ -1112,5 +1116,37 @@ export const selectCurrentLaptop = createSelector(
     selectCurrentLaptopId,
     (laptopEntities, laptopId) => {
         return laptopId ? laptopEntities[laptopId] : {} as Laptop;
+    }
+);
+
+//-------------------------------------------------------------------
+// MMOS SELECTORS
+//-------------------------------------------------------------------
+
+
+export const selectMmosState = createFeatureSelector<fromMmos.MmosState>('mmos');
+
+export const selectMmoIds = createSelector(
+    selectMmosState,
+    fromMmos.selectMmoIds
+);
+export const selectMmoEntities = createSelector(
+    selectMmosState,
+    fromMmos.selectMmoEntities
+);
+export const selectAllMmos = createSelector(
+    selectMmosState,
+    fromMmos.selectAllMmos
+);
+export const selectCurrentMmoId = createSelector(
+    selectMmosState,
+    fromMmos.getSelectedMmoId
+);
+
+export const selectCurrentMmo = createSelector(
+    selectMmoEntities,
+    selectCurrentMmoId,
+    (mmoEntities, mmoId) => {
+        return mmoId ? mmoEntities[mmoId] : {} as Mmo;
     }
 );
